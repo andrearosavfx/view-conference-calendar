@@ -134,11 +134,11 @@
                 <div class="flex items-center gap-2 w-full sm:w-auto">
                     <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
                         <option value="ALL">All Venues</option>
-                        <option value="Sala Fucine">Sala Fucine</option>
-                        <option value="Binario 3">Binario 3</option>
-                        <option value="Mezzanino">Mezzanino</option>
-                        <option value="SOPPALCO">SOPPALCO</option>
-                        <option value="Cinema Massimo">Cinema Massimo</option>
+                        <option value="OGR - Sala Fucine">Sala Fucine</option>
+                        <option value="OGR - Binario 3">Binario 3</option>
+                        <option value="OGR - Mezzanino">Mezzanino</option>
+                        <option value="OGR - SOPPALCO">Soppalco</option>
+                        <option value="OGR - Cinema Massimo">Cinema Massimo</option>
                     </select>
 
                     <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
@@ -276,7 +276,7 @@
     </nav>
 
     <script>
-        const VENUES = ["Sala Fucine", "Binario 3", "Mezzanino", "SOPPALCO", "Cinema Massimo"];
+        const VENUES = ["OGR - Sala Fucine", "OGR - Binario 3", "OGR - Mezzanino", "OGR - SOPPALCO", "OGR - Cinema Massimo"];
         const DAY_START_HOUR = 8;
         const DAY_END_HOUR = 19;
 
@@ -285,7 +285,7 @@
                 id: "1001",
                 title: "09:00",
                 speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
-                location: "Sala Fucine",
+                location: "OGR - Sala Fucine",
                 date: "2026-10-13",
                 startTime: "09:00",
                 endTime: "10:00",
@@ -297,7 +297,7 @@
                 id: "1002",
                 title: "Wildwood",
                 speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
-                location: "Sala Fucine",
+                location: "OGR - Sala Fucine",
                 date: "2026-10-13",
                 startTime: "09:00",
                 endTime: "10:00",
@@ -309,7 +309,7 @@
                 id: "1003",
                 title: "Welcome to the Future: A Conversation with Brad Bird on Ray Gunn",
                 speaker: "BRAD BIRD, Writer & Director, Ray Gunn",
-                location: "Sala Fucine",
+                location: "OGR - Sala Fucine",
                 date: "2026-10-13",
                 startTime: "10:15",
                 endTime: "11:15",
@@ -321,7 +321,7 @@
                 id: "1004",
                 title: "Building Carcosa: Art Direction of SAROS",
                 speaker: "SIMONE SILVESTRI, Art Director, Saros game, Housemarque",
-                location: "Binario 3",
+                location: "OGR - Binario 3",
                 date: "2026-10-13",
                 startTime: "10:15",
                 endTime: "11:15",
@@ -333,7 +333,7 @@
                 id: "1005",
                 title: "From Desert Chases to Courtroom Cases: The VFX of ‘Coyote vs. Acme’",
                 speaker: "ALEXANDER SEAMAN, VFX Supervisor, DNEG",
-                location: "Sala Fucine",
+                location: "OGR - Sala Fucine",
                 date: "2026-10-13",
                 startTime: "11:30",
                 endTime: "12:30",
@@ -345,7 +345,7 @@
                 id: "1006",
                 title: "Artists in the Loop: Generative AI in Production at Eyeline",
                 speaker: "MOHSEN MOUSAVI, VP, Virtual Pioneering, Eyeline Studios",
-                location: "Binario 3",
+                location: "OGR - Binario 3",
                 date: "2026-10-13",
                 startTime: "11:30",
                 endTime: "12:30",
@@ -357,7 +357,7 @@
                 id: "1007",
                 title: "Modelmaking for Visual Effects in a Time of CGI",
                 speaker: "SIMON WEISSE, VFX Miniature Unit Supervisor and Props Designer",
-                location: "Mezzanino",
+                location: "OGR - Mezzanino",
                 date: "2026-10-13",
                 startTime: "11:30",
                 endTime: "12:30",
@@ -369,7 +369,7 @@
                 id: "1008",
                 title: "Acting and Facial Performance",
                 speaker: "ALEXIS WANNEROY, ( Remote ), Senior Animation Supervisor, Fortiche Production",
-                location: "SOPPALCO",
+                location: "OGR - SOPPALCO",
                 date: "2026-10-13",
                 startTime: "11:30",
                 endTime: "12:30",
@@ -381,7 +381,7 @@
                 id: "1009",
                 title: "From Camera to Light: Crafting Wolverine's Cinematic World",
                 speaker: "BRIAN WYSER, Senior Animation Director, Wolverine",
-                location: "Sala Fucine",
+                location: "OGR - Sala Fucine",
                 date: "2026-10-13",
                 startTime: "12:45",
                 endTime: "13:45",
@@ -393,7 +393,7 @@
                 id: "1010",
                 title: "The Sheep Detectives",
                 speaker: "CHRIS HURTT, Animation Director, Framestore",
-                location: "Binario 3",
+                location: "OGR - Binario 3",
                 date: "2026-10-13",
                 startTime: "12:45",
                 endTime: "13:45",
@@ -405,7 +405,7 @@
                 id: "1011",
                 title: "Alchemy of the Award-Winning Shot: Mastering Human Intuition in an Automated Era",
                 speaker: "KEVIN BAILLIE, Executive, Visual Effects Supervisor, Director, Founder, Leeme",
-                location: "Mezzanino",
+                location: "OGR - Mezzanino",
                 date: "2026-10-13",
                 startTime: "12:45",
                 endTime: "13:45",
@@ -417,7 +417,7 @@
 
         // Normalizer function to map raw location string from JSON to configured VENUES array
         function parseVenueLocation(locationStr) {
-            if (!locationStr) return "Sala Fucine";
+            if (!locationStr) return "OGR - Sala Fucine";
             const cleaned = locationStr.replace(/^OGR\s*-\s*/i, '').trim();
             const matched = VENUES.find(v => v.toLowerCase() === cleaned.toLowerCase());
             return matched || cleaned;
