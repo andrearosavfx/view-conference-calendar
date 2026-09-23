@@ -134,19 +134,19 @@
                 <div class="flex items-center gap-2 w-full sm:w-auto">
                     <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
                         <option value="ALL">All Venues</option>
-                        <option value="OGR Main Hall">OGR Main Hall</option>
-                        <option value="OGR Stage B">OGR Stage B</option>
-                        <option value="ITS Auditorium">ITS Auditorium</option>
+                        <option value="Sala Fucine">Sala Fucine</option>
+                        <option value="Binario 3">Binario 3</option>
+                        <option value="Mezzanino">Mezzanino</option>
+                        <option value="SOPPALCO">SOPPALCO</option>
                         <option value="Cinema Massimo">Cinema Massimo</option>
                     </select>
 
                     <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
                         <option value="ALL">All Tracks</option>
-                        <option value="Keynote">Keynote</option>
-                        <option value="Animation">Animation</option>
                         <option value="VFX">VFX</option>
-                        <option value="Workshop">Workshop</option>
-                        <option value="AI & Future">AI & Future</option>
+                        <option value="Session">Session</option>
+                        <option value="AI & Tech">AI & Tech</option>
+                        <option value="Animation">Animation</option>
                     </select>
                 </div>
             </div>
@@ -276,259 +276,157 @@
     </nav>
 
     <script>
-        const VENUES = ["OGR Main Hall", "OGR Stage B", "ITS Auditorium", "Cinema Massimo"];
+        const VENUES = ["Sala Fucine", "Binario 3", "Mezzanino", "SOPPALCO", "Cinema Massimo"];
         const DAY_START_HOUR = 8;
         const DAY_END_HOUR = 19;
 
         const SCHEDULE_DATA = [
             {
-                id: "1201",
-                title: "Opening Ceremony & Keynote: The Evolution of Digital Storytelling",
-                speaker: "Maria Elena Gutierrez & Keynote Panel",
-                track: "Keynote",
-                location: "OGR Main Hall",
-                date: "2026-10-12",
+                id: "1001",
+                title: "09:00",
+                speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
+                location: "Sala Fucine",
+                date: "2026-10-13",
                 startTime: "09:00",
-                endTime: "10:30",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Welcome address opening VIEW Conference 2026, setting the stage for 5 days of world-class animation, VFX, and tech innovation."
+                endTime: "10:00",
+                track: "VFX",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/steveemersonbanner_feature.jpg",
+                url: "https://www.viewconference.it/article/1301"
             },
             {
-                id: "1202",
-                title: "Real-time Virtual Production Workflows in Unreal Engine 5.5",
-                speaker: "Epic Games Tech Team",
-                track: "Workshop",
-                location: "OGR Stage B",
-                date: "2026-10-12",
-                startTime: "09:30",
-                endTime: "11:30",
-                imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Hands-on session exploring next-gen camera tracking, LED wall synchronization, and real-time lighting."
+                id: "1002",
+                title: "Wildwood",
+                speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
+                location: "Sala Fucine",
+                date: "2026-10-13",
+                startTime: "09:00",
+                endTime: "10:00",
+                track: "VFX",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/steveemersonbanner_feature.jpg",
+                url: "https://www.viewconference.it/article/1301"
             },
             {
-                id: "1203",
-                title: "AI & Creativity: Assistant or Auteur?",
-                speaker: "Dr. Alvy Ray Smith & AI Research Panel",
-                track: "AI & Future",
-                location: "ITS Auditorium",
-                date: "2026-10-12",
-                startTime: "11:00",
-                endTime: "12:30",
-                imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "A panel discussion exploring the ethical, creative, and technical boundaries of generative AI tools in major studio pipelines."
-            },
-            {
-                id: "1204",
-                title: "Cinematic Lighting Masterclass: Crafting Mood & Tone",
-                speaker: "Sir Roger Deakins",
-                track: "Keynote",
-                location: "OGR Main Hall",
-                date: "2026-10-12",
-                startTime: "14:00",
-                endTime: "15:30",
-                imageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Oscar-winning cinematographer Roger Deakins breaks down iconic lighting setups and camera placements from recent masterworks."
-            },
-            {
-                id: "1205",
-                title: "Indie Feature Production: From Pitch to Premiere",
-                speaker: "Nora Twomey & Cartoon Saloon",
-                track: "Animation",
-                location: "Cinema Massimo",
-                date: "2026-10-12",
-                startTime: "16:00",
-                endTime: "17:30",
-                imageUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "An inside look at maintaining artistic vision and hand-drawn beauty while managing European co-production budgets."
-            },
-            {
-                id: "1296",
+                id: "1003",
                 title: "Welcome to the Future: A Conversation with Brad Bird on Ray Gunn",
-                speaker: "Brad Bird",
-                track: "Keynote",
-                location: "OGR Main Hall",
+                speaker: "BRAD BIRD, Writer & Director, Ray Gunn",
+                location: "Sala Fucine",
                 date: "2026-10-13",
-                startTime: "10:00",
-                endTime: "11:30",
+                startTime: "10:15",
+                endTime: "11:15",
+                track: "Session",
                 imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
-                articleUrl: "https://www.viewconference.it/article/1296/welcome-to-the-future-a-conversation-with-brad-bird-on-ray-gunn",
-                description: "Join Oscar-winning director Brad Bird (The Incredibles, Ratatouille, Iron Giant) as he dives into his upcoming animated feature Ray Gunn and discusses world-building and storytelling."
+                url: "https://www.viewconference.it/article/1296"
             },
             {
-                id: "1297",
-                title: "Character Design & Visual Expression in Modern Animation",
-                speaker: "Kris Pearn",
-                track: "Animation",
-                location: "OGR Stage B",
+                id: "1004",
+                title: "Building Carcosa: Art Direction of SAROS",
+                speaker: "SIMONE SILVESTRI, Art Director, Saros game, Housemarque",
+                location: "Binario 3",
                 date: "2026-10-13",
-                startTime: "09:30",
-                endTime: "11:00",
-                imageUrl: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Director Kris Pearn leads an engaging workshop on character silhouette, emotional acting through pose, and comedic timing."
+                startTime: "10:15",
+                endTime: "11:15",
+                track: "Session",
+                imageUrl: "",
+                url: "https://www.viewconference.it/article/1265"
             },
             {
-                id: "1298",
-                title: "Stylized VFX for Blockbuster Feature Films",
-                speaker: "ILM & Sony Pictures Imageworks Supervisors",
-                track: "VFX",
-                location: "ITS Auditorium",
+                id: "1005",
+                title: "From Desert Chases to Courtroom Cases: The VFX of ‘Coyote vs. Acme’",
+                speaker: "ALEXANDER SEAMAN, VFX Supervisor, DNEG",
+                location: "Sala Fucine",
                 date: "2026-10-13",
                 startTime: "11:30",
-                endTime: "13:00",
-                imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "A deep dive into blending non-photorealistic rendering (NPR) with heavy physical simulation pipelines."
-            },
-            {
-                id: "1299",
-                title: "RenderMan 26: Next-Gen Shading & Lighting Techniques",
-                speaker: "Dylan Sisson (Pixar)",
-                track: "Workshop",
-                location: "OGR Stage B",
-                date: "2026-10-13",
-                startTime: "14:00",
-                endTime: "16:00",
-                imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Discover Pixar's latest RenderMan release features including neural denoisers, advanced subsurface scatter, and GPU speedups."
-            },
-            {
-                id: "1300",
-                title: "The Art of World Building in Sci-Fi & Fantasy Cinema",
-                speaker: "Production Designers Panel",
-                track: "Keynote",
-                location: "Cinema Massimo",
-                date: "2026-10-13",
-                startTime: "16:30",
-                endTime: "18:00",
-                imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Top art directors and concept artists share their process for crafting immersive futuristic architecture and alien landscapes."
-            },
-            {
-                id: "1301",
-                title: "Women in Animation: Leadership & Innovation",
-                speaker: "Ramsey Naito & Guests",
-                track: "Keynote",
-                location: "OGR Main Hall",
-                date: "2026-10-14",
-                startTime: "09:30",
-                endTime: "11:00",
-                imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Industry leaders discuss expanding opportunities, creative direction, and executive producer strategies in modern animation."
-            },
-            {
-                id: "1302",
-                title: "Procedural Environment Creation with Houdini 20.5",
-                speaker: "SideFX Senior Technical Artists",
-                track: "Workshop",
-                location: "OGR Stage B",
-                date: "2026-10-14",
-                startTime: "11:00",
-                endTime: "13:00",
-                imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Learn how to build massive procedural terrain, foliage ecosystems, and cityscapes efficiently in Houdini."
-            },
-            {
-                id: "1303",
-                title: "The Future of Game Graphics & Realtime Ray Tracing",
-                speaker: "NVIDIA Graphics Research",
-                track: "AI & Future",
-                location: "ITS Auditorium",
-                date: "2026-10-14",
-                startTime: "14:00",
-                endTime: "15:30",
-                imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Exploring path tracing, neural reconstruction, and real-time global illumination for next-gen interactive media."
-            },
-            {
-                id: "1304",
-                title: "Special Retrospective Screening & Q&A",
-                speaker: "Guest Filmmakers",
-                track: "Animation",
-                location: "Cinema Massimo",
-                date: "2026-10-14",
-                startTime: "16:00",
-                endTime: "18:00",
-                imageUrl: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Exclusive cinema screening followed by an in-depth conversation with the director and lead animators."
-            },
-            {
-                id: "1305",
-                title: "Breakthrough VFX: De-Aging & Digital Humans",
-                speaker: "VFX Supervisors Panel",
+                endTime: "12:30",
                 track: "VFX",
-                location: "OGR Main Hall",
-                date: "2026-10-15",
-                startTime: "10:00",
-                endTime: "11:30",
-                imageUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Examining recent advances in photorealistic digital actors, skin shaders, and neural face replacement."
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/04/coyotevsacme-1_feature.jpg",
+                url: "https://www.viewconference.it/article/1309"
             },
             {
-                id: "1306",
-                title: "Storyboarding for Fast-Paced Action Sequences",
-                speaker: "Lead Story Artists",
-                track: "Workshop",
-                location: "OGR Stage B",
-                date: "2026-10-15",
+                id: "1006",
+                title: "Artists in the Loop: Generative AI in Production at Eyeline",
+                speaker: "MOHSEN MOUSAVI, VP, Virtual Pioneering, Eyeline Studios",
+                location: "Binario 3",
+                date: "2026-10-13",
                 startTime: "11:30",
-                endTime: "13:00",
-                imageUrl: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "A hands-on breakdown of pacing, camera cuts, screen direction, and dynamic perspective in action boards."
+                endTime: "12:30",
+                track: "AI & Tech",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/eyelinebanner2_feature.jpg",
+                url: "https://www.viewconference.it/article/1293"
             },
             {
-                id: "1307",
-                title: "Generative AI in Pre-Visualization & Concept Design",
-                speaker: "Concept Studio Directors",
-                track: "AI & Future",
-                location: "ITS Auditorium",
-                date: "2026-10-15",
-                startTime: "14:30",
-                endTime: "16:00",
-                imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "How top visual development teams integrate AI toolsets into rapid iteration and pitch decks responsibly."
+                id: "1007",
+                title: "Modelmaking for Visual Effects in a Time of CGI",
+                speaker: "SIMON WEISSE, VFX Miniature Unit Supervisor and Props Designer",
+                location: "Mezzanino",
+                date: "2026-10-13",
+                startTime: "11:30",
+                endTime: "12:30",
+                track: "VFX",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/16/simonweissebanner_feature.jpg",
+                url: "https://www.viewconference.it/article/1249"
             },
             {
-                id: "1308",
-                title: "VIEW Awards 2026: Outstanding Short Film Ceremony",
-                speaker: "Jury & Festival Winners",
-                track: "Keynote",
-                location: "OGR Main Hall",
-                date: "2026-10-16",
-                startTime: "10:00",
-                endTime: "12:00",
-                imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "The grand finale celebration announcing the VIEW 2026 short animation award winners and student project honors."
+                id: "1008",
+                title: "Acting and Facial Performance",
+                speaker: "ALEXIS WANNEROY, ( Remote ), Senior Animation Supervisor, Fortiche Production",
+                location: "SOPPALCO",
+                date: "2026-10-13",
+                startTime: "11:30",
+                endTime: "12:30",
+                track: "Animation",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/06/12/alexiswanneroybanner_feature.jpg",
+                url: "https://www.viewconference.it/article/1247"
             },
             {
-                id: "1309",
-                title: "Closing Keynote: The Next Era of Immersive Media",
-                speaker: "Conference Closing Committee",
-                track: "Keynote",
-                location: "OGR Main Hall",
-                date: "2026-10-16",
-                startTime: "14:00",
-                endTime: "15:30",
-                imageUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
-                articleUrl: "https://www.viewconference.it/pages/program",
-                description: "Final remarks, key takeaways, and a forward look at the technology and artistry driving VIEW 2027."
+                id: "1009",
+                title: "From Camera to Light: Crafting Wolverine's Cinematic World",
+                speaker: "BRIAN WYSER, Senior Animation Director, Wolverine",
+                location: "Sala Fucine",
+                date: "2026-10-13",
+                startTime: "12:45",
+                endTime: "13:45",
+                track: "Animation",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/07/02/brianmullenbanner_feature.jpg",
+                url: "https://www.viewconference.it/article/1271"
+            },
+            {
+                id: "1010",
+                title: "The Sheep Detectives",
+                speaker: "CHRIS HURTT, Animation Director, Framestore",
+                location: "Binario 3",
+                date: "2026-10-13",
+                startTime: "12:45",
+                endTime: "13:45",
+                track: "Animation",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/29/thesheepdetectives_feature.jpeg",
+                url: "https://www.viewconference.it/article/1310"
+            },
+            {
+                id: "1011",
+                title: "Alchemy of the Award-Winning Shot: Mastering Human Intuition in an Automated Era",
+                speaker: "KEVIN BAILLIE, Executive, Visual Effects Supervisor, Director, Founder, Leeme",
+                location: "Mezzanino",
+                date: "2026-10-13",
+                startTime: "12:45",
+                endTime: "13:45",
+                track: "VFX",
+                imageUrl: "",
+                url: "https://www.viewconference.it/article/1311"
             }
         ];
+
+        // Normalizer function to map raw location string from JSON to configured VENUES array
+        function parseVenueLocation(locationStr) {
+            if (!locationStr) return "Sala Fucine";
+            const cleaned = locationStr.replace(/^OGR\s*-\s*/i, '').trim();
+            const matched = VENUES.find(v => v.toLowerCase() === cleaned.toLowerCase());
+            return matched || cleaned;
+        }
+
+        // Clean initial dataset locations
+        SCHEDULE_DATA.forEach(ev => {
+            ev.location = parseVenueLocation(ev.location);
+        });
 
         // State Variables
         let selectedDate = "2026-10-13";
@@ -637,7 +535,7 @@
                 const matchesSearch = !searchVal || 
                     ev.title.toLowerCase().includes(searchVal) || 
                     ev.speaker.toLowerCase().includes(searchVal) || 
-                    ev.description.toLowerCase().includes(searchVal);
+                    (ev.description && ev.description.toLowerCase().includes(searchVal));
 
                 return matchesDate && matchesStarred && matchesVenue && matchesTrack && matchesSearch;
             });
@@ -713,6 +611,7 @@
                     const heightPx = Math.max(durationHrs * gridScale - 6, 60);
 
                     const isStarred = starredIds.has(ev.id);
+                    const bgImage = ev.imageUrl || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
 
                     gridHtml += `
                         <div onclick="openModal('${ev.id}')" 
@@ -720,7 +619,7 @@
                              class="absolute left-1 right-1 rounded-xl overflow-hidden cursor-pointer group transition-all duration-200 hover:z-20 hover:scale-[1.02] border border-slate-700/80 hover:border-brand-500 shadow-xl">
                             
                             <!-- Card Background Image with Dark Gradient Overlay -->
-                            <img src="${ev.imageUrl}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
+                            <img src="${bgImage}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60 group-hover:via-slate-950/70 transition-colors"></div>
 
                             <!-- Content Overlay -->
@@ -779,14 +678,17 @@
             if (!ev) return;
 
             currentModalEventId = id;
-            document.getElementById('modal-banner').src = ev.imageUrl;
+            document.getElementById('modal-banner').src = ev.imageUrl || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
             document.getElementById('modal-track').innerText = ev.track;
             document.getElementById('modal-title').innerText = ev.title;
             document.getElementById('modal-speaker').innerText = ev.speaker;
             document.getElementById('modal-time').innerText = `${ev.startTime} - ${ev.endTime}`;
             document.getElementById('modal-location').innerText = ev.location;
-            document.getElementById('modal-description').innerText = ev.description;
-            document.getElementById('modal-link').href = ev.articleUrl;
+            document.getElementById('modal-description').innerText = ev.description || "Join us for this featured SESSION at VIEW Conference 2026 featuring top industry talent and technical insights.";
+            
+            // Fixed: Read URL directly from event JSON object field (supports both ev.url and ev.articleUrl)
+            const officialUrl = ev.url || ev.articleUrl || "https://www.viewconference.it/pages/program";
+            document.getElementById('modal-link').href = officialUrl;
 
             updateModalStarButton(id);
 
