@@ -29,14 +29,17 @@
             }
         }
     </script>
+
     <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
+        
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -44,26 +47,29 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
         .glass-header {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-        .tab-active {
-            background-color: #e11d48 !important;
-            color: #ffffff !important;
-            border-color: #f43f5e !important;
-            box-shadow: 0 4px 14px 0 rgba(225, 29, 72, 0.39);
+
+        .event-card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
         }
-        .grid-line {
-            border-bottom: 1px dashed rgba(51, 65, 85, 0.4);
+
+        .tab-active {
+            border-bottom: 3px solid #f43f5e;
+            color: #f43f5e;
+            font-weight: 700;
         }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-600 selection:text-white pb-20 md:pb-6">
+
     <!-- Top Fixed Header -->
     <header class="sticky top-0 z-40 glass-header border-b border-slate-800/80 px-4 py-3">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+        <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-purple-600 flex items-center justify-center shadow-lg shadow-brand-500/20 font-black text-xl text-white">
                     V
@@ -76,6 +82,7 @@
                     <p class="text-xs text-slate-400">Oct 12 – Oct 16 • OGR & Venues</p>
                 </div>
             </div>
+
             <!-- Sync & Share Action Buttons -->
             <div class="flex items-center gap-2">
                 <button onclick="copyShareableLink()" title="Copy Shareable Link for device sync" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition border border-slate-700/60 active:scale-95">
@@ -88,57 +95,67 @@
                 </button>
             </div>
         </div>
+
         <!-- Day Selector Strip -->
-        <div class="max-w-7xl mx-auto mt-3 pt-2 border-t border-slate-800/50 flex overflow-x-auto no-scrollbar gap-2 px-1">
-            <button onclick="switchDay('2026-10-12')" id="day-btn-2026-10-12" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
-                <span class="text-[10px] uppercase tracking-wider font-semibold">Mon</span>
+        <div class="max-w-5xl mx-auto mt-3 pt-2 border-t border-slate-800/50 flex overflow-x-auto no-scrollbar gap-2 px-1">
+            <button onclick="switchDay('2026-10-12')" id="day-btn-2026-10-12" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-transparent">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Mon</span>
                 <span class="text-base font-bold">12 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-13')" id="day-btn-2026-10-13" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
-                <span class="text-[10px] uppercase tracking-wider font-semibold">Tue</span>
+            <button onclick="switchDay('2026-10-13')" id="day-btn-2026-10-13" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-transparent">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Tue</span>
                 <span class="text-base font-bold">13 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-14')" id="day-btn-2026-10-14" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
-                <span class="text-[10px] uppercase tracking-wider font-semibold">Wed</span>
+            <button onclick="switchDay('2026-10-14')" id="day-btn-2026-10-14" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-transparent">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Wed</span>
                 <span class="text-base font-bold">14 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-15')" id="day-btn-2026-10-15" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
-                <span class="text-[10px] uppercase tracking-wider font-semibold">Thu</span>
+            <button onclick="switchDay('2026-10-15')" id="day-btn-2026-10-15" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-transparent">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Thu</span>
                 <span class="text-base font-bold">15 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-16')" id="day-btn-2026-10-16" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
-                <span class="text-[10px] uppercase tracking-wider font-semibold">Fri</span>
+            <button onclick="switchDay('2026-10-16')" id="day-btn-2026-10-16" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-transparent">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Fri</span>
                 <span class="text-base font-bold">16 OCT</span>
             </button>
         </div>
     </header>
+
     <!-- Controls Toolbar -->
-    <main class="max-w-7xl mx-auto w-full px-4 pt-4 flex-1 flex flex-col">
-        <div class="space-y-3 mb-4">
+    <main class="max-w-5xl mx-auto w-full px-4 pt-4 flex-1">
+        
+        <div class="space-y-3 mb-5">
             <div class="flex flex-col sm:flex-row items-center gap-3">
                 <div class="relative w-full flex-1">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                     <input type="text" id="search-input" oninput="applyFilters()" placeholder="Search title, speaker, topic..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
                 </div>
+                
                 <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
+                    <!-- Venue Select (Updated with new locations) -->
+                    <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-44">
                         <option value="ALL">All Venues</option>
                         <option value="OGR - Sala Fucine">OGR - Sala Fucine</option>
                         <option value="OGR - Binario 3">OGR - Binario 3</option>
                         <option value="OGR - Mezzanino">OGR - Mezzanino</option>
-                        <option value="OGR - SOPPALCO">OGR - Soppalco</option>
+                        <option value="OGR - SOPPALCO">OGR - SOPPALCO</option>
                         <option value="OGR - Cinema Massimo">OGR - Cinema Massimo</option>
                     </select>
-                    <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
+
+                    <!-- Track Select -->
+                    <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-36">
                         <option value="ALL">All Tracks</option>
+                        <option value="Keynote">Keynote</option>
+                        <option value="Animation">Animation</option>
                         <option value="VFX">VFX</option>
                         <option value="Session">Session</option>
-                        <option value="AI & Tech">AI & Tech</option>
-                        <option value="Animation">Animation</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="AI & Future">AI & Future</option>
                     </select>
                 </div>
             </div>
-            <!-- Toggle Filter: All vs Starred & Zoom Scale -->
+
+            <!-- Filter Controls -->
             <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
                 <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
                     <button onclick="setStarredFilter(false)" id="filter-all-btn" class="px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600">
@@ -149,54 +166,68 @@
                         Starred (<span id="starred-count">0</span>)
                     </button>
                 </div>
+                
                 <div class="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
                     <span class="text-[11px] text-slate-400 font-semibold px-2 hidden sm:inline">
                         <i class="fa-solid fa-up-down text-brand-500 mr-1"></i>Row Scale:
                     </span>
-                    <button onclick="setGridZoom(100)" id="zoom-btn-100" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Compact</button>
-                    <button onclick="setGridZoom(140)" id="zoom-btn-140" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700">Default</button>
-                    <button onclick="setGridZoom(190)" id="zoom-btn-190" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Expanded</button>
+                    <button onclick="setGridZoom(90)" id="zoom-btn-90" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">
+                        Compact
+                    </button>
+                    <button onclick="setGridZoom(130)" id="zoom-btn-130" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700">
+                        Default
+                    </button>
+                    <button onclick="setGridZoom(180)" id="zoom-btn-180" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">
+                        Expanded
+                    </button>
                 </div>
             </div>
         </div>
+
         <div id="grid-scroll-tip" class="mb-3 text-center sm:text-left text-[11px] text-slate-400 flex items-center justify-between bg-slate-900/60 border border-slate-800/80 px-3 py-1.5 rounded-xl">
             <span class="flex items-center gap-1.5">
                 <i class="fa-solid fa-arrows-left-right text-brand-400"></i>
                 <span>Scroll horizontally to compare venue stages side-by-side</span>
             </span>
-            <span id="scale-indicator" class="text-[10px] text-slate-400 font-semibold hidden sm:inline">1 Hour = 140px height</span>
+            <span id="scale-indicator" class="text-[10px] text-slate-400 font-semibold hidden sm:inline">1 Hour = 130px height</span>
         </div>
-        <!-- Time-Grid Matrix Wrapper -->
-        <div class="overflow-x-auto bg-slate-900/40 rounded-2xl border border-slate-800/90 shadow-2xl relative flex-1">
-            <div id="schedule-container" class="min-w-[850px] relative"></div>
-        </div>
-        <!-- Empty State -->
+
+        <div id="schedule-container" class="relative"></div>
+
         <div id="empty-state" class="hidden py-16 text-center text-slate-500">
             <div class="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center mx-auto mb-3 text-2xl text-slate-600">
                 <i class="fa-regular fa-star"></i>
             </div>
-            <p class="font-semibold text-slate-400">No matching events found</p>
-            <p class="text-xs text-slate-600 mt-1">Try clearing filters or selecting another date.</p>
+            <p class="font-semibold text-slate-400">No events found</p>
+            <p class="text-xs text-slate-600 mt-1">Try toggling filters or starring sessions you want to see.</p>
         </div>
     </main>
-    <!-- Detailed Modal -->
+
+    <!-- Event Details Modal -->
     <div id="event-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/75 backdrop-blur-sm p-0 sm:p-4 transition-opacity">
-        <div class="bg-slate-900 w-full max-w-lg rounded-t-3xl sm:rounded-2xl border border-slate-800 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+        <div class="bg-slate-900 w-full max-w-lg rounded-t-3xl sm:rounded-2xl border border-slate-800 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col transform transition-all">
+            
             <div class="relative h-48 bg-slate-950 overflow-hidden flex-shrink-0">
-                <img id="modal-banner" src="" alt="Event Banner" class="w-full h-full object-cover object-center" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
+                <img id="modal-banner" src="" alt="Event Banner" class="w-full h-full object-cover object-center" onerror="this.src='https://placehold.co/800x400/1e293b/f43f5e?text=VIEW+2026+Torino'">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                
                 <button onclick="closeModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
+
                 <div class="absolute bottom-3 left-4">
-                    <span id="modal-track" class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-600 text-white shadow">TRACK</span>
+                    <span id="modal-track" class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-600 text-white shadow">
+                        TRACK
+                    </span>
                 </div>
             </div>
+
             <div class="p-5 overflow-y-auto space-y-4 flex-1">
                 <div>
                     <h2 id="modal-title" class="text-xl font-bold text-white leading-tight"></h2>
                     <p id="modal-speaker" class="text-sm text-brand-400 font-medium mt-1"></p>
                 </div>
+
                 <div class="grid grid-cols-2 gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-xs">
                     <div class="flex items-center gap-2 text-slate-300">
                         <i class="fa-regular fa-clock text-brand-500"></i>
@@ -213,13 +244,15 @@
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <h3 class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-1">About Session</h3>
                     <p id="modal-description" class="text-sm text-slate-300 leading-relaxed"></p>
                 </div>
             </div>
+
             <div class="p-4 border-t border-slate-800 bg-slate-950 flex items-center gap-3">
-                <button id="modal-star-btn" onclick="toggleModalStar()" class="flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border border-slate-700 bg-slate-800 text-slate-200">
+                <button id="modal-star-btn" onclick="toggleModalStar()" class="flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border">
                     <i id="modal-star-icon" class="fa-solid fa-star"></i>
                     <span id="modal-star-text">Star Event</span>
                 </button>
@@ -230,42 +263,37 @@
             </div>
         </div>
     </div>
-    <!-- Toast Notification -->
+
+    <!-- Toast -->
     <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-800 text-white px-4 py-2.5 rounded-xl border border-slate-700 shadow-xl text-xs font-semibold flex items-center gap-2 transition-all opacity-0 pointer-events-none transform translate-y-2">
         <i id="toast-icon" class="fa-solid fa-circle-check text-brand-500"></i>
         <span id="toast-message">Action successful</span>
     </div>
-    <!-- Bottom Navigation (Mobile) -->
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 glass-header border-t border-slate-800/80 px-6 py-2.5 flex items-center justify-around">
-        <button onclick="setStarredFilter(false)" id="nav-home" class="flex flex-col items-center gap-0.5 text-brand-500">
-            <i class="fa-solid fa-calendar text-base"></i>
-            <span class="text-[10px] font-medium">Schedule</span>
-        </button>
-        <button onclick="setStarredFilter(true)" id="nav-starred" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
-            <i class="fa-solid fa-star text-base"></i>
-            <span class="text-[10px] font-medium">Favorites</span>
-        </button>
-        <button onclick="exportStarredData()" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
-            <i class="fa-solid fa-download text-base"></i>
-            <span class="text-[10px] font-medium">Backup</span>
-        </button>
-    </nav>
+
     <script>
-        const VENUES = ["OGR - Sala Fucine", "OGR - Binario 3", "OGR - Mezzanino", "OGR - SOPPALCO", "OGR - Cinema Massimo"];
-        const DAY_START_HOUR = 8;
-        const DAY_END_HOUR = 19;
-        let SCHEDULE_DATA = [
+        // Updated Location List
+        const ALL_VENUES = [
+            "OGR - Sala Fucine",
+            "OGR - Binario 3",
+            "OGR - Mezzanino",
+            "OGR - SOPPALCO",
+            "OGR - Cinema Massimo"
+        ];
+
+        // Updated Data Structure matching the requested JSON format
+        const SCHEDULE_DATA = [
             {
                 id: "1001",
                 title: "09:00",
                 speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
                 location: "OGR - Mezzanino",
                 date: "2026-10-13",
-                startTime: "09:00",
-                endTime: "10:00",
+                startTime: "15:00",
+                endTime: "16:00",
                 track: "VFX",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/steveemersonbanner_feature.jpg",
-                url: "https://www.viewconference.it/article/1301"
+                imageUrl: "",
+                url: "https://www.viewconference.it/article/1301",
+                description: "Session with STEVE EMERSON, Production VFX Supervisor, LAIKA."
             },
             {
                 id: "1002",
@@ -277,7 +305,8 @@
                 endTime: "10:00",
                 track: "VFX",
                 imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/steveemersonbanner_feature.jpg",
-                url: "https://www.viewconference.it/article/1301"
+                url: "https://www.viewconference.it/article/1301",
+                description: "A deep dive into Wildwood featuring STEVE EMERSON."
             },
             {
                 id: "1004",
@@ -289,336 +318,422 @@
                 endTime: "11:15",
                 track: "Session",
                 imageUrl: "",
-                url: "https://www.viewconference.it/article/1265"
+                url: "https://www.viewconference.it/article/1265",
+                description: "Art direction breakdown for SAROS with Simone Silvestri."
             }
         ];
-        // Normalizer function to map raw location string from JSON to configured VENUES array
-        function parseVenueLocation(locationStr) {
-            if (!locationStr) return "OGR - Sala Fucine";
-            const cleaned = locationStr.replace(/^OGR\s*-\s*/i, '').trim();
-            const matched = VENUES.find(v => v.toLowerCase() === cleaned.toLowerCase());
-            return matched || cleaned;
-        }
-        // State Variables
+
         let selectedDate = "2026-10-13";
         let showOnlyStarred = false;
         let currentModalEventId = null;
-        let gridScale = 140; // Pixel height per hour
-        let starredIds = new Set(JSON.parse(localStorage.getItem('view2026_starred') || '[]'));
+        let starredIds = new Set();
+        let pxPerHour = 130;
 
-        async function loadScheduleData() {
-            try {
-                const response = await fetch('schedule.json');
-                if (response.ok) {
-                    const data = await response.json();
-                    if (Array.isArray(data) && data.length > 0) {
-                        SCHEDULE_DATA = data;
-                    }
-                }
-            } catch (e) {
-                console.warn("Could not load schedule.json, using default dataset fallback.", e);
-            }
-            // Clean dataset locations
-            SCHEDULE_DATA.forEach(ev => {
-                ev.location = parseVenueLocation(ev.location);
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            await loadScheduleData();
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const syncData = urlParams.get('sync');
-            if (syncData) {
-                try {
-                    const parsed = JSON.parse(atob(syncData));
-                    if (Array.isArray(parsed)) {
-                        starredIds = new Set(parsed);
-                        saveStarred();
-                        showToast("Schedule synced from shared link!");
-                    }
-                } catch (e) {
-                    console.error("Invalid sync payload", e);
-                }
-            }
-
+        window.onload = function() {
+            loadStarredState();
+            parseUrlParameters();
             updateStarredCount();
-            switchDay(selectedDate);
-        });
+            renderCalendar();
+        };
 
-        function saveStarred() {
-            localStorage.setItem('view2026_starred', JSON.stringify(Array.from(starredIds)));
-            updateStarredCount();
-        }
-        function updateStarredCount() {
-            document.getElementById('starred-count').innerText = starredIds.size;
-        }
-        function switchDay(dateStr) {
-            selectedDate = dateStr;
-            document.querySelectorAll('.day-btn').forEach(btn => {
-                btn.classList.remove('tab-active');
-            });
-            const activeBtn = document.getElementById(`day-btn-${dateStr}`);
-            if (activeBtn) activeBtn.classList.add('tab-active');
-            
-            renderSchedule();
-        }
-        function setStarredFilter(starredOnly) {
-            showOnlyStarred = starredOnly;
-            
-            const allBtn = document.getElementById('filter-all-btn');
-            const starredBtn = document.getElementById('filter-starred-btn');
-            const navHome = document.getElementById('nav-home');
-            const navStarred = document.getElementById('nav-starred');
-
-            if (starredOnly) {
-                allBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white";
-                starredBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600 flex items-center gap-1.5";
-                if(navHome) navHome.className = "flex flex-col items-center gap-0.5 text-slate-400 hover:text-white";
-                if(navStarred) navStarred.className = "flex flex-col items-center gap-0.5 text-brand-500";
-            } else {
-                allBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600";
-                starredBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center gap-1.5";
-                if(navHome) navHome.className = "flex flex-col items-center gap-0.5 text-brand-500";
-                if(navStarred) navStarred.className = "flex flex-col items-center gap-0.5 text-slate-400 hover:text-white";
-            }
-
-            renderSchedule();
-        }
-        function setGridZoom(scale) {
-            gridScale = scale;
+        function setGridZoom(newPx) {
+            pxPerHour = newPx;
             document.querySelectorAll('.zoom-btn').forEach(btn => {
                 btn.className = "zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white";
             });
-            const activeZoomBtn = document.getElementById(`zoom-btn-${scale}`);
-            if(activeZoomBtn) activeZoomBtn.className = "zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700";
-            
-            document.getElementById('scale-indicator').innerText = `1 Hour = ${scale}px height`;
-            renderSchedule();
-        }
-        function applyFilters() {
-            renderSchedule();
+            const activeBtn = document.getElementById(`zoom-btn-${newPx}`);
+            if (activeBtn) {
+                activeBtn.className = "zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700 shadow-sm";
+            }
+            const indicator = document.getElementById('scale-indicator');
+            if (indicator) {
+                indicator.innerText = `1 Hour = ${newPx}px height`;
+            }
+            renderCalendar();
+            showToast(`Grid scale set to ${newPx === 90 ? 'Compact' : newPx === 180 ? 'Expanded' : 'Default'}`, 'fa-up-down');
         }
 
-        function timeToMinutes(t) {
-            const [h, m] = t.split(':').map(Number);
-            return h * 60 + m;
+        function loadStarredState() {
+            const saved = localStorage.getItem('view_conf_starred');
+            if (saved) {
+                try {
+                    const ids = JSON.parse(saved);
+                    ids.forEach(id => starredIds.add(String(id)));
+                } catch(e) { console.error("Error reading saved stars", e); }
+            }
         }
-        function renderSchedule() {
+
+        function saveStarredState() {
+            const arrayIds = Array.from(starredIds);
+            try {
+                localStorage.setItem('view_conf_starred', JSON.stringify(arrayIds));
+            } catch(e) {
+                console.warn('localStorage access failed:', e);
+            }
+            updateStarredCount();
+        }
+
+        function parseUrlParameters() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const starredParam = params.get('starred');
+                if (starredParam) {
+                    const ids = starredParam.split(',').map(s => s.trim());
+                    ids.forEach(id => {
+                        if (id) starredIds.add(id);
+                    });
+                    saveStarredState();
+                }
+            } catch (e) {
+                console.warn('Could not parse URL parameters:', e);
+            }
+        }
+
+        function updateStarredCount() {
+            document.getElementById('starred-count').innerText = starredIds.size;
+        }
+
+        function toggleStar(eventId, e) {
+            if (e) e.stopPropagation();
+            const id = String(eventId);
+            if (starredIds.has(id)) {
+                starredIds.delete(id);
+                showToast("Event removed from stars", "fa-circle-minus");
+            } else {
+                starredIds.add(id);
+                showToast("Event saved to stars!", "fa-star");
+            }
+            saveStarredState();
+            renderCalendar();
+            if (currentModalEventId === id) updateModalStarButton();
+        }
+
+        function switchDay(dateStr) {
+            selectedDate = dateStr;
+            renderCalendar();
+        }
+
+        function setStarredFilter(onlyStarred) {
+            showOnlyStarred = onlyStarred;
+            const allBtn = document.getElementById('filter-all-btn');
+            const starredBtn = document.getElementById('filter-starred-btn');
+
+            if (onlyStarred) {
+                allBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white";
+                starredBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600 flex items-center gap-1.5";
+            } else {
+                allBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600";
+                starredBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center gap-1.5";
+            }
+            renderCalendar();
+        }
+
+        function applyFilters() {
+            renderCalendar();
+        }
+
+        function getFilteredEvents() {
+            const searchQuery = document.getElementById('search-input').value.toLowerCase();
+            const venueFilter = document.getElementById('venue-filter').value;
+            const trackFilter = document.getElementById('track-filter').value;
+
+            return SCHEDULE_DATA.filter(ev => {
+                if (ev.date !== selectedDate) return false;
+                if (showOnlyStarred && !starredIds.has(String(ev.id))) return false;
+                if (venueFilter !== 'ALL' && ev.location !== venueFilter) return false;
+                if (trackFilter !== 'ALL' && ev.track !== trackFilter) return false;
+
+                if (searchQuery) {
+                    const matchTitle = ev.title.toLowerCase().includes(searchQuery);
+                    const matchSpeaker = ev.speaker.toLowerCase().includes(searchQuery);
+                    const matchTrack = ev.track ? ev.track.toLowerCase().includes(searchQuery) : false;
+                    if (!matchTitle && !matchSpeaker && !matchTrack) return false;
+                }
+                return true;
+            });
+        }
+
+        function renderCalendar() {
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                if (btn.id === `day-btn-${selectedDate}`) {
+                    btn.classList.add('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-600/30');
+                    btn.classList.remove('bg-slate-900', 'text-slate-400');
+                } else {
+                    btn.classList.add('bg-slate-900', 'text-slate-400');
+                    btn.classList.remove('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-600/30');
+                }
+            });
+
             const container = document.getElementById('schedule-container');
             const emptyState = document.getElementById('empty-state');
-            const searchVal = document.getElementById('search-input').value.toLowerCase().trim();
-            const venueVal = document.getElementById('venue-filter').value;
-            const trackVal = document.getElementById('track-filter').value;
-            const filtered = SCHEDULE_DATA.filter(ev => {
-                const matchesDate = ev.date === selectedDate;
-                const matchesStarred = !showOnlyStarred || starredIds.has(ev.id);
-                const matchesVenue = venueVal === 'ALL' || ev.location === venueVal;
-                const matchesTrack = trackVal === 'ALL' || ev.track === trackVal;
-                const matchesSearch = !searchVal || 
-                    ev.title.toLowerCase().includes(searchVal) || 
-                    ev.speaker.toLowerCase().includes(searchVal) || 
-                    (ev.description && ev.description.toLowerCase().includes(searchVal));
+            const events = getFilteredEvents();
 
-                return matchesDate && matchesStarred && matchesVenue && matchesTrack && matchesSearch;
-            });
-            if (filtered.length === 0) {
+            if (events.length === 0) {
                 container.innerHTML = '';
                 emptyState.classList.remove('hidden');
                 return;
+            } else {
+                emptyState.classList.add('hidden');
             }
-            emptyState.classList.add('hidden');
-            const totalHours = DAY_END_HOUR - DAY_START_HOUR;
-            const totalGridHeight = totalHours * gridScale;
-            // Header Column Row for Venues
-            let gridHtml = `
-                <div class="sticky top-0 z-30 bg-slate-900 border-b border-slate-800 flex text-xs font-bold text-slate-300">
-                    <div class="w-16 flex-shrink-0 p-3 border-r border-slate-800 text-center text-slate-500 bg-slate-900/95 sticky left-0 z-40">
-                        TIME
-                    </div>
-            `;
-            VENUES.forEach(venue => {
-                const isSelectedVenue = venueVal === 'ALL' || venueVal === venue;
-                if (isSelectedVenue) {
-                    gridHtml += `
-                        <div class="flex-1 min-w-[200px] p-3 border-r border-slate-800/80 text-center bg-slate-900/90 flex items-center justify-center gap-1.5">
-                            <i class="fa-solid fa-location-dot text-brand-500 text-[10px]"></i>
-                            <span>${venue}</span>
-                        </div>
-                    `;
-                }
+
+            events.sort((a, b) => a.startTime.localeCompare(b.startTime));
+            renderTimelineGrid(events, container);
+        }
+
+        function renderTimelineGrid(events, container) {
+            const venueFilter = document.getElementById('venue-filter').value;
+            const activeVenues = (venueFilter !== 'ALL') ? [venueFilter] : ALL_VENUES;
+
+            let minHour = 8;
+            let maxHour = 18;
+
+            events.forEach(ev => {
+                const [sH] = ev.startTime.split(':').map(Number);
+                const [eH, eM] = ev.endTime.split(':').map(Number);
+                if (sH < minHour) minHour = sH;
+                const calculatedEndHour = eH + (eM > 0 ? 1 : 0);
+                if (calculatedEndHour > maxHour) maxHour = calculatedEndHour;
             });
-            gridHtml += `</div><div class="relative flex" style="height: ${totalGridHeight}px;">`;
-            // Time Axis Labels
-            gridHtml += `<div class="w-16 flex-shrink-0 border-r border-slate-800 bg-slate-950/80 sticky left-0 z-20 select-none">`;
-            for (let h = DAY_START_HOUR; h < DAY_END_HOUR; h++) {
-                const topPx = (h - DAY_START_HOUR) * gridScale;
-                gridHtml += `
-                    <div class="absolute w-full text-right pr-2 text-[11px] font-semibold text-slate-500 -translate-y-2" style="top: ${topPx}px;">
-                        ${String(h).padStart(2, '0')}:00
+
+            maxHour = Math.min(23, maxHour + 1);
+            const totalHours = maxHour - minHour;
+            const totalHeight = totalHours * pxPerHour;
+
+            const hours = [];
+            for (let h = minHour; h < maxHour; h++) {
+                hours.push(h);
+            }
+
+            let html = `
+                <div class="overflow-x-auto no-scrollbar border border-slate-800 rounded-2xl bg-slate-900/90 shadow-2xl relative">
+                    <div class="min-w-[760px] sm:min-w-full flex flex-col">
+                        <div class="flex border-b border-slate-800 bg-slate-950/95 sticky top-0 z-30 backdrop-blur">
+                            <div class="w-16 flex-shrink-0 p-3 border-r border-slate-800/80 text-[11px] font-bold text-slate-500 text-center uppercase tracking-wider sticky left-0 z-40 bg-slate-950">
+                                Time
+                            </div>
+                            <div class="flex-1 grid divide-x divide-slate-800/80" style="grid-template-columns: repeat(${activeVenues.length}, minmax(0, 1fr));">
+            `;
+
+            activeVenues.forEach(venue => {
+                html += `
+                    <div class="p-3 text-center">
+                        <h4 class="font-bold text-xs sm:text-sm text-slate-200 flex items-center justify-center gap-1.5 truncate">
+                            <i class="fa-solid fa-location-dot text-brand-500 text-xs"></i>
+                            <span class="truncate">${venue}</span>
+                        </h4>
                     </div>
                 `;
-            }
-            gridHtml += `</div>`;
-            // Background Hour Horizontal Gridlines
-            gridHtml += `<div class="absolute inset-0 left-16 pointer-events-none">`;
-            for (let h = DAY_START_HOUR; h <= DAY_END_HOUR; h++) {
-                const topPx = (h - DAY_START_HOUR) * gridScale;
-                gridHtml += `<div class="absolute w-full grid-line" style="top: ${topPx}px;"></div>`;
-            }
-            gridHtml += `</div>`;
-            // Venue Columns & Dynamic Positioning Cards
-            VENUES.forEach(venue => {
-                const isSelectedVenue = venueVal === 'ALL' || venueVal === venue;
-                if (!isSelectedVenue) return;
+            });
 
-                gridHtml += `<div class="flex-1 min-w-[200px] border-r border-slate-800/50 relative">`;
-                const venueEvents = filtered.filter(e => e.location === venue);
+            html += `
+                            </div>
+                        </div>
+
+                        <div class="flex relative" style="height: ${totalHeight}px;">
+                            <div class="w-16 flex-shrink-0 border-r border-slate-800/80 bg-slate-950/90 sticky left-0 z-20 select-none">
+            `;
+
+            hours.forEach((h, idx) => {
+                const timeStr = `${h < 10 ? '0' + h : h}:00`;
+                html += `
+                    <div class="absolute left-0 right-0 border-t border-slate-800/40 text-[10px] font-bold text-slate-500 px-1 pt-1 text-center" style="top: ${idx * pxPerHour}px; height: ${pxPerHour}px;">
+                        ${timeStr}
+                    </div>
+                `;
+            });
+
+            html += `
+                            </div>
+                            <div class="absolute inset-0 left-16 pointer-events-none z-0">
+            `;
+
+            hours.forEach((h, idx) => {
+                html += `
+                    <div class="absolute left-0 right-0 border-t border-slate-800/50" style="top: ${idx * pxPerHour}px;"></div>
+                    <div class="absolute left-0 right-0 border-t border-slate-800/20 border-dashed" style="top: ${idx * pxPerHour + (pxPerHour / 2)}px;"></div>
+                `;
+            });
+
+            html += `
+                            </div>
+                            <div class="flex-1 grid divide-x divide-slate-800/80 relative z-10" style="grid-template-columns: repeat(${activeVenues.length}, minmax(0, 1fr));">
+            `;
+
+            const baseMinutes = minHour * 60;
+            const getMinutes = (tStr) => {
+                const [h, m] = tStr.split(':').map(Number);
+                return h * 60 + m;
+            };
+
+            activeVenues.forEach(venue => {
+                const venueEvents = events.filter(e => e.location === venue);
+                
+                html += `<div class="relative h-full">`;
+
                 venueEvents.forEach(ev => {
-                    const startMin = timeToMinutes(ev.startTime);
-                    const endMin = timeToMinutes(ev.endTime);
-                    const dayStartMin = DAY_START_HOUR * 60;
+                    const startM = getMinutes(ev.startTime);
+                    const endM = getMinutes(ev.endTime);
+                    const durationM = Math.max(20, endM - startM);
 
-                    const topPx = ((startMin - dayStartMin) / 60) * gridScale;
-                    const durationHrs = (endMin - startMin) / 60;
-                    const heightPx = Math.max(durationHrs * gridScale - 6, 60);
+                    const topPx = (startM - baseMinutes) * (pxPerHour / 60);
+                    const heightPx = durationM * (pxPerHour / 60);
+                    const isStarred = starredIds.has(String(ev.id));
 
-                    const isStarred = starredIds.has(ev.id);
-                    const bgImage = ev.imageUrl || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
+                    let trackBadgeBg = "bg-brand-500/40 text-brand-200 border-brand-500/50";
+                    if (ev.track === 'Keynote') trackBadgeBg = "bg-amber-500/40 text-amber-200 border-amber-500/50";
+                    else if (ev.track === 'VFX') trackBadgeBg = "bg-sky-500/40 text-sky-200 border-sky-500/50";
+                    else if (ev.track === 'Session') trackBadgeBg = "bg-emerald-500/40 text-emerald-200 border-emerald-500/50";
 
-                    gridHtml += `
+                    const isCompact = heightPx < 70;
+
+                    html += `
                         <div onclick="openModal('${ev.id}')" 
-                             style="top: ${topPx + 3}px; height: ${heightPx}px;"
-                             class="absolute left-1 right-1 rounded-xl overflow-hidden cursor-pointer group transition-all duration-200 hover:z-20 hover:scale-[1.02] border border-slate-700/80 hover:border-brand-500 shadow-xl">
-                            <!-- Card Background Image with Dark Gradient Overlay -->
-                            <img src="${bgImage}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60 group-hover:via-slate-950/70 transition-colors"></div>
-                            <!-- Content Overlay -->
-                            <div class="relative h-full p-2.5 flex flex-col justify-between text-white z-10">
-                                <div>
-                                    <div class="flex items-center justify-between gap-1 mb-1">
-                                        <span class="px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-wider bg-brand-600/90 text-white shadow-sm">
-                                            ${ev.track}
+                             style="top: ${topPx + 2}px; height: ${heightPx - 4}px;" 
+                             class="absolute left-1 right-1 rounded-xl overflow-hidden border border-slate-700/80 cursor-pointer transition-all duration-200 flex flex-col justify-between group shadow-lg hover:z-20 hover:scale-[1.02] hover:border-brand-500">
+                            
+                            <div class="absolute inset-0 z-0 bg-slate-950">
+                                ${ev.imageUrl ? `<img src="${ev.imageUrl}" alt="${ev.title}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500 opacity-60 group-hover:opacity-80" onerror="this.src='https://placehold.co/800x400/1e293b/f43f5e?text=VIEW+2026'">` : ''}
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/25"></div>
+                            </div>
+
+                            <div class="relative z-10 p-2 sm:p-3 h-full flex flex-col justify-between">
+                                <div class="space-y-1 mb-1">
+                                    <div class="flex items-center justify-between gap-1 w-full">
+                                        <span class="text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded border ${trackBadgeBg} shadow-md backdrop-blur-sm truncate">
+                                            ${ev.track || 'Session'}
                                         </span>
-                                        <button onclick="event.stopPropagation(); toggleStar('${ev.id}')" class="text-xs transition ${isStarred ? 'text-amber-400' : 'text-slate-400/80 hover:text-white'}">
-                                            <i class="fa-solid fa-star"></i>
+                                        
+                                        <button onclick="toggleStar('${ev.id}', event)" title="Star event" class="p-1.5 rounded-full bg-slate-950/80 hover:bg-slate-900 transition border border-white/20 shadow-md flex items-center justify-center flex-shrink-0 active:scale-95">
+                                            <i class="fa-solid fa-star text-xs ${isStarred ? 'text-amber-400' : 'text-slate-300 hover:text-amber-300'}"></i>
                                         </button>
                                     </div>
-                                    <h4 class="font-bold text-xs sm:text-sm leading-snug line-clamp-2 text-slate-100 group-hover:text-brand-400 transition-colors">
-                                        ${ev.title}
-                                    </h4>
+
+                                    <div class="flex items-center">
+                                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-950/85 text-slate-100 border border-slate-700/80 whitespace-nowrap shadow-md backdrop-blur-sm">
+                                            <i class="fa-regular fa-clock text-brand-400 mr-1 text-[9px]"></i>${ev.startTime} - ${ev.endTime}
+                                        </span>
+                                    </div>
                                 </div>
 
-                                <div class="mt-1">
-                                    <p class="text-[10px] text-slate-300 font-medium truncate flex items-center gap-1">
-                                        <i class="fa-solid fa-user text-[9px] text-brand-400"></i> ${ev.speaker}
-                                    </p>
-                                    <p class="text-[10px] text-slate-400 font-semibold flex items-center gap-1 mt-0.5">
-                                        <i class="fa-regular fa-clock text-[9px] text-brand-500"></i> ${ev.startTime} - ${ev.endTime}
-                                    </p>
+                                <div class="flex-1 min-h-0 overflow-hidden flex flex-col justify-center my-1">
+                                    <h3 class="font-extrabold text-xs sm:text-sm leading-tight text-white group-hover:text-brand-300 transition drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] ${isCompact ? 'truncate' : 'line-clamp-2'}">
+                                        ${ev.title}
+                                    </h3>
+                                    ${!isCompact ? `
+                                        <p class="text-[11px] text-slate-200/90 truncate mt-1 font-semibold drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] flex items-center gap-1">
+                                            <i class="fa-solid fa-user text-[9px] text-brand-400"></i>
+                                            <span class="truncate">${ev.speaker}</span>
+                                        </p>
+                                    ` : ''}
                                 </div>
+
+                                ${!isCompact && heightPx >= 90 ? `
+                                    <div class="pt-1.5 border-t border-white/15 flex items-center justify-between text-[10px] text-slate-200">
+                                        <span class="truncate font-semibold flex items-center gap-1 drop-shadow">
+                                            <i class="fa-solid fa-location-dot text-brand-400 text-[9px]"></i>
+                                            <span class="truncate">${ev.location}</span>
+                                        </span>
+                                        <span class="text-[10px] text-brand-300 font-bold group-hover:translate-x-0.5 transition-transform">Details <i class="fa-solid fa-chevron-right text-[8px] ml-0.5"></i></span>
+                                    </div>
+                                ` : ''}
                             </div>
                         </div>
                     `;
                 });
 
-                gridHtml += `</div>`;
+                html += `</div>`;
             });
-            gridHtml += `</div>`;
-            container.innerHTML = gridHtml;
+
+            html += `
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
         }
-        function toggleStar(id) {
-            if (starredIds.has(id)) {
-                starredIds.delete(id);
-                showToast("Removed from saved list");
-            } else {
-                starredIds.add(id);
-                showToast("Added to your saved schedule!");
-            }
-            saveStarred();
-            renderSchedule();
-            if (currentModalEventId === id) {
-                updateModalStarButton(id);
-            }
-        }
-        function openModal(id) {
-            const ev = SCHEDULE_DATA.find(item => item.id === id);
+
+        function openModal(eventId) {
+            const ev = SCHEDULE_DATA.find(item => String(item.id) === String(eventId));
             if (!ev) return;
 
-            currentModalEventId = id;
-            document.getElementById('modal-banner').src = ev.imageUrl || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80';
-            document.getElementById('modal-track').innerText = ev.track;
+            currentModalEventId = String(ev.id);
+
+            document.getElementById('modal-banner').src = ev.imageUrl || 'https://placehold.co/800x400/1e293b/f43f5e?text=VIEW+2026';
+            document.getElementById('modal-track').innerText = ev.track || 'Session';
             document.getElementById('modal-title').innerText = ev.title;
             document.getElementById('modal-speaker').innerText = ev.speaker;
             document.getElementById('modal-time').innerText = `${ev.startTime} - ${ev.endTime}`;
             document.getElementById('modal-location').innerText = ev.location;
-            document.getElementById('modal-description').innerText = ev.description || "Join us for this featured SESSION at VIEW Conference 2026 featuring top industry talent and technical insights.";
-            
-            const officialUrl = ev.url || ev.articleUrl || "https://www.viewconference.it/pages/program";
-            document.getElementById('modal-link').href = officialUrl;
+            document.getElementById('modal-description').innerText = ev.description || '';
+            document.getElementById('modal-link').href = ev.url || '#';
 
-            updateModalStarButton(id);
+            updateModalStarButton();
+            document.getElementById('event-modal').classList.remove('hidden');
+        }
 
-            const modal = document.getElementById('event-modal');
-            modal.classList.remove('hidden');
-        }
-        function updateModalStarButton(id) {
-            const isStarred = starredIds.has(id);
-            const btn = document.getElementById('modal-star-btn');
-            const text = document.getElementById('modal-star-text');
-
-            if (isStarred) {
-                btn.className = "flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border border-amber-500/50 bg-amber-500/20 text-amber-300";
-                text.innerText = "Starred";
-            } else {
-                btn.className = "flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700";
-                text.innerText = "Star Event";
-            }
-        }
-        function toggleModalStar() {
-            if (currentModalEventId) {
-                toggleStar(currentModalEventId);
-            }
-        }
         function closeModal() {
             document.getElementById('event-modal').classList.add('hidden');
             currentModalEventId = null;
         }
-        function showToast(msg) {
+
+        function updateModalStarButton() {
+            if (!currentModalEventId) return;
+            const isStarred = starredIds.has(currentModalEventId);
+            const btn = document.getElementById('modal-star-btn');
+            const icon = document.getElementById('modal-star-icon');
+            const text = document.getElementById('modal-star-text');
+
+            if (isStarred) {
+                btn.className = "flex-1 py-3 rounded-xl font-bold text-sm bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center gap-2 transition";
+                icon.className = "fa-solid fa-star text-amber-400";
+                text.innerText = "Starred";
+            } else {
+                btn.className = "flex-1 py-3 rounded-xl font-bold text-sm bg-slate-800 text-slate-200 border border-slate-700 flex items-center justify-center gap-2 transition hover:bg-slate-700";
+                icon.className = "fa-regular fa-star text-slate-400";
+                text.innerText = "Star Event";
+            }
+        }
+
+        function toggleModalStar() {
+            if (currentModalEventId) toggleStar(currentModalEventId);
+        }
+
+        function copyShareableLink() {
+            const arrayIds = Array.from(starredIds);
+            const shareUrl = `${window.location.origin}${window.location.pathname}?starred=${arrayIds.join(',')}`;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    showToast("Sync link copied to clipboard!", "fa-link");
+                });
+            }
+        }
+
+        function triggerLiveSync() {
+            const syncIcon = document.getElementById('sync-icon');
+            syncIcon.classList.add('fa-spin');
+            setTimeout(() => {
+                syncIcon.classList.remove('fa-spin');
+                showToast("Schedule updated!", "fa-arrows-rotate");
+            }, 1000);
+        }
+
+        function showToast(msg, iconClass) {
             const toast = document.getElementById('toast');
-            document.getElementById('toast-message').innerText = msg;
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = msg;
+            toastIcon.className = `fa-solid ${iconClass || 'fa-circle-check'} text-brand-500`;
+
             toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+                toast.classList.remove('opacity-100', 'translate-y-0');
             }, 2500);
-        }
-        async function triggerLiveSync() {
-            const icon = document.getElementById('sync-icon');
-            icon.classList.add('fa-spin');
-            await loadScheduleData();
-            renderSchedule();
-            setTimeout(() => {
-                icon.classList.remove('fa-spin');
-                showToast("Schedule updated with schedule.json!");
-            }, 600);
-        }
-        function copyShareableLink() {
-            const payload = btoa(JSON.stringify(Array.from(starredIds)));
-            const url = `${window.location.origin}${window.location.pathname}?sync=${payload}`;
-            navigator.clipboard.writeText(url).then(() => {
-                showToast("Sync link copied to clipboard!");
-            }).catch(() => {
-                showToast("Failed to copy link.");
-            });
-        }
-        function exportStarredData() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(Array.from(starredIds)));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", "view2026_favorites.json");
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
         }
     </script>
 </body>
