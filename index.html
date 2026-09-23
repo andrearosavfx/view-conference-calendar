@@ -27,14 +27,14 @@
       border-color: #818cf8 !important;
     }
 
-    /* Multi-Column Location Grid Styling */
+    /* Dynamic Multi-Column Schedule Grid */
     .schedule-matrix {
       display: grid;
-      grid-template-columns: 80px repeat(5, minmax(240px, 1fr));
+      grid-template-columns: 80px repeat(5, minmax(220px, 1fr));
       gap: 12px;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1280px) {
       .schedule-matrix-container {
         overflow-x: auto;
       }
@@ -124,7 +124,7 @@
             </button>
           </div>
 
-          <!-- Favorites Only Toggle -->
+          <!-- Favorites Toggle -->
           <button 
             id="starred-toggle" 
             onclick="toggleStarredOnly()" 
@@ -140,7 +140,7 @@
     </div>
   </header>
 
-  <!-- Main Schedule Matrix -->
+  <!-- Main Schedule Board -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
     
     <div class="flex items-center justify-between mb-4 text-sm text-slate-400">
@@ -160,7 +160,7 @@
   </footer>
 
   <script>
-    const LOCATIONS = [
+    const TARGET_LOCATIONS = [
       "OGR - FUCINE",
       "OGR - BINARIO3",
       "OGR - MEZZANINO",
@@ -174,10 +174,22 @@
     let showStarredOnly = false;
     let starredEvents = JSON.parse(localStorage.getItem('view_starred_events') || '[]');
 
+    function normalizeLocation(locStr) {
+      if (!locStr) return '';
+      const cleanStr = locStr.toUpperCase().trim();
+      for (const loc of TARGET_LOCATIONS) {
+        const shortName = loc.replace('OGR - ', '');
+        if (cleanStr.includes(shortName) || cleanStr === loc) {
+          return loc;
+        }
+      }
+      return locStr;
+    }
+
     async function loadSchedule() {
       try {
         const response = await fetch('./schedule.json?v=' + Date.now());
-        if (!response.ok) throw new Error(`Server returned status ${response.status}`);
+        if (!response.ok) throw new Error(`Server status ${response.status}`);
         eventsData = await response.json();
         updateStarredBadge();
         handleFilterChange();
@@ -189,7 +201,7 @@
             <div class="p-8 rounded-xl bg-amber-900/30 border border-amber-700 text-center text-amber-200">
               <h3 class="font-bold text-lg mb-2">Unable to load event data</h3>
               <p class="text-xs text-amber-300 max-w-md mx-auto">
-                Check that <code>schedule.json</code> is present in the repository root or served over HTTP/HTTPS.
+                Please verify that <code>schedule.json</code> is accessible in your repo directory.
               </p>
             </div>
           `;
@@ -289,95 +301,86 @@
       if (events.length === 0) {
         board.innerHTML = `
           <div class="py-16 text-center text-slate-500">
-            No events found matching your filter criteria.
+            No events found matching your filter options for this date.
           </div>
         `;
         return;
       }
 
-      // Extract unique time slots and sort them chronologically
+      // Chronological time slots
       const timeSlots = Array.from(new Set(events.map(e => e.startTime))).sort();
 
-      // Render Matrix Table Header (Location Columns)
+      // Render Matrix Header
       let matrixHTML = `
         <div class="schedule-matrix mb-3 border-b border-slate-800 pb-3 font-semibold text-xs text-slate-400">
-          <div class="flex items-center justify-center">Time</div>
-          ${LOCATIONS.map(loc => `<div class="text-center text-indigo-400 uppercase tracking-wider">${loc.replace('OGR - ', '')}</div>`).join('')}
+          <div class="flex items-center justify-center font-bold">Time</div>
+          ${TARGET_LOCATIONS.map(loc => `<div class="text-center text-indigo-400 font-bold uppercase tracking-wider">${loc.replace('OGR - ', '')}</div>`).join('')}
         </div>
       `;
 
-      // Render Hourly Rows with aligned location cards
+      // Render Matrix Rows
       timeSlots.forEach(time => {
         matrixHTML += `
           <div class="schedule-matrix border-b border-slate-800/50 py-3 items-start">
-            <!-- Time Indicator Column -->
-            <div class="text-xs font-bold text-slate-400 pt-2 text-center bg-slate-800/40 py-2 rounded-lg border border-slate-800">
+            <!-- Time Slot Column -->
+            <div class="text-xs font-bold text-slate-300 pt-2 text-center bg-slate-800/60 py-2 rounded-lg border border-slate-700/60 shadow">
               ${time}
             </div>
 
             <!-- Location Columns -->
-            ${LOCATIONS.map(loc => {
-              const matchingEvent = events.find(e => e.startTime === time && e.location === loc);
+            ${TARGET_LOCATIONS.map(loc => {
+              const matchingEvents = events.filter(e => e.startTime === time && normalizeLocation(e.location) === loc);
               
-              if (!matchingEvent) {
-                return `<div class="min-h-[100px] border border-dashed border-slate-800/40 rounded-xl"></div>`;
+              if (matchingEvents.length === 0) {
+                return `<div class="min-h-[90px] border border-dashed border-slate-800/40 rounded-xl"></div>`;
               }
 
-              const isStarred = starredEvents.includes(matchingEvent.id || matchingEvent.title);
-
               return `
-                <div class="bg-slate-800/90 rounded-xl border border-slate-700/80 p-3.5 flex flex-col justify-between shadow-lg hover:border-indigo-500/80 transition-all group relative">
-                  <div>
-                    <!-- Header Badges & Actions -->
-                    <div class="flex items-center justify-between gap-1 mb-2">
-                      <span class="text-[10px] font-bold text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded-md border border-indigo-800/50">
-                        ${matchingEvent.track || 'Session'}
-                      </span>
+                <div class="flex flex-col gap-2">
+                  ${matchingEvents.map(evt => {
+                    const isStarred = starredEvents.includes(evt.id || evt.title);
+                    return `
+                      <div class="bg-slate-800/90 rounded-xl border border-slate-700/80 p-3 flex flex-col justify-between shadow-lg hover:border-indigo-500/80 transition-all group relative">
+                        <div>
+                          <div class="flex items-center justify-between gap-1 mb-2">
+                            <span class="text-[10px] font-bold text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded-md border border-indigo-800/50">
+                              ${evt.track || 'Session'}
+                            </span>
 
-                      <div class="flex items-center gap-1">
-                        <!-- Share Button -->
-                        <button 
-                          onclick="shareSession('${matchingEvent.title.replace(/'/g, "\\'")}', '${matchingEvent.url || ''}', event)"
-                          class="text-slate-400 hover:text-white p-1 rounded hover:bg-slate-700/50 transition-colors"
-                          title="Share Session"
-                        >
-                          🔗
-                        </button>
-                        
-                        <!-- Star / Favorite Button -->
-                        <button 
-                          onclick="toggleStar('${matchingEvent.id || matchingEvent.title.replace(/'/g, "\\'")}', event)"
-                          class="p-1 text-sm transition-transform active:scale-125"
-                          title="Favorite Session"
-                        >
-                          ${isStarred ? '⭐' : '☆'}
-                        </button>
+                            <div class="flex items-center gap-1">
+                              <button 
+                                onclick="shareSession('${evt.title.replace(/'/g, "\\'")}', '${evt.url || ''}', event)"
+                                class="text-slate-400 hover:text-white p-1 rounded hover:bg-slate-700/50 transition-colors"
+                                title="Share Session"
+                              >
+                                🔗
+                              </button>
+                              <button 
+                                onclick="toggleStar('${evt.id || evt.title.replace(/'/g, "\\'")}', event)"
+                                class="p-1 text-sm transition-transform active:scale-125"
+                                title="Favorite Session"
+                              >
+                                ${isStarred ? '⭐' : '☆'}
+                              </button>
+                            </div>
+                          </div>
+
+                          <h4 class="text-xs font-bold text-slate-100 group-hover:text-indigo-300 transition-colors leading-snug mb-1">
+                            ${evt.title}
+                          </h4>
+
+                          <p class="text-[11px] text-slate-400 font-medium mb-2">
+                            👤 ${evt.speaker || 'TBA'}
+                          </p>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-700/50 flex items-center justify-between text-[10px] text-slate-400">
+                          <span>⏰ ${evt.startTime} - ${evt.endTime || ''}</span>
+                          ${evt.url ? `<a href="${evt.url}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-semibold">Details →</a>` : ''}
+                        </div>
                       </div>
-                    </div>
-
-                    <!-- Title -->
-                    <h4 class="text-xs font-bold text-slate-100 group-hover:text-indigo-300 transition-colors leading-snug mb-1.5">
-                      ${matchingEvent.title}
-                    </h4>
-
-                    <!-- Speaker -->
-                    <p class="text-[11px] text-slate-400 font-medium mb-2">
-                      👤 ${matchingEvent.speaker}
-                    </p>
-                  </div>
-
-                  <!-- Footer Info -->
-                  <div class="pt-2 border-t border-slate-700/50 flex items-center justify-between text-[10px] text-slate-400">
-                    <span>⏰ ${matchingEvent.startTime} -${matchingEvent.endTime}</span>
-                    <a 
-                      href="${matchingEvent.url || '#'}" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      class="text-indigo-400 hover:text-indigo-300 font-semibold"
-                    >
-                      Details →
-                    </a>
-                  </div>
+                    `;
+                  }).join('')}
                 </div>
               `;
             }).join('')}
