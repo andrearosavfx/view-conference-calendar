@@ -89,9 +89,9 @@
                     <i class="fa-solid fa-share-nodes text-brand-500"></i>
                     <span class="hidden sm:inline">Sync Link</span>
                 </button>
-                <button onclick="triggerLiveSync()" title="Re-sync with viewconference.it schedule" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition border border-slate-700/60 active:scale-95">
+                <button onclick="fetchScheduleJson()" title="Re-sync with schedule.json" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition border border-slate-700/60 active:scale-95">
                     <i id="sync-icon" class="fa-solid fa-arrows-rotate text-purple-400"></i>
-                    <span class="hidden sm:inline">Sync Official</span>
+                    <span class="hidden sm:inline">Sync Data</span>
                 </button>
             </div>
         </div>
@@ -132,7 +132,7 @@
                 </div>
                 
                 <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <!-- Venue Select (Updated with new locations) -->
+                    <!-- Venue Select -->
                     <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-44">
                         <option value="ALL">All Venues</option>
                         <option value="OGR - Sala Fucine">OGR - Sala Fucine</option>
@@ -271,7 +271,6 @@
     </div>
 
     <script>
-        // Updated Location List
         const ALL_VENUES = [
             "OGR - Sala Fucine",
             "OGR - Binario 3",
@@ -280,61 +279,62 @@
             "OGR - Cinema Massimo"
         ];
 
-        // Updated Data Structure matching the requested JSON format
-        const SCHEDULE_DATA = [
-            {
-                id: "1001",
-                title: "09:00",
-                speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
-                location: "OGR - Mezzanino",
-                date: "2026-10-13",
-                startTime: "15:00",
-                endTime: "16:00",
-                track: "VFX",
-                imageUrl: "",
-                url: "https://www.viewconference.it/article/1301",
-                description: "Session with STEVE EMERSON, Production VFX Supervisor, LAIKA."
-            },
-            {
-                id: "1002",
-                title: "Wildwood",
-                speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
-                location: "OGR - Sala Fucine",
-                date: "2026-10-13",
-                startTime: "09:00",
-                endTime: "10:00",
-                track: "VFX",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/steveemersonbanner_feature.jpg",
-                url: "https://www.viewconference.it/article/1301",
-                description: "A deep dive into Wildwood featuring STEVE EMERSON."
-            },
-            {
-                id: "1004",
-                title: "Building Carcosa: Art Direction of SAROS",
-                speaker: "SIMONE SILVESTRI, Art Director, Saros game, Housemarque",
-                location: "OGR - Binario 3",
-                date: "2026-10-13",
-                startTime: "10:15",
-                endTime: "11:15",
-                track: "Session",
-                imageUrl: "",
-                url: "https://www.viewconference.it/article/1265",
-                description: "Art direction breakdown for SAROS with Simone Silvestri."
-            }
-        ];
-
+        let SCHEDULE_DATA = [];
         let selectedDate = "2026-10-13";
         let showOnlyStarred = false;
         let currentModalEventId = null;
         let starredIds = new Set();
         let pxPerHour = 130;
 
-        window.onload = function() {
+        window.onload = async function() {
             loadStarredState();
             parseUrlParameters();
             updateStarredCount();
-            renderCalendar();
+            await fetchScheduleJson();
         };
+
+        // Fetch local schedule.json file directly
+        async function fetchScheduleJson() {
+            const syncIcon = document.getElementById('sync-icon');
+            if (syncIcon) syncIcon.classList.add('fa-spin');
+
+            try {
+                const response = await fetch('./schedule.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error status: ${response.status}`);
+                }
+                const rawData = await response.json();
+
+                // Normalize incoming array items to standard internal schema
+                SCHEDULE_DATA = rawData.map((item, index) => ({
+                    id: String(item.id || item.articleUrl || index + 1000),
+                    title: item.title || item.name || 'Untitled Session',
+                    speaker: item.speaker || item.speakers || item.author || '',
+                    location: item.location || item.venue || 'OGR - Sala Fucine',
+                    date: item.date || '2026-10-13',
+                    startTime: item.startTime || item.start || '09:00',
+                    endTime: item.endTime || item.end || '10:00',
+                    track: item.track || item.category || 'Session',
+                    imageUrl: item.imageUrl || item.image || item.banner || '',
+                    url: item.url || item.articleUrl || '#',
+                    description: item.description || item.bio || ''
+                }));
+
+                // Auto-detect initial day if current default has no events
+                const availableDates = [...new Set(SCHEDULE_DATA.map(e => e.date))];
+                if (availableDates.length > 0 && !availableDates.includes(selectedDate)) {
+                    selectedDate = availableDates[0];
+                }
+
+                renderCalendar();
+                showToast("schedule.json loaded successfully", "fa-check");
+            } catch (error) {
+                console.error("Error loading schedule.json:", error);
+                showToast("Could not load schedule.json file", "fa-triangle-exclamation");
+            } finally {
+                if (syncIcon) syncIcon.classList.remove('fa-spin');
+            }
+        }
 
         function setGridZoom(newPx) {
             pxPerHour = newPx;
@@ -708,15 +708,6 @@
                     showToast("Sync link copied to clipboard!", "fa-link");
                 });
             }
-        }
-
-        function triggerLiveSync() {
-            const syncIcon = document.getElementById('sync-icon');
-            syncIcon.classList.add('fa-spin');
-            setTimeout(() => {
-                syncIcon.classList.remove('fa-spin');
-                showToast("Schedule updated!", "fa-arrows-rotate");
-            }, 1000);
         }
 
         function showToast(msg, iconClass) {
