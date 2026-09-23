@@ -19,8 +19,6 @@ DAY_MAP = {
     "Fri 16th": "2026-10-16"
 }
 
-DEFAULT_IMAGE = "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg"
-
 def determine_track(title_text, type_text=""):
     combined = f"{title_text} {type_text}".lower()
     if "keynote" in combined or "fireside" in combined:
@@ -38,7 +36,7 @@ def determine_track(title_text, type_text=""):
 def extract_article_bg_image(session_url, session):
     """Fetches the individual article page and extracts the background image URL from class="bg cover"."""
     if not session_url or "/article/" not in session_url or session_url == PROGRAM_URL:
-        return DEFAULT_IMAGE
+        return ""
 
     try:
         resp = session.get(session_url, headers=HEADERS, timeout=6)
@@ -56,7 +54,7 @@ def extract_article_bg_image(session_url, session):
                     raw_img_url = match.group(1).strip()
                     return urllib.parse.urljoin(BASE_URL, raw_img_url)
 
-            # Secondary fallback: check OpenGraph meta image tag if style element is missing
+            # Secondary fallback: check OpenGraph meta image tag
             og_img = art_soup.find("meta", property="og:image")
             if og_img and og_img.get("content"):
                 return urllib.parse.urljoin(BASE_URL, og_img["content"])
@@ -64,7 +62,7 @@ def extract_article_bg_image(session_url, session):
     except Exception as e:
         print(f"Warning: Could not fetch image from {session_url}: {e}")
 
-    return DEFAULT_IMAGE
+    return ""
 
 def scrape_full_schedule():
     session = requests.Session()
@@ -76,58 +74,55 @@ def scrape_full_schedule():
     event_id_counter = 1000
 
     current_date = "2026-10-12"
-    
-    # Locate all schedule blocks
-    session_blocks = soup.find_all(class_=re.compile(r'session|event|talk-card|item', re.I))
-    if not session_blocks:
-        session_blocks = soup.find_all(['td', 'div'])
-
-    # Cache article image URLs across identical sessions to minimize network calls
     image_cache = {}
 
-    for block in session_blocks:
-        text = block.get_text(" ", strip=True)
+    # Target parent structural blocks or elements top-to-bottom
+    # Iterating over direct container elements ensures day headers are caught sequentially
+    schedule_elements = soup.find_all(['div', 'tr', 'section', 'article'])
+
+    for elem in schedule_elements:
+        elem_text = elem.get_text(" ", strip=True)
         
-        # Check for date headers
+        # Check if this element or heading defines a new day section
         for day_key, date_val in DAY_MAP.items():
-            if day_key in text:
+            if day_key in elem_text and len(elem_text) < 120:  # Heading text check
                 current_date = date_val
 
-        # Extract Time
-        time_match = re.search(r'(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})\s*CET', text, re.IGNORECASE)
+        # Extract Session Time (e.g., 09:00-10:00 CET)
+        time_match = re.search(r'(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})\s*CET', elem_text, re.IGNORECASE)
         if not time_match:
             continue
 
         start_time, end_time = time_match.group(1).zfill(5), time_match.group(2).zfill(5)
 
         # Extract Room / Location
-        room_match = re.search(r'In\s+([A-Z0-9\s]+?)\s*\((?:In Person|Remote|Hybrid)\)', text, re.IGNORECASE)
+        room_match = re.search(r'In\s+([A-Z0-9\s]+?)\s*\((?:In Person|Remote|Hybrid)\)', elem_text, re.IGNORECASE)
         location = f"OGR - {room_match.group(1).strip()}" if room_match else "VIEW Conference Venue"
 
         # Extract Title
-        title_tag = block.find(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
+        title_tag = elem.find(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
         title = title_tag.get_text(strip=True) if title_tag else ""
         if not title:
-            lines = [line.strip() for line in text.splitlines() if line.strip()]
+            lines = [line.strip() for line in elem_text.splitlines() if line.strip()]
             title = lines[0] if lines else "VIEW Conference Session"
 
         # Extract Speaker
         speaker = "Featured Speaker"
-        speaker_div = block.find(class_=re.compile(r'speaker|presenter|author', re.I))
+        speaker_div = elem.find(class_=re.compile(r'speaker|presenter|author', re.I))
         if speaker_div:
             speaker = speaker_div.get_text(", ", strip=True)
         else:
-            speaker_match = re.search(r'\)(.+)', text)
+            speaker_match = re.search(r'\)(.+)', elem_text)
             if speaker_match:
                 candidate = speaker_match.group(1).strip()
                 if candidate and len(candidate) < 150:
                     speaker = candidate
 
         # Session URL
-        link_tag = block.find('a', href=True)
+        link_tag = elem.find('a', href=True)
         session_url = urllib.parse.urljoin(BASE_URL, link_tag['href']) if link_tag else PROGRAM_URL
 
-        # Article Background Image extraction
+        # Article Background Image extraction (returns "" if not found)
         if session_url in image_cache:
             img_url = image_cache[session_url]
         else:
@@ -144,12 +139,12 @@ def scrape_full_schedule():
             "date": current_date,
             "startTime": start_time,
             "endTime": end_time,
-            "track": determine_track(title, text),
+            "track": determine_track(title, elem_text),
             "imageUrl": img_url,
             "url": session_url
         })
 
-    # Deduplicate events based on date, start time, and title
+    # Deduplicate events based on date, start time, and title prefix
     unique_events = {}
     for ev in events:
         dedup_key = f"{ev['date']}_{ev['startTime']}_{ev['title'][:20].lower()}"
@@ -159,7 +154,7 @@ def scrape_full_schedule():
     return list(unique_events.values())
 
 def main():
-    print("Scraping full schedule and fetching article background images...")
+    print("Scraping full schedule with dynamic dates and background images...")
     events = scrape_full_schedule()
     print(f"Successfully processed {len(events)} events.")
 
