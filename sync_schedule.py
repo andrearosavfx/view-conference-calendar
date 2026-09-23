@@ -63,6 +63,19 @@ def extract_article_bg_image(session_url, session):
 
     return ""
 
+def clean_location(room_str):
+    """Formats room names into standard OGR locations."""
+    room_str = room_str.strip().upper()
+    if "SOPPALCO" in room_str or "TECA-B" in room_str or "TECA B" in room_str:
+        return "OGR - SOPPALCO"
+    elif "FUCINE" in room_str:
+        return "OGR - Sala Fucine"
+    elif "BINARIO" in room_str:
+        return "OGR - Binario 3"
+    elif "MEZZANINO" in room_str:
+        return "OGR - Mezzanino"
+    return f"OGR - {room_str}"
+
 def scrape_full_schedule():
     session = requests.Session()
     resp = session.get(PROGRAM_URL, headers=HEADERS, timeout=15)
@@ -75,11 +88,11 @@ def scrape_full_schedule():
 
     current_date = None
 
-    # Traverse all elements sequentially in original DOM order
+    # Traverse elements sequentially in DOM order
     for elem in soup.find_all(['h1', 'h2', 'h3', 'div', 'tr', 'td', 'article']):
         text = elem.get_text(" ", strip=True)
 
-        # 1. Track current date based on day headers encountered in document order
+        # 1. Track current date based on day headers encountered
         if "VIEW Conference" in text or "OCT" in text:
             for day_key, date_val in DAY_MAP.items():
                 if day_key in text:
@@ -88,7 +101,6 @@ def scrape_full_schedule():
             if "Mon 12th" in text:
                 current_date = None  # Skip Monday Oct 12th
 
-        # If we are currently outside the Oct 13-16 window, ignore elements
         if not current_date:
             continue
 
@@ -97,25 +109,31 @@ def scrape_full_schedule():
         if not time_match:
             continue
 
-        # Ensure we are parsing a leaf session container to avoid duplicate matches from wrapping parent tags
+        # Ensure we are parsing a leaf node container
         if elem.find_all(['td', 'article', 'tr']):
             continue
 
         start_time, end_time = time_match.group(1).zfill(5), time_match.group(2).zfill(5)
 
-        # Extract Room / Location
-        room_match = re.search(r'In\s+([A-Z0-9\s]+?)\s*\((?:In Person|Remote|Hybrid)\)', text, re.IGNORECASE)
-        location = f"OGR - {room_match.group(1).strip()}" if room_match else "OGR Venue"
+        # 3. Extract Room / Location
+        room_match = re.search(r'In\s+([A-Z0-9\s\/\-_]+?)\s*\((?:In Person|Remote|Hybrid)\)', text, re.IGNORECASE)
+        if room_match:
+            location = clean_location(room_match.group(1))
+        else:
+            location = "OGR Venue"
 
-        # Extract Title
+        # 4. Extract & Clean Title
         title_tag = elem.find(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
         title = title_tag.get_text(strip=True) if title_tag else ""
+        
         if not title or len(title) < 3:
-            # Clean string fallback
             clean_parts = [p.strip() for p in text.split("  ") if p.strip() and "CET" not in p and "In Person" not in p]
             title = clean_parts[0] if clean_parts else "VIEW Conference Session"
 
-        # Extract Speaker
+        # Remove location strings if accidentally captured inside title
+        title = re.sub(r'In\s+[A-Z0-9\s\/\-_]+\s*\((?:In Person|Remote|Hybrid)\)', '', title, flags=re.IGNORECASE).strip()
+
+        # 5. Extract Speaker
         speaker = "Featured Speaker"
         speaker_div = elem.find(class_=re.compile(r'speaker|presenter|author', re.I))
         if speaker_div:
