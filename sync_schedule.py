@@ -11,7 +11,7 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
-# Explicitly excluding Monday 12th as requested
+# Only include Oct 13 to Oct 16 (skipping Mon 12th)
 DAY_MAP = {
     "Tue 13th": "2026-10-13",
     "Wed 14th": "2026-10-14",
@@ -73,95 +73,87 @@ def scrape_full_schedule():
     event_id_counter = 1000
     image_cache = {}
 
-    # Find distinct day sections or parse whole document top-down
-    # Split HTML by day headers to isolate each day's content cleanly
-    full_html = str(soup)
-    day_splits = re.split(r'((?:Mon|Tue|Wed|Thu|Fri)\s+\d{1,2}(?:st|nd|rd|th)?)', full_html)
-
     current_date = None
 
-    for idx in range(1, len(day_splits), 2):
-        day_header = day_splits[idx].strip()
-        day_content = day_splits[idx + 1] if idx + 1 < len(day_splits) else ""
+    # Traverse all elements sequentially in original DOM order
+    for elem in soup.find_all(['h1', 'h2', 'h3', 'div', 'tr', 'td', 'article']):
+        text = elem.get_text(" ", strip=True)
 
-        # Check if day belongs to Tue 13th - Fri 16th; skip Mon 12th
-        current_date = None
-        for key, date_val in DAY_MAP.items():
-            if key in day_header:
-                current_date = date_val
-                break
+        # 1. Track current date based on day headers encountered in document order
+        if "VIEW Conference" in text or "OCT" in text:
+            for day_key, date_val in DAY_MAP.items():
+                if day_key in text:
+                    current_date = date_val
+                    break
+            if "Mon 12th" in text:
+                current_date = None  # Skip Monday Oct 12th
 
-        # If it's Monday 12th or unmapped, skip completely
+        # If we are currently outside the Oct 13-16 window, ignore elements
         if not current_date:
             continue
 
-        day_soup = BeautifulSoup(day_content, "html.parser")
-        
-        # Parse all session blocks inside this day section
-        # Look for table rows, cards, or structured divs
-        blocks = day_soup.find_all(['tr', 'div', 'article'])
+        # 2. Match session time format (e.g., 09:00-10:00 CET or 09:00 - 13:00)
+        time_match = re.search(r'(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})\s*(?:CET)?', text, re.IGNORECASE)
+        if not time_match:
+            continue
 
-        for block in blocks:
-            text = block.get_text(" ", strip=True)
+        # Ensure we are parsing a leaf session container to avoid duplicate matches from wrapping parent tags
+        if elem.find_all(['td', 'article', 'tr']):
+            continue
 
-            # Match session time (e.g., 09:00-10:00 CET or 09:00 - 13:00)
-            time_match = re.search(r'(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})\s*(?:CET)?', text, re.IGNORECASE)
-            if not time_match:
-                continue
+        start_time, end_time = time_match.group(1).zfill(5), time_match.group(2).zfill(5)
 
-            start_time, end_time = time_match.group(1).zfill(5), time_match.group(2).zfill(5)
+        # Extract Room / Location
+        room_match = re.search(r'In\s+([A-Z0-9\s]+?)\s*\((?:In Person|Remote|Hybrid)\)', text, re.IGNORECASE)
+        location = f"OGR - {room_match.group(1).strip()}" if room_match else "OGR Venue"
 
-            # Extract Room / Location
-            room_match = re.search(r'In\s+([A-Z0-9\s]+?)\s*\((?:In Person|Remote|Hybrid)\)', text, re.IGNORECASE)
-            location = f"OGR - {room_match.group(1).strip()}" if room_match else "OGR Venue"
+        # Extract Title
+        title_tag = elem.find(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
+        title = title_tag.get_text(strip=True) if title_tag else ""
+        if not title or len(title) < 3:
+            # Clean string fallback
+            clean_parts = [p.strip() for p in text.split("  ") if p.strip() and "CET" not in p and "In Person" not in p]
+            title = clean_parts[0] if clean_parts else "VIEW Conference Session"
 
-            # Extract Title
-            title_tag = block.find(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
-            title = title_tag.get_text(strip=True) if title_tag else ""
-            if not title or len(title) < 3:
-                # Fallback: take first clean non-time string segment
-                clean_lines = [l.strip() for l in text.split("  ") if l.strip() and "CET" not in l]
-                title = clean_lines[0] if clean_lines else "VIEW Conference Session"
+        # Extract Speaker
+        speaker = "Featured Speaker"
+        speaker_div = elem.find(class_=re.compile(r'speaker|presenter|author', re.I))
+        if speaker_div:
+            speaker = speaker_div.get_text(", ", strip=True)
+        else:
+            speaker_match = re.search(r'\)(.+)', text)
+            if speaker_match:
+                candidate = speaker_match.group(1).strip()
+                if candidate and len(candidate) < 150:
+                    speaker = candidate
 
-            # Extract Speaker
-            speaker = "Featured Speaker"
-            speaker_div = block.find(class_=re.compile(r'speaker|presenter|author', re.I))
-            if speaker_div:
-                speaker = speaker_div.get_text(", ", strip=True)
-            else:
-                speaker_match = re.search(r'\)(.+)', text)
-                if speaker_match:
-                    candidate = speaker_match.group(1).strip()
-                    if candidate and len(candidate) < 150:
-                        speaker = candidate
+        # Session Article URL
+        link_tag = elem.find('a', href=True)
+        session_url = urllib.parse.urljoin(BASE_URL, link_tag['href']) if link_tag else PROGRAM_URL
 
-            # Session Article URL
-            link_tag = block.find('a', href=True)
-            session_url = urllib.parse.urljoin(BASE_URL, link_tag['href']) if link_tag else PROGRAM_URL
+        # Extract Background Image from Article Page (cached)
+        if session_url in image_cache:
+            img_url = image_cache[session_url]
+        else:
+            img_url = extract_article_bg_image(session_url, session)
+            image_cache[session_url] = img_url
 
-            # Extract Background Image from Article Page (cached)
-            if session_url in image_cache:
-                img_url = image_cache[session_url]
-            else:
-                img_url = extract_article_bg_image(session_url, session)
-                image_cache[session_url] = img_url
+        event_id_counter += 1
 
-            event_id_counter += 1
+        events.append({
+            "id": str(event_id_counter),
+            "title": title,
+            "speaker": speaker,
+            "location": location,
+            "date": current_date,
+            "startTime": start_time,
+            "endTime": end_time,
+            "track": determine_track(title, text),
+            "imageUrl": img_url,
+            "url": session_url
+        })
 
-            events.append({
-                "id": str(event_id_counter),
-                "title": title,
-                "speaker": speaker,
-                "location": location,
-                "date": current_date,
-                "startTime": start_time,
-                "endTime": end_time,
-                "track": determine_track(title, text),
-                "imageUrl": img_url,
-                "url": session_url
-            })
-
-    # Deduplicate events by date, start time, and title prefix
+    # Deduplicate events by date, start time, and title
     unique_events = {}
     for ev in events:
         dedup_key = f"{ev['date']}_{ev['startTime']}_{ev['title'][:20].lower()}"
@@ -171,9 +163,9 @@ def scrape_full_schedule():
     return list(unique_events.values())
 
 def main():
-    print("Scraping schedule for Oct 13-16 (filtering out Mon 12th)...")
+    print("Scraping schedule for Oct 13-16...")
     events = scrape_full_schedule()
-    print(f"Successfully processed {len(events)} events for Tue 13th to Fri 16th.")
+    print(f"Successfully processed {len(events)} events for Oct 13-16.")
 
     with open("schedule.json", "w", encoding="utf-8") as f:
         json.dump(events, f, indent=2)
