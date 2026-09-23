@@ -11,175 +11,157 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
-def fetch_schedule_timetable():
-    """Fetches exact session times, rooms, and dates directly from the official view_CET schedule HTML."""
-    time_map = {}
+DAY_MAP = {
+    "Mon 12th": "2026-10-12",
+    "Tue 13th": "2026-10-13",
+    "Wed 14th": "2026-10-14",
+    "Thu 15th": "2026-10-15",
+    "Fri 16th": "2026-10-16"
+}
+
+DEFAULT_IMAGE = "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg"
+
+def determine_track(title_text, type_text=""):
+    combined = f"{title_text} {type_text}".lower()
+    if "keynote" in combined or "fireside" in combined:
+        return "Keynote"
+    elif "vfx" in combined or "visual effects" in combined or "marvel" in combined:
+        return "VFX"
+    elif "animation" in combined or "pixar" in combined or "disney" in combined or "stop-motion" in combined or "toy story" in combined:
+        return "Animation"
+    elif "ai" in combined or "tech" in combined or "nvidia" in combined or "unreal" in combined:
+        return "AI & Tech"
+    elif "cinematography" in combined or "deakins" in combined:
+        return "Cinematography"
+    return "Session"
+
+def extract_article_bg_image(session_url, session):
+    """Fetches the individual article page and extracts the background image URL from class="bg cover"."""
+    if not session_url or "/article/" not in session_url or session_url == PROGRAM_URL:
+        return DEFAULT_IMAGE
+
     try:
-        resp = requests.get(PROGRAM_URL, headers=HEADERS, timeout=15)
+        resp = session.get(session_url, headers=HEADERS, timeout=6)
         if resp.status_code == 200:
-            soup = BeautifulSoup(resp.text, "html.parser")
-            text = soup.get_text()
+            art_soup = BeautifulSoup(resp.text, "html.parser")
             
-            # Match timetable entries: e.g., "Tue Oct 13 from 18:45-19:30"
-            patterns = re.findall(
-                r'(Mon|Tue|Wed|Thu|Fri)\s+(Oct\s+\d{1,2})\s+from\s+(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})[^\n]*\n([^\n]+)',
-                text, re.IGNORECASE
-            )
+            # Look specifically for elements with both "bg" and "cover" classes
+            bg_element = art_soup.find(class_=lambda c: c and "bg" in c.split() and "cover" in c.split())
             
-            date_conversion = {
-                "Mon": "2026-10-12", "Tue": "2026-10-13",
-                "Wed": "2026-10-14", "Thu": "2026-10-15", "Fri": "2026-10-16"
-            }
+            if bg_element and bg_element.has_attr("style"):
+                style_attr = bg_element["style"]
+                # Extract image path inside url('...') or url(...)
+                match = re.search(r'url\((?:\'|\")?(.*?)(?:\'|\")?\)', style_attr, re.IGNORECASE)
+                if match:
+                    raw_img_url = match.group(1).strip()
+                    return urllib.parse.urljoin(BASE_URL, raw_img_url)
 
-            for day_str, date_part, start_t, end_t, title_snippet in patterns:
-                key = title_snippet.strip().lower()[:25]
-                time_map[key] = {
-                    "date": date_conversion.get(day_str[:3], "2026-10-12"),
-                    "startTime": start_t.zfill(5),
-                    "endTime": end_t.zfill(5)
-                }
+            # Secondary fallback: check OpenGraph meta image tag if style element is missing
+            og_img = art_soup.find("meta", property="og:image")
+            if og_img and og_img.get("content"):
+                return urllib.parse.urljoin(BASE_URL, og_img["content"])
+
     except Exception as e:
-        print(f"Error reading schedule timetable: {e}")
-    return time_map
+        print(f"Warning: Could not fetch image from {session_url}: {e}")
 
-def scrape_articles(time_map):
-    """Scrapes individual articles and applies exact timetable data when matched."""
-    start_urls = [
-        f"{BASE_URL}/pages/program",
-        f"{BASE_URL}/pages/speakers",
-        BASE_URL
-    ]
+    return DEFAULT_IMAGE
+
+def scrape_full_schedule():
+    session = requests.Session()
+    resp = session.get(PROGRAM_URL, headers=HEADERS, timeout=15)
+    resp.raise_for_status()
     
-    article_urls = set()
-    for url in start_urls:
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=10)
-            if r.status_code == 200:
-                soup = BeautifulSoup(r.text, "html.parser")
-                for a in soup.find_all("a", href=True):
-                    if "/article/" in a['href']:
-                        article_urls.add(urllib.parse.urljoin(BASE_URL, a['href']))
-        except Exception as e:
-            print(f"Error finding article links on {url}: {e}")
-
+    soup = BeautifulSoup(resp.text, "html.parser")
     events = []
+    event_id_counter = 1000
+
+    current_date = "2026-10-12"
     
-    # Default fallbacks when session time isn't explicitly listed
-    default_times = [
-        ("09:30", "10:30"), ("10:45", "11:45"), ("12:00", "13:00"),
-        ("14:30", "15:30"), ("15:45", "16:45"), ("17:00", "18:00")
-    ]
+    # Locate all schedule blocks
+    session_blocks = soup.find_all(class_=re.compile(r'session|event|talk-card|item', re.I))
+    if not session_blocks:
+        session_blocks = soup.find_all(['td', 'div'])
 
-    for idx, url in enumerate(sorted(article_urls)):
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=10)
-            if r.status_code != 200:
-                continue
-            
-            soup = BeautifulSoup(r.text, "html.parser")
-            html_text = r.text
+    # Cache article image URLs across identical sessions to minimize network calls
+    image_cache = {}
 
-            # ID
-            id_match = re.search(r'/article/(\d+)', url)
-            article_id = id_match.group(1) if id_match else str(hash(url))
+    for block in session_blocks:
+        text = block.get_text(" ", strip=True)
+        
+        # Check for date headers
+        for day_key, date_val in DAY_MAP.items():
+            if day_key in text:
+                current_date = date_val
 
-            # Clean Title
-            title = ""
-            meta_title = soup.find("meta", property="og:title")
-            if meta_title and meta_title.get("content"):
-                title = meta_title["content"].split("|")[0].strip()
-            if not title or "view conference" in title.lower():
-                for header in soup.find_all(['h1', 'h2']):
-                    txt = header.get_text(strip=True)
-                    if txt and not txt.lower().startswith("view conference"):
-                        title = txt
-                        break
-            if not title:
-                title = "VIEW Conference Session"
+        # Extract Time
+        time_match = re.search(r'(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})\s*CET', text, re.IGNORECASE)
+        if not time_match:
+            continue
 
-            # Speaker Extraction
-            speaker = "Featured Speaker"
-            speaker_tag = soup.find(class_=re.compile(r'speaker|author|byline|subtitle', re.I))
-            if speaker_tag:
-                speaker = speaker_tag.get_text(strip=True)
+        start_time, end_time = time_match.group(1).zfill(5), time_match.group(2).zfill(5)
 
-            # Image Extraction
-            img_url = "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg"
-            img_tag = soup.find("img", src=re.compile(r'/assets/article/'))
-            if img_tag and img_tag.get("src"):
-                img_url = urllib.parse.urljoin(BASE_URL, img_tag["src"])
+        # Extract Room / Location
+        room_match = re.search(r'In\s+([A-Z0-9\s]+?)\s*\((?:In Person|Remote|Hybrid)\)', text, re.IGNORECASE)
+        location = f"OGR - {room_match.group(1).strip()}" if room_match else "VIEW Conference Venue"
 
-            # Location / Room
-            location = "OGR - Sala Fucine"
-            if "binario" in html_text.lower():
-                location = "OGR - Binario 3"
-            elif "mezzanino" in html_text.lower():
-                location = "OGR - Mezzanino"
-            elif "massimo" in html_text.lower():
-                location = "Cinema Massimo"
+        # Extract Title
+        title_tag = block.find(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
+        title = title_tag.get_text(strip=True) if title_tag else ""
+        if not title:
+            lines = [line.strip() for line in text.splitlines() if line.strip()]
+            title = lines[0] if lines else "VIEW Conference Session"
 
-            # Dynamic Track Tagging
-            title_lower = title.lower()
-            if "keynote" in title_lower or "fireside" in title_lower:
-                track = "Keynote"
-            elif "vfx" in title_lower or "visual effects" in title_lower or "marvel" in title_lower:
-                track = "VFX"
-            elif "animation" in title_lower or "pixar" in title_lower or "disney" in title_lower or "stop-motion" in title_lower or "toy story" in title_lower:
-                track = "Animation"
-            elif "ai" in title_lower or "tech" in title_lower or "nvidia" in title_lower:
-                track = "AI & Tech"
-            elif "cinematography" in title_lower or "deakins" in title_lower:
-                track = "Cinematography"
-            else:
-                track = "Session"
+        # Extract Speaker
+        speaker = "Featured Speaker"
+        speaker_div = block.find(class_=re.compile(r'speaker|presenter|author', re.I))
+        if speaker_div:
+            speaker = speaker_div.get_text(", ", strip=True)
+        else:
+            speaker_match = re.search(r'\)(.+)', text)
+            if speaker_match:
+                candidate = speaker_match.group(1).strip()
+                if candidate and len(candidate) < 150:
+                    speaker = candidate
 
-            # Date Parsing
-            date_str = "2026-10-12"
-            if "oct 13" in html_text.lower() or "october 13" in html_text.lower() or "tuesday" in html_text.lower():
-                date_str = "2026-10-13"
-            elif "oct 14" in html_text.lower() or "october 14" in html_text.lower() or "wednesday" in html_text.lower():
-                date_str = "2026-10-14"
-            elif "oct 15" in html_text.lower() or "october 15" in html_text.lower() or "thursday" in html_text.lower():
-                date_str = "2026-10-15"
-            elif "oct 16" in html_text.lower() or "october 16" in html_text.lower() or "friday" in html_text.lower():
-                date_str = "2026-10-16"
+        # Session URL
+        link_tag = block.find('a', href=True)
+        session_url = urllib.parse.urljoin(BASE_URL, link_tag['href']) if link_tag else PROGRAM_URL
 
-            # Start and End Times Lookup from Timetable
-            title_key = title.strip().lower()[:25]
-            if title_key in time_map:
-                start_time = time_map[title_key]["startTime"]
-                end_time = time_map[title_key]["endTime"]
-                date_str = time_map[title_key]["date"]
-            else:
-                # Distribute distinct realistic time slots across items without direct time match
-                slot = default_times[idx % len(default_times)]
-                start_time, end_time = slot
+        # Article Background Image extraction
+        if session_url in image_cache:
+            img_url = image_cache[session_url]
+        else:
+            img_url = extract_article_bg_image(session_url, session)
+            image_cache[session_url] = img_url
 
-            events.append({
-                "id": article_id,
-                "title": title,
-                "speaker": speaker,
-                "location": location,
-                "date": date_str,
-                "startTime": start_time,
-                "endTime": end_time,
-                "track": track,
-                "imageUrl": img_url,
-                "url": url
-            })
-        except Exception as e:
-            print(f"Error parsing article {url}: {e}")
+        event_id_counter += 1
+        
+        events.append({
+            "id": str(event_id_counter),
+            "title": title,
+            "speaker": speaker,
+            "location": location,
+            "date": current_date,
+            "startTime": start_time,
+            "endTime": end_time,
+            "track": determine_track(title, text),
+            "imageUrl": img_url,
+            "url": session_url
+        })
 
-    return events
+    # Deduplicate events based on date, start time, and title
+    unique_events = {}
+    for ev in events:
+        dedup_key = f"{ev['date']}_{ev['startTime']}_{ev['title'][:20].lower()}"
+        if dedup_key not in unique_events:
+            unique_events[dedup_key] = ev
+
+    return list(unique_events.values())
 
 def main():
-    print("Reading schedule timetable details...")
-    time_map = fetch_schedule_timetable()
-    
-    print("Parsing article content and matching times...")
-    events = scrape_articles(time_map)
-    
-    print(f"Successfully scraped {len(events)} events with unique times and tracks.")
+    print("Scraping full schedule and fetching article background images...")
+    events = scrape_full_schedule()
+    print(f"Successfully processed {len(events)} events.")
 
     with open("schedule.json", "w", encoding="utf-8") as f:
         json.dump(events, f, indent=2)
