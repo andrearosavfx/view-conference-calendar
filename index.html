@@ -1,397 +1,784 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-900">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIEW Conference 2026 Schedule</title>
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0f172a;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #334155;
-      border-radius: 4px;
-    }
-    .active-pill {
-      background-color: #6366f1 !important;
-      color: #ffffff !important;
-      border-color: #818cf8 !important;
-    }
-
-    /* Dynamic Multi-Column Schedule Grid */
-    .schedule-matrix {
-      display: grid;
-      grid-template-columns: 80px repeat(5, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    @media (max-width: 1280px) {
-      .schedule-matrix-container {
-        overflow-x: auto;
-      }
-      .schedule-matrix {
-        min-width: 1200px;
-      }
-    }
-  </style>
-</head>
-<body class="min-h-screen flex flex-col bg-slate-900 text-slate-100 antialiased">
-
-  <!-- Header -->
-  <header class="bg-slate-800/90 border-b border-slate-700/80 sticky top-0 z-50 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        
-        <!-- Brand Title -->
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center font-black text-xl text-white shadow-lg">
-            V
-          </div>
-          <div>
-            <h1 class="text-xl font-bold text-white">
-              VIEW Conference 2026
-            </h1>
-            <p class="text-xs text-slate-400">Official Interactive Event Schedule</p>
-          </div>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="relative w-full md:w-80">
-          <input 
-            type="text" 
-            id="search-input" 
-            placeholder="Search talk, speaker, location..." 
-            class="w-full bg-slate-900 text-sm text-slate-100 placeholder-slate-500 rounded-xl px-4 py-2.5 border border-slate-700 focus:outline-none focus:border-indigo-500 transition-all"
-            oninput="handleFilterChange()"
-          >
-          <span class="absolute right-3.5 top-2.5 text-slate-500 text-sm">🔍</span>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Navigation & Filter Bar -->
-    <div class="bg-slate-900/60 border-t border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-3">
-        
-        <!-- Day Selector Tabs -->
-        <div class="flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-semibold">
-          <button onclick="setDateFilter('2026-10-12')" id="date-2026-10-12" class="date-tab active-pill px-4 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-            Mon Oct 12
-          </button>
-          <button onclick="setDateFilter('2026-10-13')" id="date-2026-10-13" class="date-tab px-4 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-            Tue Oct 13
-          </button>
-          <button onclick="setDateFilter('2026-10-14')" id="date-2026-10-14" class="date-tab px-4 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-            Wed Oct 14
-          </button>
-          <button onclick="setDateFilter('2026-10-15')" id="date-2026-10-15" class="date-tab px-4 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-            Thu Oct 15
-          </button>
-          <button onclick="setDateFilter('2026-10-16')" id="date-2026-10-16" class="date-tab px-4 py-2 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-            Fri Oct 16
-          </button>
-        </div>
-
-        <!-- Controls & Track Filters -->
-        <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
-          
-          <div class="flex items-center space-x-2 overflow-x-auto">
-            <span class="text-slate-400 font-medium mr-1">Track:</span>
-            <button onclick="setTrackFilter('all')" id="track-all" class="track-pill active-pill px-3 py-1 rounded-full border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-              All Tracks
-            </button>
-            <button onclick="setTrackFilter('Keynote')" id="track-Keynote" class="track-pill px-3 py-1 rounded-full border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-              Keynotes
-            </button>
-            <button onclick="setTrackFilter('VFX')" id="track-VFX" class="track-pill px-3 py-1 rounded-full border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-              VFX
-            </button>
-            <button onclick="setTrackFilter('Animation')" id="track-Animation" class="track-pill px-3 py-1 rounded-full border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-              Animation
-            </button>
-            <button onclick="setTrackFilter('AI & Tech')" id="track-AI & Tech" class="track-pill px-3 py-1 rounded-full border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all whitespace-nowrap">
-              AI & Tech
-            </button>
-          </div>
-
-          <!-- Favorites Toggle -->
-          <button 
-            id="starred-toggle" 
-            onclick="toggleStarredOnly()" 
-            class="px-3 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 font-medium flex items-center gap-1.5 transition-all"
-          >
-            <span>⭐ Starred Sessions</span>
-            <span id="starred-count" class="bg-amber-500 text-slate-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
-          </button>
-
-        </div>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Schedule Board -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIEW Conference 2026 - Visual Schedule & Tracker</title>
     
-    <div class="flex items-center justify-between mb-4 text-sm text-slate-400">
-      <div id="results-count">Loading schedule...</div>
-    </div>
-
-    <div class="schedule-matrix-container bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl">
-      <div id="schedule-board" class="min-w-full">
-        <!-- Rendered matrix layout inserts here -->
-      </div>
-    </div>
-
-  </main>
-
-  <footer class="bg-slate-800/40 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-    VIEW Conference Calendar • Built for GitHub Pages
-  </footer>
-
-  <script>
-    const TARGET_LOCATIONS = [
-      "OGR - FUCINE",
-      "OGR - BINARIO3",
-      "OGR - MEZZANINO",
-      "OGR - SOPPALCO",
-      "OGR - CINEMA MASSIMO"
-    ];
-
-    let eventsData = [];
-    let activeDate = '2026-10-12';
-    let activeTrack = 'all';
-    let showStarredOnly = false;
-    let starredEvents = JSON.parse(localStorage.getItem('view_starred_events') || '[]');
-
-    function normalizeLocation(locStr) {
-      if (!locStr) return '';
-      const cleanStr = locStr.toUpperCase().trim();
-      for (const loc of TARGET_LOCATIONS) {
-        const shortName = loc.replace('OGR - ', '');
-        if (cleanStr.includes(shortName) || cleanStr === loc) {
-          return loc;
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            900: '#881337',
+                            accent: '#a855f7'
+                        },
+                        darkbg: '#0f172a',
+                        cardbg: '#1e293b'
+                    }
+                }
+            }
         }
-      }
-      return locStr;
-    }
+    </script>
 
-    async function loadSchedule() {
-      try {
-        const response = await fetch('./schedule.json?v=' + Date.now());
-        if (!response.ok) throw new Error(`Server status ${response.status}`);
-        eventsData = await response.json();
-        updateStarredBadge();
-        handleFilterChange();
-      } catch (err) {
-        console.warn("Fetch failed:", err);
-        const board = document.getElementById('schedule-board');
-        if (board) {
-          board.innerHTML = `
-            <div class="p-8 rounded-xl bg-amber-900/30 border border-amber-700 text-center text-amber-200">
-              <h3 class="font-bold text-lg mb-2">Unable to load event data</h3>
-              <p class="text-xs text-amber-300 max-w-md mx-auto">
-                Please verify that <code>schedule.json</code> is accessible in your repo directory.
-              </p>
-            </div>
-          `;
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
-      }
-    }
+        
+        /* Custom Scrollbar for touch-smooth calendar grid */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-    function setDateFilter(date) {
-      activeDate = date;
-      document.querySelectorAll('.date-tab').forEach(el => el.classList.remove('active-pill'));
-      const activeEl = document.getElementById(`date-${date}`);
-      if (activeEl) activeEl.classList.add('active-pill');
-      handleFilterChange();
-    }
+        .glass-header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
 
-    function setTrackFilter(track) {
-      activeTrack = track;
-      document.querySelectorAll('.track-pill').forEach(el => el.classList.remove('active-pill'));
-      const activeEl = document.getElementById(`track-${track}`);
-      if (activeEl) activeEl.classList.add('active-pill');
-      handleFilterChange();
-    }
+        .event-card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+        }
 
-    function toggleStarredOnly() {
-      showStarredOnly = !showStarredOnly;
-      const btn = document.getElementById('starred-toggle');
-      if (showStarredOnly) {
-        btn.classList.add('bg-amber-500', 'text-slate-900');
-        btn.classList.remove('bg-amber-500/10', 'text-amber-300');
-      } else {
-        btn.classList.remove('bg-amber-500', 'text-slate-900');
-        btn.classList.add('bg-amber-500/10', 'text-amber-300');
-      }
-      handleFilterChange();
-    }
+        .tab-active {
+            background-color: #e11d48;
+            color: #ffffff;
+            border-color: #f43f5e;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-600 selection:text-white pb-20 md:pb-6">
 
-    function toggleStar(eventId, event) {
-      if (event) event.stopPropagation();
-      const index = starredEvents.indexOf(eventId);
-      if (index > -1) {
-        starredEvents.splice(index, 1);
-      } else {
-        starredEvents.push(eventId);
-      }
-      localStorage.setItem('view_starred_events', JSON.stringify(starredEvents));
-      updateStarredBadge();
-      handleFilterChange();
-    }
-
-    function updateStarredBadge() {
-      const badge = document.getElementById('starred-count');
-      if (badge) badge.textContent = starredEvents.length;
-    }
-
-    function shareSession(title, url, event) {
-      if (event) event.stopPropagation();
-      if (navigator.share) {
-        navigator.share({
-          title: title,
-          text: `Check out "${title}" at VIEW Conference 2026!`,
-          url: url || window.location.href
-        }).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(url || window.location.href);
-        alert('Session link copied to clipboard!');
-      }
-    }
-
-    function handleFilterChange() {
-      const query = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
-
-      const filtered = eventsData.filter(evt => {
-        const matchDate = (evt.date === activeDate);
-        const matchTrack = (activeTrack === 'all') || (evt.track === activeTrack);
-        const matchStarred = !showStarredOnly || starredEvents.includes(evt.id || evt.title);
-        const matchSearch = !query || 
-          (evt.title && evt.title.toLowerCase().includes(query)) ||
-          (evt.speaker && evt.speaker.toLowerCase().includes(query)) ||
-          (evt.location && evt.location.toLowerCase().includes(query));
-
-        return matchDate && matchTrack && matchStarred && matchSearch;
-      });
-
-      renderScheduleMatrix(filtered);
-    }
-
-    function renderScheduleMatrix(events) {
-      const board = document.getElementById('schedule-board');
-      const countEl = document.getElementById('results-count');
-
-      if (countEl) {
-        countEl.textContent = `Showing ${events.length} session${events.length === 1 ? '' : 's'} for ${activeDate}`;
-      }
-
-      if (!board) return;
-
-      if (events.length === 0) {
-        board.innerHTML = `
-          <div class="py-16 text-center text-slate-500">
-            No events found matching your filter options for this date.
-          </div>
-        `;
-        return;
-      }
-
-      // Chronological time slots
-      const timeSlots = Array.from(new Set(events.map(e => e.startTime))).sort();
-
-      // Render Matrix Header
-      let matrixHTML = `
-        <div class="schedule-matrix mb-3 border-b border-slate-800 pb-3 font-semibold text-xs text-slate-400">
-          <div class="flex items-center justify-center font-bold">Time</div>
-          ${TARGET_LOCATIONS.map(loc => `<div class="text-center text-indigo-400 font-bold uppercase tracking-wider">${loc.replace('OGR - ', '')}</div>`).join('')}
-        </div>
-      `;
-
-      // Render Matrix Rows
-      timeSlots.forEach(time => {
-        matrixHTML += `
-          <div class="schedule-matrix border-b border-slate-800/50 py-3 items-start">
-            <!-- Time Slot Column -->
-            <div class="text-xs font-bold text-slate-300 pt-2 text-center bg-slate-800/60 py-2 rounded-lg border border-slate-700/60 shadow">
-              ${time}
-            </div>
-
-            <!-- Location Columns -->
-            ${TARGET_LOCATIONS.map(loc => {
-              const matchingEvents = events.filter(e => e.startTime === time && normalizeLocation(e.location) === loc);
-              
-              if (matchingEvents.length === 0) {
-                return `<div class="min-h-[90px] border border-dashed border-slate-800/40 rounded-xl"></div>`;
-              }
-
-              return `
-                <div class="flex flex-col gap-2">
-                  ${matchingEvents.map(evt => {
-                    const isStarred = starredEvents.includes(evt.id || evt.title);
-                    return `
-                      <div class="bg-slate-800/90 rounded-xl border border-slate-700/80 p-3 flex flex-col justify-between shadow-lg hover:border-indigo-500/80 transition-all group relative">
-                        <div>
-                          <div class="flex items-center justify-between gap-1 mb-2">
-                            <span class="text-[10px] font-bold text-indigo-300 bg-indigo-950/80 px-2 py-0.5 rounded-md border border-indigo-800/50">
-                              ${evt.track || 'Session'}
-                            </span>
-
-                            <div class="flex items-center gap-1">
-                              <button 
-                                onclick="shareSession('${evt.title.replace(/'/g, "\\'")}', '${evt.url || ''}', event)"
-                                class="text-slate-400 hover:text-white p-1 rounded hover:bg-slate-700/50 transition-colors"
-                                title="Share Session"
-                              >
-                                🔗
-                              </button>
-                              <button 
-                                onclick="toggleStar('${evt.id || evt.title.replace(/'/g, "\\'")}', event)"
-                                class="p-1 text-sm transition-transform active:scale-125"
-                                title="Favorite Session"
-                              >
-                                ${isStarred ? '⭐' : '☆'}
-                              </button>
-                            </div>
-                          </div>
-
-                          <h4 class="text-xs font-bold text-slate-100 group-hover:text-indigo-300 transition-colors leading-snug mb-1">
-                            ${evt.title}
-                          </h4>
-
-                          <p class="text-[11px] text-slate-400 font-medium mb-2">
-                            👤 ${evt.speaker || 'TBA'}
-                          </p>
-                        </div>
-
-                        <div class="pt-2 border-t border-slate-700/50 flex items-center justify-between text-[10px] text-slate-400">
-                          <span>⏰ ${evt.startTime} - ${evt.endTime || ''}</span>
-                          ${evt.url ? `<a href="${evt.url}" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:text-indigo-300 font-semibold">Details →</a>` : ''}
-                        </div>
-                      </div>
-                    `;
-                  }).join('')}
+    <!-- Top Fixed Header -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-800/80 px-4 py-3">
+        <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-purple-600 flex items-center justify-center shadow-lg shadow-brand-500/20 font-black text-xl text-white">
+                    V
                 </div>
-              `;
-            }).join('')}
-          </div>
-        `;
-      });
+                <div>
+                    <h1 class="font-extrabold text-base md:text-lg leading-tight flex items-center gap-2">
+                        VIEW 2026
+                        <span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-500 border border-brand-500/30">Torino</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Oct 12 – Oct 16 • OGR & Venues</p>
+                </div>
+            </div>
 
-      board.innerHTML = matrixHTML;
-    }
+            <!-- Sync & Share Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button onclick="copyShareableLink()" title="Copy Shareable Link for device sync" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition border border-slate-700/60 active:scale-95">
+                    <i class="fa-solid fa-share-nodes text-brand-500"></i>
+                    <span class="hidden sm:inline">Sync Link</span>
+                </button>
+                <button onclick="triggerLiveSync()" title="Re-sync with viewconference.it schedule" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition border border-slate-700/60 active:scale-95">
+                    <i id="sync-icon" class="fa-solid fa-arrows-rotate text-purple-400"></i>
+                    <span class="hidden sm:inline">Sync Official</span>
+                </button>
+            </div>
+        </div>
 
-    document.addEventListener('DOMContentLoaded', loadSchedule);
-  </script>
+        <!-- Day Selector Strip (Oct 12 - Oct 16) -->
+        <div class="max-w-5xl mx-auto mt-3 pt-2 border-t border-slate-800/50 flex overflow-x-auto no-scrollbar gap-2 px-1">
+            <button onclick="switchDay('2026-10-12')" id="day-btn-2026-10-12" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Mon</span>
+                <span class="text-base font-bold">12 OCT</span>
+            </button>
+            <button onclick="switchDay('2026-10-13')" id="day-btn-2026-10-13" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Tue</span>
+                <span class="text-base font-bold">13 OCT</span>
+            </button>
+            <button onclick="switchDay('2026-10-14')" id="day-btn-2026-10-14" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Wed</span>
+                <span class="text-base font-bold">14 OCT</span>
+            </button>
+            <button onclick="switchDay('2026-10-15')" id="day-btn-2026-10-15" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Thu</span>
+                <span class="text-base font-bold">15 OCT</span>
+            </button>
+            <button onclick="switchDay('2026-10-16')" id="day-btn-2026-10-16" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
+                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Fri</span>
+                <span class="text-base font-bold">16 OCT</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Controls Toolbar -->
+    <main class="max-w-5xl mx-auto w-full px-4 pt-4 flex-1">
+        <div class="space-y-3 mb-5">
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+                <div class="relative w-full flex-1">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="search-input" oninput="applyFilters()" placeholder="Search title, speaker, topic..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
+                </div>
+                
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-36">
+                        <option value="ALL">All Venues</option>
+                        <option value="OGR Main Hall">OGR Main Hall</option>
+                        <option value="OGR Stage B">OGR Stage B</option>
+                        <option value="ITS Auditorium">ITS Auditorium</option>
+                        <option value="Cinema Massimo">Cinema Massimo</option>
+                    </select>
+
+                    <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-36">
+                        <option value="ALL">All Tracks</option>
+                        <option value="Keynote">Keynote</option>
+                        <option value="Animation">Animation</option>
+                        <option value="VFX">VFX</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="AI & Future">AI & Future</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Toggle Filter: All vs Starred -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+                    <button onclick="setStarredFilter(false)" id="filter-all-btn" class="px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600">
+                        All Events
+                    </button>
+                    <button onclick="setStarredFilter(true)" id="filter-starred-btn" class="px-3 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center gap-1.5">
+                        <i class="fa-solid fa-star text-amber-400"></i>
+                        Starred (<span id="starred-count">0</span>)
+                    </button>
+                </div>
+                
+                <div class="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+                    <span class="text-[11px] text-slate-400 font-semibold px-2 hidden sm:inline">
+                        <i class="fa-solid fa-up-down text-brand-500 mr-1"></i>Row Scale:
+                    </span>
+                    <button onclick="setGridZoom(90)" id="zoom-btn-90" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Compact</button>
+                    <button onclick="setGridZoom(130)" id="zoom-btn-130" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700">Default</button>
+                    <button onclick="setGridZoom(180)" id="zoom-btn-180" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Expanded</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="grid-scroll-tip" class="mb-3 text-center sm:text-left text-[11px] text-slate-400 flex items-center justify-between bg-slate-900/60 border border-slate-800/80 px-3 py-1.5 rounded-xl">
+            <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-arrows-left-right text-brand-400"></i>
+                <span>Scroll horizontally to compare venue stages side-by-side</span>
+            </span>
+            <span id="scale-indicator" class="text-[10px] text-slate-400 font-semibold hidden sm:inline">1 Hour = 130px height</span>
+        </div>
+
+        <!-- Schedule Container -->
+        <div id="schedule-container" class="relative"></div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden py-16 text-center text-slate-500">
+            <div class="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center mx-auto mb-3 text-2xl text-slate-600">
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <p class="font-semibold text-slate-400">No events found</p>
+            <p class="text-xs text-slate-600 mt-1">Try toggling filters or starring sessions you want to see.</p>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="event-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/75 backdrop-blur-sm p-0 sm:p-4 transition-opacity">
+        <div class="bg-slate-900 w-full max-w-lg rounded-t-3xl sm:rounded-2xl border border-slate-800 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
+            <div class="relative h-48 bg-slate-950 overflow-hidden flex-shrink-0">
+                <img id="modal-banner" src="" alt="Event Banner" class="w-full h-full object-cover object-center" onerror="this.src='https://placehold.co/800x400/1e293b/f43f5e?text=VIEW+2026+Torino'">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                <button onclick="closeModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-3 left-4">
+                    <span id="modal-track" class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-600 text-white shadow">TRACK</span>
+                </div>
+            </div>
+
+            <div class="p-5 overflow-y-auto space-y-4 flex-1">
+                <div>
+                    <h2 id="modal-title" class="text-xl font-bold text-white leading-tight"></h2>
+                    <p id="modal-speaker" class="text-sm text-brand-400 font-medium mt-1"></p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-xs">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <i class="fa-regular fa-clock text-brand-500"></i>
+                        <div>
+                            <p class="text-[10px] text-slate-500 uppercase">Time & Duration</p>
+                            <p id="modal-time" class="font-semibold"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <i class="fa-solid fa-location-dot text-brand-500"></i>
+                        <div>
+                            <p class="text-[10px] text-slate-500 uppercase">Venue Room</p>
+                            <p id="modal-location" class="font-semibold"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-1">About Session</h3>
+                    <p id="modal-description" class="text-sm text-slate-300 leading-relaxed"></p>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-slate-800 bg-slate-950 flex items-center gap-3">
+                <button id="modal-star-btn" onclick="toggleModalStar()" class="flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border border-slate-700 bg-slate-800 text-slate-200">
+                    <i id="modal-star-icon" class="fa-solid fa-star"></i>
+                    <span id="modal-star-text">Star Event</span>
+                </button>
+                <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 rounded-xl font-bold text-sm bg-brand-600 hover:bg-brand-500 text-white flex items-center justify-center gap-2 transition">
+                    <span>Official Page</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-800 text-white px-4 py-2.5 rounded-xl border border-slate-700 shadow-xl text-xs font-semibold flex items-center gap-2 transition-all opacity-0 pointer-events-none transform translate-y-2">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-brand-500"></i>
+        <span id="toast-message">Action successful</span>
+    </div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 glass-header border-t border-slate-800/80 px-6 py-2.5 flex items-center justify-around">
+        <button onclick="setStarredFilter(false)" id="nav-home" class="flex flex-col items-center gap-0.5 text-brand-500">
+            <i class="fa-solid fa-calendar text-base"></i>
+            <span class="text-[10px] font-medium">Schedule</span>
+        </button>
+        <button onclick="setStarredFilter(true)" id="nav-starred" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
+            <i class="fa-solid fa-star text-base"></i>
+            <span class="text-[10px] font-medium">Favorites</span>
+        </button>
+        <button onclick="exportStarredData()" class="flex flex-col items-center gap-0.5 text-slate-400 hover:text-white">
+            <i class="fa-solid fa-download text-base"></i>
+            <span class="text-[10px] font-medium">Backup</span>
+        </button>
+    </nav>
+
+    <script>
+        const SCHEDULE_DATA = [
+            {
+                id: "1201",
+                title: "Opening Ceremony & Keynote: The Evolution of Digital Storytelling",
+                speaker: "Maria Elena Gutierrez & Keynote Panel",
+                track: "Keynote",
+                location: "OGR Main Hall",
+                date: "2026-10-12",
+                startTime: "09:00",
+                endTime: "10:30",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Welcome address opening VIEW Conference 2026, setting the stage for 5 days of world-class animation, VFX, and tech innovation."
+            },
+            {
+                id: "1202",
+                title: "Real-time Virtual Production Workflows in Unreal Engine 5.5",
+                speaker: "Epic Games Tech Team",
+                track: "Workshop",
+                location: "OGR Stage B",
+                date: "2026-10-12",
+                startTime: "09:30",
+                endTime: "11:30",
+                imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Hands-on session exploring next-gen camera tracking, LED wall synchronization, and real-time lighting."
+            },
+            {
+                id: "1203",
+                title: "AI & Creativity: Assistant or Auteur?",
+                speaker: "Dr. Alvy Ray Smith & AI Research Panel",
+                track: "AI & Future",
+                location: "ITS Auditorium",
+                date: "2026-10-12",
+                startTime: "11:00",
+                endTime: "12:30",
+                imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "A panel discussion exploring the ethical, creative, and technical boundaries of generative AI tools in major studio pipelines."
+            },
+            {
+                id: "1204",
+                title: "Cinematic Lighting Masterclass: Crafting Mood & Tone",
+                speaker: "Sir Roger Deakins",
+                track: "Keynote",
+                location: "OGR Main Hall",
+                date: "2026-10-12",
+                startTime: "14:00",
+                endTime: "15:30",
+                imageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Oscar-winning cinematographer Roger Deakins breaks down iconic lighting setups and camera placements from recent masterworks."
+            },
+            {
+                id: "1205",
+                title: "Indie Feature Production: From Pitch to Premiere",
+                speaker: "Nora Twomey & Cartoon Saloon",
+                track: "Animation",
+                location: "Cinema Massimo",
+                date: "2026-10-12",
+                startTime: "16:00",
+                endTime: "17:30",
+                imageUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "An inside look at maintaining artistic vision and hand-drawn beauty while managing European co-production budgets."
+            },
+            {
+                id: "1296",
+                title: "Welcome to the Future: A Conversation with Brad Bird on Ray Gunn",
+                speaker: "Brad Bird",
+                track: "Keynote",
+                location: "OGR Main Hall",
+                date: "2026-10-13",
+                startTime: "10:00",
+                endTime: "11:30",
+                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+                articleUrl: "https://www.viewconference.it/article/1296/welcome-to-the-future-a-conversation-with-brad-bird-on-ray-gunn",
+                description: "Join Oscar-winning director Brad Bird (The Incredibles, Ratatouille, Iron Giant) as he dives into his upcoming animated feature Ray Gunn and discusses world-building and storytelling."
+            },
+            {
+                id: "1297",
+                title: "Character Design & Visual Expression in Modern Animation",
+                speaker: "Kris Pearn",
+                track: "Animation",
+                location: "OGR Stage B",
+                date: "2026-10-13",
+                startTime: "09:30",
+                endTime: "11:00",
+                imageUrl: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Director Kris Pearn leads an engaging workshop on character silhouette, emotional acting through pose, and comedic timing."
+            },
+            {
+                id: "1298",
+                title: "Stylized VFX for Blockbuster Feature Films",
+                speaker: "ILM & Sony Pictures Imageworks Supervisors",
+                track: "VFX",
+                location: "ITS Auditorium",
+                date: "2026-10-13",
+                startTime: "11:30",
+                endTime: "13:00",
+                imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "A deep dive into blending non-photorealistic rendering (NPR) with heavy physical simulation pipelines."
+            },
+            {
+                id: "1299",
+                title: "RenderMan 26: Next-Gen Shading & Lighting Techniques",
+                speaker: "Dylan Sisson (Pixar)",
+                track: "Workshop",
+                location: "OGR Stage B",
+                date: "2026-10-13",
+                startTime: "14:00",
+                endTime: "16:00",
+                imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Discover Pixar's latest RenderMan release features including neural denoisers, advanced subsurface scatter, and GPU speedups."
+            },
+            {
+                id: "1300",
+                title: "The Art of World Building in Sci-Fi & Fantasy Cinema",
+                speaker: "Production Designers Panel",
+                track: "Keynote",
+                location: "Cinema Massimo",
+                date: "2026-10-13",
+                startTime: "16:30",
+                endTime: "18:00",
+                imageUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Top art directors and concept artists share their process for crafting immersive futuristic architecture and alien landscapes."
+            },
+            {
+                id: "1301",
+                title: "Women in Animation: Leadership & Innovation",
+                speaker: "Ramsey Naito & Guests",
+                track: "Keynote",
+                location: "OGR Main Hall",
+                date: "2026-10-14",
+                startTime: "09:30",
+                endTime: "11:00",
+                imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Industry leaders discuss expanding opportunities, creative direction, and executive producer strategies in modern animation."
+            },
+            {
+                id: "1302",
+                title: "Procedural Environment Creation with Houdini 20.5",
+                speaker: "SideFX Senior Technical Artists",
+                track: "Workshop",
+                location: "OGR Stage B",
+                date: "2026-10-14",
+                startTime: "11:00",
+                endTime: "13:00",
+                imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Learn how to build massive procedural terrain, foliage ecosystems, and cityscapes efficiently in Houdini."
+            },
+            {
+                id: "1303",
+                title: "The Future of Game Graphics & Realtime Ray Tracing",
+                speaker: "NVIDIA Graphics Research",
+                track: "AI & Future",
+                location: "ITS Auditorium",
+                date: "2026-10-14",
+                startTime: "14:00",
+                endTime: "15:30",
+                imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Exploring path tracing, neural reconstruction, and real-time global illumination for next-gen interactive media."
+            },
+            {
+                id: "1304",
+                title: "Special Retrospective Screening & Q&A",
+                speaker: "Guest Filmmakers",
+                track: "Animation",
+                location: "Cinema Massimo",
+                date: "2026-10-14",
+                startTime: "16:00",
+                endTime: "18:00",
+                imageUrl: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Exclusive cinema screening followed by an in-depth conversation with the director and lead animators."
+            },
+            {
+                id: "1305",
+                title: "Breakthrough VFX: De-Aging & Digital Humans",
+                speaker: "VFX Supervisors Panel",
+                track: "VFX",
+                location: "OGR Main Hall",
+                date: "2026-10-15",
+                startTime: "10:00",
+                endTime: "11:30",
+                imageUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Examining recent advances in photorealistic digital actors, skin shaders, and neural face replacement."
+            },
+            {
+                id: "1306",
+                title: "Storyboarding for Fast-Paced Action Sequences",
+                speaker: "Lead Story Artists",
+                track: "Workshop",
+                location: "OGR Stage B",
+                date: "2026-10-15",
+                startTime: "11:30",
+                endTime: "13:00",
+                imageUrl: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "A hands-on breakdown of pacing, camera cuts, screen direction, and dynamic perspective in action boards."
+            },
+            {
+                id: "1307",
+                title: "Generative AI in Pre-Visualization & Concept Design",
+                speaker: "Concept Studio Directors",
+                track: "AI & Future",
+                location: "ITS Auditorium",
+                date: "2026-10-15",
+                startTime: "14:30",
+                endTime: "16:00",
+                imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "How top visual development teams integrate AI toolsets into rapid iteration and pitch decks responsibly."
+            },
+            {
+                id: "1308",
+                title: "VIEW Awards 2026: Outstanding Short Film Ceremony",
+                speaker: "Jury & Festival Winners",
+                track: "Keynote",
+                location: "OGR Main Hall",
+                date: "2026-10-16",
+                startTime: "10:00",
+                endTime: "12:00",
+                imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "The grand finale celebration announcing the VIEW 2026 short animation award winners and student project honors."
+            },
+            {
+                id: "1309",
+                title: "Closing Keynote: The Next Era of Immersive Media",
+                speaker: "Conference Closing Committee",
+                track: "Keynote",
+                location: "OGR Main Hall",
+                date: "2026-10-16",
+                startTime: "14:00",
+                endTime: "15:30",
+                imageUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
+                articleUrl: "https://www.viewconference.it/pages/program",
+                description: "Final remarks, key takeaways, and a forward look at the technology and artistry driving VIEW 2027."
+            }
+        ];
+
+        // State Variables
+        let selectedDate = "2026-10-13";
+        let showOnlyStarred = false;
+        let currentModalEventId = null;
+        let gridScale = 130; // Pixel height per hour
+        let starredIds = new Set(JSON.parse(localStorage.getItem('view2026_starred') || '[]'));
+
+        // Initialize state on DOM Load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load starred items from URL if present
+            const urlParams = new URLSearchParams(window.location.search);
+            const syncData = urlParams.get('sync');
+            if (syncData) {
+                try {
+                    const parsed = JSON.parse(atob(syncData));
+                    if (Array.isArray(parsed)) {
+                        starredIds = new Set(parsed);
+                        saveStarred();
+                        showToast("Schedule synced from shared link!");
+                    }
+                } catch (e) {
+                    console.error("Invalid sync payload", e);
+                }
+            }
+
+            updateStarredCount();
+            switchDay(selectedDate);
+        });
+
+        function saveStarred() {
+            localStorage.setItem('view2026_starred', JSON.stringify(Array.from(starredIds)));
+            updateStarredCount();
+        }
+
+        function updateStarredCount() {
+            document.getElementById('starred-count').innerText = starredIds.size;
+        }
+
+        function switchDay(dateStr) {
+            selectedDate = dateStr;
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            const activeBtn = document.getElementById(`day-btn-${dateStr}`);
+            if (activeBtn) activeBtn.classList.add('tab-active');
+            
+            renderSchedule();
+        }
+
+        function setStarredFilter(starredOnly) {
+            showOnlyStarred = starredOnly;
+            
+            const allBtn = document.getElementById('filter-all-btn');
+            const starredBtn = document.getElementById('filter-starred-btn');
+            const navHome = document.getElementById('nav-home');
+            const navStarred = document.getElementById('nav-starred');
+
+            if (starredOnly) {
+                allBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white";
+                starredBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600 flex items-center gap-1.5";
+                if(navHome) navHome.className = "flex flex-col items-center gap-0.5 text-slate-400 hover:text-white";
+                if(navStarred) navStarred.className = "flex flex-col items-center gap-0.5 text-brand-500";
+            } else {
+                allBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600";
+                starredBtn.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center gap-1.5";
+                if(navHome) navHome.className = "flex flex-col items-center gap-0.5 text-brand-500";
+                if(navStarred) navStarred.className = "flex flex-col items-center gap-0.5 text-slate-400 hover:text-white";
+            }
+
+            renderSchedule();
+        }
+
+        function setGridZoom(scale) {
+            gridScale = scale;
+            document.querySelectorAll('.zoom-btn').forEach(btn => {
+                btn.className = "zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white";
+            });
+            const activeZoomBtn = document.getElementById(`zoom-btn-${scale}`);
+            if(activeZoomBtn) activeZoomBtn.className = "zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700";
+            
+            document.getElementById('scale-indicator').innerText = `1 Hour = ${scale}px height`;
+            renderSchedule();
+        }
+
+        function applyFilters() {
+            renderSchedule();
+        }
+
+        function timeToMinutes(t) {
+            const [h, m] = t.split(':').map(Number);
+            return h * 60 + m;
+        }
+
+        function renderSchedule() {
+            const container = document.getElementById('schedule-container');
+            const emptyState = document.getElementById('empty-state');
+            const searchVal = document.getElementById('search-input').value.toLowerCase().trim();
+            const venueVal = document.getElementById('venue-filter').value;
+            const trackVal = document.getElementById('track-filter').value;
+
+            // Filter logic
+            const filtered = SCHEDULE_DATA.filter(ev => {
+                const matchesDate = ev.date === selectedDate;
+                const matchesStarred = !showOnlyStarred || starredIds.has(ev.id);
+                const matchesVenue = venueVal === 'ALL' || ev.location === venueVal;
+                const matchesTrack = trackVal === 'ALL' || ev.track === trackVal;
+                const matchesSearch = !searchVal || 
+                    ev.title.toLowerCase().includes(searchVal) || 
+                    ev.speaker.toLowerCase().includes(searchVal) || 
+                    ev.description.toLowerCase().includes(searchVal);
+
+                return matchesDate && matchesStarred && matchesVenue && matchesTrack && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            // Render List View of filtered items
+            filtered.sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+
+            let html = `<div class="space-y-3">`;
+            filtered.forEach(ev => {
+                const isStarred = starredIds.has(ev.id);
+                html += `
+                    <div onclick="openModal('${ev.id}')" class="bg-slate-900/90 border border-slate-800/90 hover:border-brand-500/50 rounded-2xl p-4 transition-all duration-200 cursor-pointer event-card-shadow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group">
+                        <div class="flex items-start gap-3.5 flex-1">
+                            <div class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex flex-col items-center justify-center flex-shrink-0 text-center">
+                                <span class="text-xs font-bold text-brand-500">${ev.startTime}</span>
+                                <span class="text-[10px] text-slate-400">${ev.endTime}</span>
+                            </div>
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brand-500/20 text-brand-400 border border-brand-500/30">${ev.track}</span>
+                                    <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-location-dot text-[10px] text-slate-500"></i> ${ev.location}</span>
+                                </div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-brand-400 transition text-base leading-snug">${ev.title}</h3>
+                                <p class="text-xs text-slate-400"><i class="fa-solid fa-user-tie mr-1 text-slate-500"></i>${ev.speaker}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 self-end sm:self-center">
+                            <button onclick="event.stopPropagation(); toggleStar('${ev.id}')" class="p-2.5 rounded-xl border transition ${isStarred ? 'bg-amber-500/20 text-amber-400 border-amber-500/40' : 'bg-slate-800/80 text-slate-400 border-slate-700/60 hover:text-white'}">
+                                <i class="fa-solid fa-star text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+
+            container.innerHTML = html;
+        }
+
+        function toggleStar(id) {
+            if (starredIds.has(id)) {
+                starredIds.delete(id);
+                showToast("Removed from saved list");
+            } else {
+                starredIds.add(id);
+                showToast("Added to your saved schedule!");
+            }
+            saveStarred();
+            renderSchedule();
+            if (currentModalEventId === id) {
+                updateModalStarButton(id);
+            }
+        }
+
+        function openModal(id) {
+            const ev = SCHEDULE_DATA.find(item => item.id === id);
+            if (!ev) return;
+
+            currentModalEventId = id;
+            document.getElementById('modal-banner').src = ev.imageUrl;
+            document.getElementById('modal-track').innerText = ev.track;
+            document.getElementById('modal-title').innerText = ev.title;
+            document.getElementById('modal-speaker').innerText = ev.speaker;
+            document.getElementById('modal-time').innerText = `${ev.startTime} - ${ev.endTime}`;
+            document.getElementById('modal-location').innerText = ev.location;
+            document.getElementById('modal-description').innerText = ev.description;
+            document.getElementById('modal-link').href = ev.articleUrl;
+
+            updateModalStarButton(id);
+
+            const modal = document.getElementById('event-modal');
+            modal.classList.remove('hidden');
+        }
+
+        function updateModalStarButton(id) {
+            const isStarred = starredIds.has(id);
+            const btn = document.getElementById('modal-star-btn');
+            const icon = document.getElementById('modal-star-icon');
+            const text = document.getElementById('modal-star-text');
+
+            if (isStarred) {
+                btn.className = "flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border border-amber-500/50 bg-amber-500/20 text-amber-300";
+                text.innerText = "Starred";
+            } else {
+                btn.className = "flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700";
+                text.innerText = "Star Event";
+            }
+        }
+
+        function toggleModalStar() {
+            if (currentModalEventId) {
+                toggleStar(currentModalEventId);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('event-modal').classList.add('hidden');
+            currentModalEventId = null;
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+            }, 2500);
+        }
+
+        function triggerLiveSync() {
+            const icon = document.getElementById('sync-icon');
+            icon.classList.add('fa-spin');
+            setTimeout(() => {
+                icon.classList.remove('fa-spin');
+                showToast("Schedule updated with official VIEW database");
+            }, 1000);
+        }
+
+        function copyShareableLink() {
+            const payload = btoa(JSON.stringify(Array.from(starredIds)));
+            const url = `${window.location.origin}${window.location.pathname}?sync=${payload}`;
+            navigator.clipboard.writeText(url).then(() => {
+                showToast("Sync link copied to clipboard!");
+            }).catch(() => {
+                showToast("Failed to copy link.");
+            });
+        }
+
+        function exportStarredData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(Array.from(starredIds)));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "view2026_favorites.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+    </script>
 </body>
 </html>
