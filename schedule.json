@@ -1,6 +1,18 @@
 [
   {
     "id": "1001",
+    "title": "09:00",
+    "speaker": "SIMON DAVIES, ,, Talent Acquisition Leader & Founder, DAX | Digital Arts Xchange",
+    "location": "OGR - POLIFUNZIONALE",
+    "date": "2026-10-12",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "track": "VFX",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/12/dax_feature.jpg",
+    "url": "https://www.viewconference.it/article/1286"
+  },
+  {
+    "id": "1002",
     "title": "You Are the IP",
     "speaker": "SIMON DAVIES, ,, Talent Acquisition Leader & Founder, DAX | Digital Arts Xchange",
     "location": "OGR - POLIFUNZIONALE",
@@ -12,18 +24,6 @@
     "url": "https://www.viewconference.it/article/1286"
   },
   {
-    "id": "1002",
-    "title": "09:00-10:00 CET [Talk in English] In POLIFUNZIONALE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - POLIFUNZIONALE",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
     "id": "1003",
     "title": "World VFX Day",
     "speaker": "HAYLEY MILLER, ,, Founder, World VFX Day",
@@ -32,11 +32,11 @@
     "startTime": "09:00",
     "endTime": "10:00",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1302"
   },
   {
-    "id": "1005",
+    "id": "1004",
     "title": "Gaussian Splatting for Animation:  Emerging Workflows and Hybrid Pipelines",
     "speaker": "ELOI CHAMPAGNE, ,, Head,  Technical Direction and Production Technology, National Film Board of Canada",
     "location": "OGR - ITS 1",
@@ -44,23 +44,11 @@
     "startTime": "09:00",
     "endTime": "13:00",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1257"
   },
   {
-    "id": "1006",
-    "title": "09:00-13:00 CET [4-hour Workshop in English] In ITS 1 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 1",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "13:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1007",
+    "id": "1005",
     "title": "3D and Texturing with After Effects and Substance",
     "speaker": "ROBERT  HRANITZKY, ,, Designer & Creative Director",
     "location": "OGR - ITS 2",
@@ -72,19 +60,7 @@
     "url": "https://www.viewconference.it/article/1347"
   },
   {
-    "id": "1008",
-    "title": "09:00-12:30 CET [Workshop in English] In ITS 2 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 2",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "12:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1009",
+    "id": "1006",
     "title": "Concept Art for Games: A Project Walkthrough",
     "speaker": "ISOBEL HINE, ,, Mid Concept Artist, INT/Night , Founder/Director of WCAA",
     "location": "OGR - ITS 3",
@@ -96,7 +72,7 @@
     "url": "https://www.viewconference.it/article/1299"
   },
   {
-    "id": "1011",
+    "id": "1007",
     "title": "Character Development in Feature Animation",
     "speaker": "ALESSANDRA SORRENTINO, ,, Art Director,  Head of Story,  2D Animator",
     "location": "OGR - ITS 4",
@@ -108,19 +84,7 @@
     "url": "https://www.viewconference.it/article/1287"
   },
   {
-    "id": "1012",
-    "title": "09:00-11:00 CET [Workshop in English] In ITS 4 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 4",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "11:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1013",
+    "id": "1008",
     "title": "Artists in Stylized Worlds",
     "speaker": "ERNST JANSSEN GROESBEEK, ,, Stylized Rendering Look Development Artist, 9to3animation",
     "location": "OGR - ITS 5",
@@ -128,23 +92,11 @@
     "startTime": "09:00",
     "endTime": "13:00",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/ernst-janssen-groesbeek"
   },
   {
-    "id": "1014",
-    "title": "09:00-13:00 CET [Workshop in English] In ITS 5 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 5",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "13:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1015",
+    "id": "1009",
     "title": "APP-y Hour: Live Vibe Coding",
     "speaker": "BOYAN GEORGIEV, ,, Freelance Creative Professional, Chair,  London ACM SIGGRAPH",
     "location": "OGR - ITS 8",
@@ -152,11 +104,11 @@
     "startTime": "09:00",
     "endTime": "11:00",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/boyan-georgiev"
   },
   {
-    "id": "1017",
+    "id": "1010",
     "title": "VFX Art History",
     "speaker": "TRENT CLAUS, ,, VFX Supervisor, Lola Visual Effects",
     "location": "OGR - ITS 9",
@@ -168,7 +120,7 @@
     "url": "https://www.viewconference.it/article/1345"
   },
   {
-    "id": "1019",
+    "id": "1011",
     "title": "Mastering Materials in Unreal Engine 5: From Material Editor to Substrate",
     "speaker": "CHRISTIAN TAGLIAPIETRA, ,, 3D Artist and Educator, Skyup Academy",
     "location": "OGR - ITS 10",
@@ -180,19 +132,7 @@
     "url": "https://www.viewconference.it/article/1278"
   },
   {
-    "id": "1020",
-    "title": "09:00-16:30 CET [Workshop in English] In ITS 10 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 10",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "16:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1021",
+    "id": "1012",
     "title": "Teaching at Scale, Learning as One: AI Digital Twins, e-Learning and Neurodivergent\n               Design",
     "speaker": "SIMONE FAVARIN, ,, Professor & Multidisciplinary Designer,  Co-Founder & CTO, Shorium",
     "location": "OGR - ITS 12",
@@ -200,23 +140,11 @@
     "startTime": "09:00",
     "endTime": "10:00",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/simone-favarin"
   },
   {
-    "id": "1022",
-    "title": "09:00-10:00 CET [Masterclass in English] In ITS 12 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 12",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1023",
+    "id": "1013",
     "title": "From Preproduction to Production: Postviz, Virtual Scouting, and Real-Time Camera\n                  Tracking Workflows",
     "speaker": "CARLOS VILCHIS PH.D., ,, Faculty, Johnny Carson Center for Emerging Media Arts, University of Nebraska-Lincoln",
     "location": "OGR - ITS 13",
@@ -228,7 +156,7 @@
     "url": "https://www.viewconference.it/article/1334"
   },
   {
-    "id": "1025",
+    "id": "1014",
     "title": "The Fantastic Made Real: Animating Creatures and Characters for the Live-Action World",
     "speaker": "HAL HICKEL, ,, Animation Director, Industrial Light & Magic (ILM), Oscar,  BAFTA winner",
     "location": "OGR - POLIFUNZIONALE",
@@ -236,23 +164,11 @@
     "startTime": "10:15",
     "endTime": "11:15",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1303"
   },
   {
-    "id": "1026",
-    "title": "10:15-11:15 CET [Talk in English] In POLIFUNZIONALE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - POLIFUNZIONALE",
-    "date": "2026-10-12",
-    "startTime": "10:15",
-    "endTime": "11:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1027",
+    "id": "1015",
     "title": "Let's Talk Marketing: How It Actually Works for Studios",
     "speaker": "HAYLEY MILLER, ,, Founder, World VFX Day",
     "location": "OGR - ITS TEATRO",
@@ -260,11 +176,11 @@
     "startTime": "10:15",
     "endTime": "11:15",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/hayley-miller"
   },
   {
-    "id": "1029",
+    "id": "1016",
     "title": "Making the Most of Your Showreel in an Age of AI",
     "speaker": "SAINT JOHN WALKER, ,, Programme Leader,  Postgraduate Media, University of Hertfordshire",
     "location": "OGR - ITS 12",
@@ -276,19 +192,7 @@
     "url": "https://www.viewconference.it/article/1327"
   },
   {
-    "id": "1030",
-    "title": "10:15-11:15 CET [Workshop in English] In ITS 12 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 12",
-    "date": "2026-10-12",
-    "startTime": "10:15",
-    "endTime": "11:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1031",
+    "id": "1017",
     "title": "AI Playground",
     "speaker": "KATE GABRIEL, ,, Creative Director CG, No. 8",
     "location": "OGR - ITS 4",
@@ -296,23 +200,11 @@
     "startTime": "11:15",
     "endTime": "16:15",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/kate-gabriel"
   },
   {
-    "id": "1032",
-    "title": "11:15-16:15 CET [Workshop in English] In ITS 4 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 4",
-    "date": "2026-10-12",
-    "startTime": "11:15",
-    "endTime": "16:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1033",
+    "id": "1018",
     "title": "Color in Visual Storytelling",
     "speaker": "NOELLE TRIAUREAU, ,, Production Designer, SWAPPED & BLUSH, Skydance Animation",
     "location": "OGR - ITS 8",
@@ -324,19 +216,7 @@
     "url": "https://www.viewconference.it/article/1326"
   },
   {
-    "id": "1034",
-    "title": "11:15-13:15 CET [Workshop in English] In ITS 8 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 8",
-    "date": "2026-10-12",
-    "startTime": "11:15",
-    "endTime": "13:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1035",
+    "id": "1019",
     "title": "Portfolio Reviews in Concept Art for Film & Games",
     "speaker": "VALERIIA KONSTANTINOVA, ,, Junior Concept Artist,  Atomhawk Design Ltd,  and Co-Director, Women in Concept Art",
     "location": "OGR - ITS 9",
@@ -344,23 +224,11 @@
     "startTime": "11:15",
     "endTime": "12:15",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/valeriia-konstantinova"
   },
   {
-    "id": "1036",
-    "title": "11:15-12:15 CET [Portfolio Reviews in English] In ITS 9 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 9",
-    "date": "2026-10-12",
-    "startTime": "11:15",
-    "endTime": "12:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1037",
+    "id": "1020",
     "title": "VFX Survival Guide: Navigating the VFX Industry from a Small Studio Viewpoint",
     "speaker": "TRENT CLAUS, ,, VFX Supervisor, Lola Visual Effects",
     "location": "OGR - POLIFUNZIONALE",
@@ -372,19 +240,7 @@
     "url": "https://www.viewconference.it/article/1304"
   },
   {
-    "id": "1038",
-    "title": "11:30-12:30 CET [Talk in English] In POLIFUNZIONALE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - POLIFUNZIONALE",
-    "date": "2026-10-12",
-    "startTime": "11:30",
-    "endTime": "12:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1039",
+    "id": "1021",
     "title": "Storytelling and Sustainability with Special Screening of ReRooted",
     "speaker": "DELPHINE COUDRAY, ,, Head of Operations, Animation Ireland",
     "location": "OGR - ITS TEATRO",
@@ -392,11 +248,11 @@
     "startTime": "11:30",
     "endTime": "12:30",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1338"
   },
   {
-    "id": "1041",
+    "id": "1022",
     "title": "Destroying Cities in the World of Game of Thrones",
     "speaker": "KIERAN BELSHAW, ,, Concept Artist",
     "location": "OGR - ITS 12",
@@ -408,19 +264,7 @@
     "url": "https://www.viewconference.it/article/1325"
   },
   {
-    "id": "1042",
-    "title": "11:30-15:30 CET [Workshop in English] In ITS 12 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 12",
-    "date": "2026-10-12",
-    "startTime": "11:30",
-    "endTime": "15:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1043",
+    "id": "1023",
     "title": "Scott Eaton Workshop",
     "speaker": "SCOTT EATON, ,, Artist,  Designer,  Creative Technologist",
     "location": "OGR - ITS 9",
@@ -432,19 +276,7 @@
     "url": "https://www.viewconference.it/article/1333"
   },
   {
-    "id": "1044",
-    "title": "12:30-15:30 CET [Workshop in English] In ITS 9 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 9",
-    "date": "2026-10-12",
-    "startTime": "12:30",
-    "endTime": "15:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1045",
+    "id": "1024",
     "title": "Budget, Time and Quality: The Balancing Act of VFX Producing",
     "speaker": "HEIKE KLUGER, ,, VFX Supervisor",
     "location": "OGR - POLIFUNZIONALE",
@@ -452,23 +284,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1305"
   },
   {
-    "id": "1046",
-    "title": "12:45-13:45 CET [Talk in English] In POLIFUNZIONALE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - POLIFUNZIONALE",
-    "date": "2026-10-12",
-    "startTime": "12:45",
-    "endTime": "13:45",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1047",
+    "id": "1025",
     "title": "Behind the Scenes: What Does Production Actually Do?",
     "speaker": "BEATA PARCZEWSKA, ,, Vice-Chair,  London ACM SIGGRAPH,  3D Artist",
     "location": "OGR - ITS TEATRO",
@@ -476,23 +296,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/beata-parczewska"
   },
   {
-    "id": "1048",
-    "title": "12:45-13:45 CET [Panel in English] In ITS TEATRO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS TEATRO",
-    "date": "2026-10-12",
-    "startTime": "12:45",
-    "endTime": "13:45",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1049",
+    "id": "1026",
     "title": "Stylized Looks with RenderMan: Creating a Personal Style",
     "speaker": "DYLAN SISSON, ,, Artist & Designer, RenderMan, Pixar Animation Studios",
     "location": "OGR - ITS 1",
@@ -504,19 +312,7 @@
     "url": "https://www.viewconference.it/article/1268"
   },
   {
-    "id": "1050",
-    "title": "13:15-15:15 CET [Workshop in English] In ITS 1 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 1",
-    "date": "2026-10-12",
-    "startTime": "13:15",
-    "endTime": "15:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1051",
+    "id": "1027",
     "title": "Animation & Compositing supported by AI",
     "speaker": "ROBERT  HRANITZKY, ,, Designer & Creative Director",
     "location": "OGR - ITS 2",
@@ -528,19 +324,7 @@
     "url": "https://www.viewconference.it/article/1348"
   },
   {
-    "id": "1052",
-    "title": "13:30-17:00 CET [Workshop in English] In ITS 2 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 2",
-    "date": "2026-10-12",
-    "startTime": "13:30",
-    "endTime": "17:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1053",
+    "id": "1028",
     "title": "The Greatest Shots in Visual Effects History",
     "speaker": "IAN FAILES, ,, Editor, befores & afters",
     "location": "OGR - ITS 8",
@@ -552,19 +336,7 @@
     "url": "https://www.viewconference.it/article/1282"
   },
   {
-    "id": "1054",
-    "title": "13:30-15:30 CET [Masterclass in English] In ITS 8 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 8",
-    "date": "2026-10-12",
-    "startTime": "13:30",
-    "endTime": "15:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1055",
+    "id": "1029",
     "title": "Women in Concept Art: Next Generation Growing Careers, Building Community & Shaping\n                  What's Next",
     "speaker": "VALERIIA KONSTANTINOVA, ,, Junior Concept Artist,  Atomhawk Design Ltd,  and Co-Director, Women in Concept Art",
     "location": "OGR - POLIFUNZIONALE",
@@ -576,19 +348,7 @@
     "url": "https://www.viewconference.it/article/1258"
   },
   {
-    "id": "1056",
-    "title": "14:00-15:00 CET [Talk in English] In POLIFUNZIONALE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - POLIFUNZIONALE",
-    "date": "2026-10-12",
-    "startTime": "14:00",
-    "endTime": "15:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1057",
+    "id": "1030",
     "title": "The Little Box Killed My Flow: Prompting is Not Directing",
     "speaker": "FRANCISCO \"PAKKO\" DE LA TORRE-ROCHA, ,, Founder/Chief Innovations Officer, AIM World & AIM Previz",
     "location": "OGR - ITS TEATRO",
@@ -596,11 +356,11 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1346"
   },
   {
-    "id": "1059",
+    "id": "1031",
     "title": "Concept Art Portfolio Reviews",
     "speaker": "ISOBEL HINE, ,, Mid Concept Artist, INT/Night , Founder/Director of WCAA",
     "location": "OGR - ITS 3",
@@ -608,23 +368,11 @@
     "startTime": "15:00",
     "endTime": "16:00",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/isobel-hine"
   },
   {
-    "id": "1060",
-    "title": "15:00-16:00 CET [Portfolio Reviews in English] In ITS 3 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS 3",
-    "date": "2026-10-12",
-    "startTime": "15:00",
-    "endTime": "16:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1061",
+    "id": "1032",
     "title": "Ask me Anything about Games, VFX and Animation",
     "speaker": "HAL HICKEL, ,, Animation Director, Industrial Light & Magic (ILM), Oscar,  BAFTA winner",
     "location": "OGR - POLIFUNZIONALE",
@@ -632,23 +380,11 @@
     "startTime": "15:15",
     "endTime": "16:15",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/hal-hickel"
   },
   {
-    "id": "1062",
-    "title": "15:15-16:15 CET [Ask Me Anything in English] In POLIFUNZIONALE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - POLIFUNZIONALE",
-    "date": "2026-10-12",
-    "startTime": "15:15",
-    "endTime": "16:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1063",
+    "id": "1033",
     "title": "Training the Next Generation of Storytellers",
     "speaker": "TIM MCLAUGHLIN, ,, Dean,  School of Performance,  Visualization & Fine Arts, Texas A&M University",
     "location": "OGR - ITS TEATRO",
@@ -656,23 +392,11 @@
     "startTime": "15:15",
     "endTime": "16:15",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1306"
   },
   {
-    "id": "1064",
-    "title": "15:15-16:15 CET [Panel in English] In ITS TEATRO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - ITS TEATRO",
-    "date": "2026-10-12",
-    "startTime": "15:15",
-    "endTime": "16:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1065",
+    "id": "1034",
     "title": "Leadership & Mentoring: Training the Next Generation of Leaders",
     "speaker": "ELOI CHAMPAGNE, ,, Head,  Technical Direction and Production Technology, National Film Board of Canada",
     "location": "OGR - POLIFUNZIONALE",
@@ -680,23 +404,11 @@
     "startTime": "16:30",
     "endTime": "17:45",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1307"
   },
   {
-    "id": "1066",
-    "title": "16:30-17:45 CET [Panel in English] In POLIFUNZIONALE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - POLIFUNZIONALE",
-    "date": "2026-10-12",
-    "startTime": "16:30",
-    "endTime": "17:45",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1067",
+    "id": "1036",
     "title": "Wildwood",
     "speaker": "STEVE EMERSON, ,, Production VFX Supervisor, LAIKA",
     "location": "OGR - FUCINE",
@@ -708,7 +420,7 @@
     "url": "https://www.viewconference.it/article/1301"
   },
   {
-    "id": "1069",
+    "id": "1037",
     "title": "Welcome to the Future: A Conversation with Brad Bird on Ray Gunn",
     "speaker": "BRAD BIRD, ,, Writer & Director, Ray Gunn",
     "location": "OGR - FUCINE",
@@ -720,7 +432,7 @@
     "url": "https://www.viewconference.it/article/1296"
   },
   {
-    "id": "1071",
+    "id": "1038",
     "title": "Building Carcosa: Art Direction of SAROS",
     "speaker": "SIMONE SILVESTRI, ,, Art Director, Saros game, Housemarque",
     "location": "OGR - BINARIO3",
@@ -728,11 +440,11 @@
     "startTime": "10:15",
     "endTime": "11:15",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1265"
   },
   {
-    "id": "1073",
+    "id": "1039",
     "title": "From Desert Chases to Courtroom Cases: The VFX of \u00e2\u0080\u0098Coyote vs. Acme\u00e2\u0080\u0099",
     "speaker": "ALEXANDER SEAMAN, ,, VFX Supervisor, DNEG",
     "location": "OGR - FUCINE",
@@ -744,7 +456,7 @@
     "url": "https://www.viewconference.it/article/1309"
   },
   {
-    "id": "1075",
+    "id": "1040",
     "title": "Artists in the Loop: Generative AI in Production at Eyeline",
     "speaker": "MOHSEN MOUSAVI, ,, VP,  Virtual Pioneering, Eyeline Studios",
     "location": "OGR - BINARIO3",
@@ -756,7 +468,7 @@
     "url": "https://www.viewconference.it/article/1293"
   },
   {
-    "id": "1077",
+    "id": "1041",
     "title": "Modelmaking for Visual Effects in a Time of CGI",
     "speaker": "SIMON WEISSE, ,, VFX Miniature Unit Supervisor and Props Designer",
     "location": "OGR - MEZZANINO",
@@ -768,7 +480,7 @@
     "url": "https://www.viewconference.it/article/1249"
   },
   {
-    "id": "1079",
+    "id": "1042",
     "title": "Acting and Facial Performance",
     "speaker": "ALEXIS WANNEROY, (, Remote, ),, Senior Animation Supervisor, Fortiche Production",
     "location": "VIEW Conference Venue",
@@ -780,7 +492,7 @@
     "url": "https://www.viewconference.it/article/1247"
   },
   {
-    "id": "1081",
+    "id": "1043",
     "title": "From Camera to Light: Crafting Wolverine's Cinematic World",
     "speaker": "BRIAN WYSER, ,, Senior Animation Director, Wolverine",
     "location": "OGR - FUCINE",
@@ -792,7 +504,7 @@
     "url": "https://www.viewconference.it/article/1271"
   },
   {
-    "id": "1083",
+    "id": "1044",
     "title": "The Sheep Detectives",
     "speaker": "CHRIS HURTT, ,, Animation Director, Framestore",
     "location": "OGR - BINARIO3",
@@ -804,7 +516,7 @@
     "url": "https://www.viewconference.it/article/1310"
   },
   {
-    "id": "1085",
+    "id": "1045",
     "title": "Alchemy of the Award-Winning Shot: Mastering Human Intuition in an Automated Era",
     "speaker": "KEVIN BAILLIE, ,, Executive,  Visual Effects Supervisor,  Director,  Founder, Leeme",
     "location": "OGR - MEZZANINO",
@@ -812,11 +524,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1311"
   },
   {
-    "id": "1087",
+    "id": "1046",
     "title": "The Stop-Motion Puppet Lab [SEPARATE TICKET] (1/4)",
     "speaker": "CHRIS LAVIS, ,, Co-Founder,  Clyde Henry Productions & Director, The Girl Who Cried Pearls, The National\n                  Film Board of Canada, Oscar winner",
     "location": "VIEW Conference Venue",
@@ -828,19 +540,7 @@
     "url": "https://www.viewconference.it/article/1340"
   },
   {
-    "id": "1088",
-    "title": "13:00-17:00 CET [16-Hour over 4-Day Lab in English] In TECA-B / SOPPALCO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "VIEW Conference Venue",
-    "date": "2026-10-12",
-    "startTime": "13:00",
-    "endTime": "17:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1089",
+    "id": "1047",
     "title": "Storytelling Without Limits: Emerging Tools and Talent for Virtual Production",
     "speaker": "TIM MCLAUGHLIN, ,, Dean,  School of Performance,  Visualization & Fine Arts, Texas A&M University",
     "location": "OGR - FUCINE",
@@ -848,23 +548,11 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1289"
   },
   {
-    "id": "1090",
-    "title": "14:00-15:00 CET [Panel in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "14:00",
-    "endTime": "15:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1091",
+    "id": "1048",
     "title": "Frames of Innovation: 85 Years of Animation Breakthroughs at the NFB",
     "speaker": "MARC ST. PIERRE, ,, Collection Curator, National Film Board of Canada",
     "location": "OGR - BINARIO3",
@@ -876,7 +564,7 @@
     "url": "https://www.viewconference.it/article/1281"
   },
   {
-    "id": "1093",
+    "id": "1049",
     "title": "Forget About Getting Good Sound. Think Again About Telling Your Story",
     "speaker": "MARK ULANO, ,, Sound Engineer,  CAS,  AMPS, Oscar winner",
     "location": "OGR - MEZZANINO",
@@ -884,11 +572,11 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1274"
   },
   {
-    "id": "1095",
+    "id": "1050",
     "title": "The Baking-of Bread Will Walk: Inside the NFB\u00e2\u0080\u0099s Animation Laboratory",
     "speaker": "ALEX BOYA, ,, Animator and Filmmaker, National Film Board of Canada",
     "location": "OGR - FUCINE",
@@ -900,19 +588,7 @@
     "url": "https://www.viewconference.it/article/1280"
   },
   {
-    "id": "1096",
-    "title": "15:15-16:15 CET [Talk in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "15:15",
-    "endTime": "16:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1097",
+    "id": "1051",
     "title": "Accelerating VFX Workloads: AI, Cloud, and Hardware in Production Today",
     "speaker": "JOHN CANNING, ,, Director Developer Relations - M&E,  AEC,  D&M, AMD",
     "location": "OGR - BINARIO3",
@@ -920,11 +596,11 @@
     "startTime": "15:15",
     "endTime": "16:15",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1336"
   },
   {
-    "id": "1099",
+    "id": "1052",
     "title": "Experiences and Learnings Casting and Directing Performances on the Horizon Series",
     "speaker": "JOCHEN WILLEMSEN, ,, Cinematic Director, Guerilla Games",
     "location": "OGR - MEZZANINO",
@@ -936,7 +612,7 @@
     "url": "https://www.viewconference.it/article/1252"
   },
   {
-    "id": "1101",
+    "id": "1053",
     "title": "Toy Story 5 and Beyond: RenderMan XPU: The Next Chapter",
     "speaker": "DYLAN SISSON, ,, Artist & Designer, RenderMan, Pixar Animation Studios",
     "location": "OGR - FUCINE",
@@ -948,19 +624,7 @@
     "url": "https://www.viewconference.it/article/1223"
   },
   {
-    "id": "1102",
-    "title": "16:30-17:30 CET [Talk in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "16:30",
-    "endTime": "17:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1103",
+    "id": "1054",
     "title": "TERRITORIAL: Creating a Stone Age Horror Film Across a Global Animation Pipeline",
     "speaker": "CHRIS BROWNE, ,, VFX Supervisor,  Filmmaker",
     "location": "OGR - BINARIO3",
@@ -972,7 +636,7 @@
     "url": "https://www.viewconference.it/article/1335"
   },
   {
-    "id": "1105",
+    "id": "1055",
     "title": "Managing Small to Mid-Sized VFX Projects",
     "speaker": "JURI STANOSSEK, ,, VFX Supervisor, Accenture Song VFX",
     "location": "OGR - MEZZANINO",
@@ -980,11 +644,11 @@
     "startTime": "16:30",
     "endTime": "17:30",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1285"
   },
   {
-    "id": "1107",
+    "id": "1056",
     "title": "The VFX of Obsession",
     "speaker": "PETER TIMBERLAKE, ,, Overall Production VFX Supervisor, Obsession, Queen Studio",
     "location": "OGR - FUCINE",
@@ -996,19 +660,7 @@
     "url": "https://www.viewconference.it/article/1283"
   },
   {
-    "id": "1108",
-    "title": "17:45-18:45 CET [Talk in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "17:45",
-    "endTime": "18:45",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1109",
+    "id": "1057",
     "title": "From Capture to Distribution:  How New Production Technologies Are Redefining Media",
     "speaker": "ELOI CHAMPAGNE, ,, Head,  Technical Direction and Production Technology, National Film Board of Canada",
     "location": "OGR - BINARIO3",
@@ -1016,11 +668,11 @@
     "startTime": "17:45",
     "endTime": "18:45",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1226"
   },
   {
-    "id": "1111",
+    "id": "1058",
     "title": "Behind the Visual Effects of \u00e2\u0080\u0098The Odyssey\u00e2\u0080\u0099",
     "speaker": "ANDREW JACKSON, (, Remote, ),, Overall VFX Supervisor, DNEG VFX, Oscar winner",
     "location": "OGR - FUCINE",
@@ -1032,19 +684,7 @@
     "url": "https://www.viewconference.it/article/1331"
   },
   {
-    "id": "1112",
-    "title": "18:45-19:45 CET [Talk in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "18:45",
-    "endTime": "19:45",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1113",
+    "id": "1060",
     "title": "Spider-Man: Brand New Day",
     "speaker": "JEROME CHEN, ,, Overall VFX Supervisor, Spider-Man: Brand New Day, Marvel Studios",
     "location": "OGR - FUCINE",
@@ -1056,7 +696,7 @@
     "url": "https://www.viewconference.it/article/1284"
   },
   {
-    "id": "1115",
+    "id": "1061",
     "title": "Avatar: The Last Airbender Season 2 \u00e2\u0080\u0093 Taming the Feathered Beast",
     "speaker": "AMELIE DILLIG, ,, VFX Producer, Accenture Song VFX",
     "location": "OGR - BINARIO3",
@@ -1068,7 +708,7 @@
     "url": "https://www.viewconference.it/article/1245"
   },
   {
-    "id": "1117",
+    "id": "1062",
     "title": "Building the Right Virtual Production Ecosystem Facing AI Trends",
     "speaker": "CARLOS VILCHIS PH.D., ,, Faculty, Johnny Carson Center for Emerging Media Arts, University of Nebraska-Lincoln",
     "location": "OGR - MEZZANINO",
@@ -1076,11 +716,11 @@
     "startTime": "09:00",
     "endTime": "10:00",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/carlos-vilchis-ph.d."
   },
   {
-    "id": "1119",
+    "id": "1063",
     "title": "Forgotten Island",
     "speaker": "JOEL CRAWFORD, ,, Writer/Director, Forgotten Island, Dreamworks Animation",
     "location": "OGR - FUCINE",
@@ -1092,19 +732,7 @@
     "url": "https://www.viewconference.it/article/1272"
   },
   {
-    "id": "1120",
-    "title": "10:15-11:15 CET [Panel in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "10:15",
-    "endTime": "11:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1121",
+    "id": "1064",
     "title": "GOAT",
     "speaker": "TYREE DILLIHAY, ,, Director, GOAT, Sony Pictures Animation",
     "location": "OGR - FUCINE",
@@ -1116,7 +744,7 @@
     "url": "https://www.viewconference.it/article/1279"
   },
   {
-    "id": "1123",
+    "id": "1065",
     "title": "The VFX of Netflix The Boroughs",
     "speaker": "TARA DEMARCO, ,, Visual Effects Supervisor, Paramount Studios",
     "location": "OGR - BINARIO3",
@@ -1128,7 +756,7 @@
     "url": "https://www.viewconference.it/article/1319"
   },
   {
-    "id": "1125",
+    "id": "1066",
     "title": "Out of Distribution II: Thriving Creatively in the Age of AI",
     "speaker": "SCOTT EATON, ,, Artist,  Designer,  Creative Technologist",
     "location": "OGR - MEZZANINO",
@@ -1140,7 +768,7 @@
     "url": "https://www.viewconference.it/article/1315"
   },
   {
-    "id": "1127",
+    "id": "1067",
     "title": "One-Shot Camera Approach in God of War Ragnarok",
     "speaker": "BRUNO VELAZQUEZ, ,, Game Director, God of War Ragnar\u00c3\u00b6k, Sony Santa Monica Studio",
     "location": "OGR - FUCINE",
@@ -1152,7 +780,7 @@
     "url": "https://www.viewconference.it/article/1276"
   },
   {
-    "id": "1129",
+    "id": "1068",
     "title": "VFX of House of the Dragon, Season 3",
     "speaker": "DADI EINARSSON, ,, Overall VFX Supervisor, House of the Dragon Season 3, VES,  BAFTA,  Primetime Emmy\n                  winner",
     "location": "OGR - BINARIO3",
@@ -1164,7 +792,7 @@
     "url": "https://www.viewconference.it/article/1255"
   },
   {
-    "id": "1131",
+    "id": "1069",
     "title": "The State of VFX: Navigating a Changing Market",
     "speaker": "JEFF DILLINGER, ,, VFX Supervisor & CEO, Megalis",
     "location": "OGR - MEZZANINO",
@@ -1172,23 +800,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1337"
   },
   {
-    "id": "1134",
-    "title": "13:00-17:00 CET [Lab in English] In TECA-B / SOPPALCO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "VIEW Conference Venue",
-    "date": "2026-10-12",
-    "startTime": "13:00",
-    "endTime": "17:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1135",
+    "id": "1071",
     "title": "Crafting the World of SWAPPED",
     "speaker": "NOELLE TRIAUREAU, ,, Production Designer, SWAPPED & BLUSH, Skydance Animation",
     "location": "OGR - FUCINE",
@@ -1200,7 +816,7 @@
     "url": "https://www.viewconference.it/article/1236"
   },
   {
-    "id": "1137",
+    "id": "1072",
     "title": "Crafting Complex Environments and Iconic Characters for 'Masters of the Universe'",
     "speaker": "CHRIS MCLAUGHLIN, ,, VFX Supervisor, DNEG",
     "location": "OGR - BINARIO3",
@@ -1212,7 +828,7 @@
     "url": "https://www.viewconference.it/article/1313"
   },
   {
-    "id": "1139",
+    "id": "1073",
     "title": "Scaling Without Breaking: VFX Production in Motion",
     "speaker": "BOGDAN AMID\u00c5\u00bdI\u00c4\u0086, ,, FX Supervisor, Crater Studios",
     "location": "OGR - MEZZANINO",
@@ -1224,7 +840,7 @@
     "url": "https://www.viewconference.it/article/1298"
   },
   {
-    "id": "1141",
+    "id": "1074",
     "title": "Resident Evil (2026)",
     "speaker": "ALESSANDRO ONGARO, ,, Overall VFX Supervisor, Resident Evil",
     "location": "OGR - FUCINE",
@@ -1232,11 +848,11 @@
     "startTime": "15:15",
     "endTime": "16:15",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1254"
   },
   {
-    "id": "1143",
+    "id": "1075",
     "title": "Outer Banks S5: New Tools, Traditional Craft",
     "speaker": "ALESSANDRO SALIS, ,, VFX Supervisor, 22DOGS",
     "location": "OGR - BINARIO3",
@@ -1244,11 +860,11 @@
     "startTime": "15:15",
     "endTime": "16:15",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1339"
   },
   {
-    "id": "1145",
+    "id": "1076",
     "title": "Throughline: Three Months, or Forty Years?",
     "speaker": "KEVIN BAILLIE, ,, Executive,  Visual Effects Supervisor,  Director,  Founder, Leeme",
     "location": "OGR - MEZZANINO",
@@ -1260,7 +876,7 @@
     "url": "https://www.viewconference.it/article/1332"
   },
   {
-    "id": "1147",
+    "id": "1077",
     "title": "Industry Executives Shaping the Future of Cinema",
     "speaker": "JANET LEWIN, ,, Senior Vice President,  General Manager,  and Head, ILM",
     "location": "OGR - FUCINE",
@@ -1268,23 +884,11 @@
     "startTime": "16:30",
     "endTime": "17:30",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1308"
   },
   {
-    "id": "1148",
-    "title": "16:30-17:30 CET [Panel in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "16:30",
-    "endTime": "17:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1149",
+    "id": "1078",
     "title": "Dinosaurs, Jungle & Pipeline: Behind the Craft of Paw Patrol: The Dino Movie",
     "speaker": "SYLVAIN SALAME, ,, VFX Supervisor, Mikros Animation",
     "location": "OGR - BINARIO3",
@@ -1296,7 +900,7 @@
     "url": "https://www.viewconference.it/article/1314"
   },
   {
-    "id": "1151",
+    "id": "1079",
     "title": "The Future of Filmmaking: Directors Panel",
     "speaker": "JOEL CRAWFORD, ,, Writer/Director, Forgotten Island, Dreamworks Animation",
     "location": "OGR - FUCINE",
@@ -1304,23 +908,11 @@
     "startTime": "17:45",
     "endTime": "18:45",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/joel-crawford"
   },
   {
-    "id": "1152",
-    "title": "17:45-18:45 CET [Panel in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "17:45",
-    "endTime": "18:45",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1153",
+    "id": "1080",
     "title": "From Sketch to Screen: AI-Powered Storytelling",
     "speaker": "SETAREH SAMANDARI, ,, Chief Executive Officer (CEO), Interdimensional VFX",
     "location": "OGR - BINARIO3",
@@ -1328,23 +920,11 @@
     "startTime": "17:45",
     "endTime": "19:15",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1231"
   },
   {
-    "id": "1154",
-    "title": "17:45-19:15 CET [Workshop in English] In BINARIO3 (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - BINARIO3",
-    "date": "2026-10-12",
-    "startTime": "17:45",
-    "endTime": "19:15",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1155",
+    "id": "1081",
     "title": "The Sonic Circle of Trust",
     "speaker": "MARK ULANO, ,, Sound Engineer,  CAS,  AMPS, Oscar winner",
     "location": "OGR - MEZZANINO",
@@ -1352,11 +932,11 @@
     "startTime": "17:45",
     "endTime": "19:15",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1316"
   },
   {
-    "id": "1157",
+    "id": "1082",
     "title": "Book Signing",
     "speaker": "SIR ROGER DEAKINS, ,\u00a0Academy Award Winning Cinematographer",
     "location": "OGR - BOOKSTORE",
@@ -1364,23 +944,11 @@
     "startTime": "18:45",
     "endTime": "19:30",
     "track": "Cinematography",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/sir-roger-deakins"
   },
   {
-    "id": "1158",
-    "title": "18:45-19:30 CET [Signing in English] In BOOKSTORE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - BOOKSTORE",
-    "date": "2026-10-12",
-    "startTime": "18:45",
-    "endTime": "19:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1159",
+    "id": "1083",
     "title": "Disclosure Day",
     "speaker": "MATTHEW E. BUTLER, ,\u00a0Production VFX Supervisor, Disclosure Day",
     "location": "OGR - CINEMA MASSIMO",
@@ -1388,23 +956,11 @@
     "startTime": "20:30",
     "endTime": "23:00",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/matthew-e.-butler"
   },
   {
-    "id": "1160",
-    "title": "20:30-23:00 CET [Screening in English] In CINEMA MASSIMO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - CINEMA MASSIMO",
-    "date": "2026-10-12",
-    "startTime": "20:30",
-    "endTime": "23:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1161",
+    "id": "1085",
     "title": "HEXED",
     "speaker": "YVETT MERINO, ,, Producer, HEXED, Disney Animation Studios",
     "location": "OGR - FUCINE",
@@ -1416,7 +972,7 @@
     "url": "https://www.viewconference.it/article/1330"
   },
   {
-    "id": "1163",
+    "id": "1086",
     "title": "Hybrid Tracking Workflows for Virtual Production",
     "speaker": "CARLOS VILCHIS PH.D., ,, Faculty, Johnny Carson Center for Emerging Media Arts, University of Nebraska-Lincoln",
     "location": "OGR - BINARIO3",
@@ -1424,11 +980,11 @@
     "startTime": "09:00",
     "endTime": "10:00",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/carlos-vilchis-ph.d."
   },
   {
-    "id": "1165",
+    "id": "1087",
     "title": "Beyond the Frame: The Fusion of Stop Motion, AI, and VFX",
     "speaker": "SETAREH SAMANDARI, ,, Chief Executive Officer (CEO), Interdimensional VFX",
     "location": "OGR - MEZZANINO",
@@ -1436,23 +992,11 @@
     "startTime": "09:00",
     "endTime": "10:00",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1230"
   },
   {
-    "id": "1166",
-    "title": "09:00-10:00 CET [Panel in English] In MEZZANINO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - MEZZANINO",
-    "date": "2026-10-12",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1167",
+    "id": "1088",
     "title": "VFX of Disclosure Day",
     "speaker": "MATTHEW E. BUTLER, ,, Production VFX Supervisor, Disclosure Day",
     "location": "OGR - FUCINE",
@@ -1464,7 +1008,7 @@
     "url": "https://www.viewconference.it/article/1291"
   },
   {
-    "id": "1169",
+    "id": "1089",
     "title": "Keeping the Artist in the Loop: From Lab to Storytelling",
     "speaker": "ELOI CHAMPAGNE, ,, Head,  Technical Direction and Production Technology, National Film Board of Canada",
     "location": "OGR - BINARIO3",
@@ -1476,7 +1020,7 @@
     "url": "https://www.viewconference.it/article/1318"
   },
   {
-    "id": "1171",
+    "id": "1090",
     "title": "Hoppers",
     "speaker": "DANIEL CHONG, ,, Director, HOPPERS, Pixar Animation Studios",
     "location": "OGR - FUCINE",
@@ -1488,7 +1032,7 @@
     "url": "https://www.viewconference.it/article/1227"
   },
   {
-    "id": "1173",
+    "id": "1091",
     "title": "Masters of the Universe: an Epic Chase Through Eternia",
     "speaker": "JOSEPH KASPARIAN, ,, VFX Supervisor, Rodeo FX",
     "location": "OGR - BINARIO3",
@@ -1500,7 +1044,7 @@
     "url": "https://www.viewconference.it/article/1263"
   },
   {
-    "id": "1175",
+    "id": "1092",
     "title": "The Promise and Peril of Institutional Capital in Creative Industries",
     "speaker": "DAVID LI, ,, Founder & Chairman of the Board, Dream Machine VFX",
     "location": "OGR - MEZZANINO",
@@ -1512,19 +1056,7 @@
     "url": "https://www.viewconference.it/article/1267"
   },
   {
-    "id": "1176",
-    "title": "11:30-12:30 CET [Panel in English] In MEZZANINO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - MEZZANINO",
-    "date": "2026-10-12",
-    "startTime": "11:30",
-    "endTime": "12:30",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1177",
+    "id": "1093",
     "title": "Rochele Gloor at VIEW Conference 2026",
     "speaker": "ROCHELE GLOOR, (, Remote, ),, Co-founder Emerging Technologist,  Natural Realities and Researcher, rgloorLab",
     "location": "VIEW Conference Venue",
@@ -1532,11 +1064,11 @@
     "startTime": "11:30",
     "endTime": "12:30",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1234"
   },
   {
-    "id": "1179",
+    "id": "1094",
     "title": "Walking With Animators: a Documentary 8 Years in the Making",
     "speaker": "HAL HICKEL, ,, Animation Director, Industrial Light & Magic (ILM), Oscar,  BAFTA winner",
     "location": "OGR - FUCINE",
@@ -1544,11 +1076,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1243"
   },
   {
-    "id": "1181",
+    "id": "1095",
     "title": "AI Done Right:  Deep Editor Use Cases in the FALL Film Series",
     "speaker": "HITESH SHAH, ,, Founder and Chairman, BOT VFX",
     "location": "OGR - BINARIO3",
@@ -1560,7 +1092,7 @@
     "url": "https://www.viewconference.it/article/1270"
   },
   {
-    "id": "1183",
+    "id": "1096",
     "title": "Capacity Paradox: Building Resilient, High-Impact Leadership in VFX",
     "speaker": "JANET LEWIN, ,, Senior Vice President,  General Manager,  and Head, ILM",
     "location": "OGR - MEZZANINO",
@@ -1568,11 +1100,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1317"
   },
   {
-    "id": "1187",
+    "id": "1098",
     "title": "'Ford v Ferrari' to \u00e2\u0080\u0098Logan:' A Conversation with Oscar-Winning Film Editor Michael\n                  McCusker, ACE",
     "speaker": "MICHAEL MCCUSKER ACE, ,, Award-winning Editor",
     "location": "OGR - FUCINE",
@@ -1580,11 +1112,11 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1266"
   },
   {
-    "id": "1189",
+    "id": "1099",
     "title": "Creative Control in the Age of AI Agents",
     "speaker": "JEFF KEMBER, ,, Principal Technical Evangelist for Media2, NVIDIA",
     "location": "OGR - BINARIO3",
@@ -1592,11 +1124,11 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1329"
   },
   {
-    "id": "1191",
+    "id": "1100",
     "title": "Masters of the Universe with Proof Inc.",
     "speaker": "BENJY RIEHL, ,, Global Head of Business Development, Proof Inc",
     "location": "OGR - MEZZANINO",
@@ -1608,7 +1140,7 @@
     "url": "https://www.viewconference.it/article/1269"
   },
   {
-    "id": "1193",
+    "id": "1101",
     "title": "The Puzzle: Personal Work vs Commercial Work",
     "speaker": "ROBERT VALLEY, ,, Director,  Animator,  Character Designer",
     "location": "OGR - FUCINE",
@@ -1620,7 +1152,7 @@
     "url": "https://www.viewconference.it/article/1300"
   },
   {
-    "id": "1195",
+    "id": "1102",
     "title": "Avatar: The Last Airbender - Meet the Earth Kingdom",
     "speaker": "JULIEN HERY, ,, VFX Supervisor, Rodeo FX",
     "location": "OGR - BINARIO3",
@@ -1632,7 +1164,7 @@
     "url": "https://www.viewconference.it/article/1264"
   },
   {
-    "id": "1197",
+    "id": "1103",
     "title": "Beyond the Panel: Bringing Manga to Life",
     "speaker": "JEFF DILLINGER, ,, VFX Supervisor & CEO, Megalis",
     "location": "OGR - MEZZANINO",
@@ -1644,7 +1176,7 @@
     "url": "https://www.viewconference.it/article/1241"
   },
   {
-    "id": "1199",
+    "id": "1104",
     "title": "The Hybrid Trap: Why AI-Native Production Matters",
     "speaker": "GARY MUNDELL, ,, CEO & Co-Founder, LOFTAPPS",
     "location": "OGR - FUCINE",
@@ -1656,7 +1188,7 @@
     "url": "https://www.viewconference.it/article/1262"
   },
   {
-    "id": "1201",
+    "id": "1105",
     "title": "From Myth to Maelstrom: Building Percy Jackson and the Sea of Monsters",
     "speaker": "THOMAS SCHELESNY, ,, VFX Supervisor, Image Engine",
     "location": "OGR - BINARIO3",
@@ -1668,7 +1200,7 @@
     "url": "https://www.viewconference.it/article/1253"
   },
   {
-    "id": "1203",
+    "id": "1106",
     "title": "Small Studio, Big Projects: Our Pipeline, Case Studies & AI Integration",
     "speaker": "DANIEL BURCH, ,, VFX Supervisor & Head of Compositing, Blackpoint Studio",
     "location": "OGR - MEZZANINO",
@@ -1680,7 +1212,7 @@
     "url": "https://www.viewconference.it/article/1275"
   },
   {
-    "id": "1205",
+    "id": "1107",
     "title": "The Mandalorian and Grogu: Animating a Galaxy",
     "speaker": "HAL HICKEL, ,, Animation Director, Industrial Light & Magic (ILM), Oscar,  BAFTA winner",
     "location": "OGR - FUCINE",
@@ -1692,7 +1224,7 @@
     "url": "https://www.viewconference.it/article/1222"
   },
   {
-    "id": "1207",
+    "id": "1108",
     "title": "The Secret of the Moonstone",
     "speaker": "SACHITHA KALINGAMUDALI, ,\u00a0General Manager, Mogo Studios",
     "location": "OGR - CINEMA MASSIMO",
@@ -1700,23 +1232,11 @@
     "startTime": "20:30",
     "endTime": "22:00",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/sachitha-kalingamudali"
   },
   {
-    "id": "1208",
-    "title": "20:30-22:00 CET [Screening in English] In CINEMA MASSIMO (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - CINEMA MASSIMO",
-    "date": "2026-10-12",
-    "startTime": "20:30",
-    "endTime": "22:00",
-    "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1209",
+    "id": "1110",
     "title": "Toy Story 5 Behind the Scenes",
     "speaker": "KENNA HARRIS, ,, Co-Director & Co-Writer, Toy Story 5, Pixar Animation Studios",
     "location": "OGR - FUCINE",
@@ -1728,7 +1248,7 @@
     "url": "https://www.viewconference.it/article/1261"
   },
   {
-    "id": "1211",
+    "id": "1111",
     "title": "Beyond Boundaries: Exploring Reality in Limit Exceeded",
     "speaker": "SETAREH SAMANDARI, ,, Chief Executive Officer (CEO), Interdimensional VFX",
     "location": "OGR - BINARIO3",
@@ -1736,11 +1256,11 @@
     "startTime": "09:00",
     "endTime": "10:00",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1295"
   },
   {
-    "id": "1213",
+    "id": "1112",
     "title": "The New Entry Point: Getting Hired in Animation & VFX in the Age of AI",
     "speaker": "SIVA KUMAR KASETTY, ,, Executive Producer & Partner, ZA Studios",
     "location": "OGR - MEZZANINO",
@@ -1748,11 +1268,11 @@
     "startTime": "09:00",
     "endTime": "10:00",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1321"
   },
   {
-    "id": "1215",
+    "id": "1113",
     "title": "Every Pixel Will Be Generated",
     "speaker": "RICHARD KERRIS, ,, Global Media and Entertainment Vice-President, NVIDIA",
     "location": "OGR - FUCINE",
@@ -1764,19 +1284,7 @@
     "url": "https://www.viewconference.it/article/1273"
   },
   {
-    "id": "1216",
-    "title": "10:15-11:15 CET [Keynote in English] In FUCINE (In Person)",
-    "speaker": "Featured Speaker",
-    "location": "OGR - FUCINE",
-    "date": "2026-10-12",
-    "startTime": "10:15",
-    "endTime": "11:15",
-    "track": "Keynote",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
-    "url": "https://www.viewconference.it/assets/html/view_CET.html"
-  },
-  {
-    "id": "1217",
+    "id": "1114",
     "title": "The Secret of the Moonstone: Origin Story of Sri Lanka\u00e2\u0080\u0099s First Animated Feature",
     "speaker": "SACHITHA KALINGAMUDALI, ,, General Manager, Mogo Studios",
     "location": "OGR - BINARIO3",
@@ -1788,7 +1296,7 @@
     "url": "https://www.viewconference.it/article/1322"
   },
   {
-    "id": "1219",
+    "id": "1115",
     "title": "Avatar: Fire & Ash",
     "speaker": "ERIC SAINDON, ,, Senior VFX Supervisor, Avatar: Fire & Ash, Weta FX",
     "location": "OGR - FUCINE",
@@ -1800,7 +1308,7 @@
     "url": "https://www.viewconference.it/article/1229"
   },
   {
-    "id": "1221",
+    "id": "1116",
     "title": "Angry Birds 3",
     "speaker": "Featured Speaker",
     "location": "OGR - BINARIO3",
@@ -1812,7 +1320,7 @@
     "url": "https://www.viewconference.it/article/1312"
   },
   {
-    "id": "1223",
+    "id": "1117",
     "title": "Making Dear Upstairs Neighbors: Exploring Artist-Driven, AI-Assisted Expressionistic\n                  Animation",
     "speaker": "SARAH RUMBLEY, ,, Software Engineer & VFX Supervisor, Dear Upstairs Neighbors, Google",
     "location": "OGR - MEZZANINO",
@@ -1824,7 +1332,7 @@
     "url": "https://www.viewconference.it/article/1242"
   },
   {
-    "id": "1225",
+    "id": "1118",
     "title": "Terrence Masson at VIEW Conference 2026",
     "speaker": "TERRENCE MASSON, (, Remote, ),, Creative Technology & Media Executive, William Paterson University of New Jersey,\n                  Producers Guild of America",
     "location": "VIEW Conference Venue",
@@ -1832,11 +1340,11 @@
     "startTime": "11:30",
     "endTime": "12:30",
     "track": "AI & Tech",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1232"
   },
   {
-    "id": "1227",
+    "id": "1119",
     "title": "Women in Animation & VFX",
     "speaker": "DELPHINE COUDRAY, ,, Head of Operations, Animation Ireland",
     "location": "OGR - FUCINE",
@@ -1844,11 +1352,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/speaker/delphine-coudray"
   },
   {
-    "id": "1229",
+    "id": "1120",
     "title": "The Giant Droids of Nal Hutta: Stopmotion in The Mandalorian and Grogu",
     "speaker": "TOM GIBBONS, ,, Animation / Stop-Motion Supervisor, Tippett Studio",
     "location": "OGR - BINARIO3",
@@ -1856,11 +1364,11 @@
     "startTime": "12:45",
     "endTime": "13:45",
     "track": "Animation",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1320"
   },
   {
-    "id": "1231",
+    "id": "1121",
     "title": "The Future of Independent Theatrical Animation in China: Global Implications",
     "speaker": "CHRIS BREMBLE, ,, Founder & CEO, Base Media",
     "location": "OGR - MEZZANINO",
@@ -1872,7 +1380,7 @@
     "url": "https://www.viewconference.it/article/1288"
   },
   {
-    "id": "1235",
+    "id": "1123",
     "title": "Directing a Stop Motion Feature: Shaping the Big Picture & Sweating Every Detail",
     "speaker": "MERLIN CROSSINGHAM, ,, Director, Aardman Animations",
     "location": "OGR - FUCINE",
@@ -1884,7 +1392,7 @@
     "url": "https://www.viewconference.it/article/1328"
   },
   {
-    "id": "1237",
+    "id": "1124",
     "title": "Art is Synthetic without Soul: Creative Decisions in an AI World",
     "speaker": "GRETCHEN LIBBY, ,, Director, Amazon Web Services, Specialists,  Media & Entertainment,  Games,  and Sport",
     "location": "OGR - BINARIO3",
@@ -1896,7 +1404,7 @@
     "url": "https://www.viewconference.it/article/1297"
   },
   {
-    "id": "1239",
+    "id": "1125",
     "title": "The Art of Being There: Virtual Worlds, Human Experiences",
     "speaker": "AGATA M. SOCCINI, ,, Researcher,  Head of the VR Lab, University of Torino",
     "location": "OGR - MEZZANINO",
@@ -1904,11 +1412,11 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1343"
   },
   {
-    "id": "1241",
+    "id": "1126",
     "title": "From YouTube to Hollywood: the VFX of A24's Backrooms",
     "speaker": "ED DOUGLAS, ,, VFX Supervisor, Backrooms",
     "location": "OGR - FUCINE",
@@ -1920,7 +1428,7 @@
     "url": "https://www.viewconference.it/article/1256"
   },
   {
-    "id": "1243",
+    "id": "1127",
     "title": "VFX of Project Hail Mary",
     "speaker": "PAUL LAMBERT, ,, VFX Co-Supervisor, Project Hail Mary",
     "location": "OGR - FUCINE",
@@ -1932,7 +1440,7 @@
     "url": "https://www.viewconference.it/article/1221"
   },
   {
-    "id": "1245",
+    "id": "1128",
     "title": "Reflections on Cinematography",
     "speaker": "SIR ROGER DEAKINS, ,, Academy Award Winning Cinematographer",
     "location": "OGR - FUCINE",
@@ -1942,5 +1450,41 @@
     "track": "Cinematography",
     "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/02/06/teamdeakins_feature.JPG",
     "url": "https://www.viewconference.it/article/1218"
+  },
+  {
+    "id": "1132",
+    "title": "Color in Visual Storytelling",
+    "speaker": "Featured Speaker",
+    "location": "VIEW Conference Venue",
+    "date": "2026-10-12",
+    "startTime": "09:00",
+    "endTime": "13:00",
+    "track": "Keynote",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/30/703a4436-0b8f-44eb-b051-8d63b8fd518f_feature.JPG",
+    "url": "https://www.viewconference.it/article/1326"
+  },
+  {
+    "id": "1136",
+    "title": "Making the Most of Your Showreel in an Age of AI",
+    "speaker": "Featured Speaker",
+    "location": "VIEW Conference Venue",
+    "date": "2026-10-12",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "track": "Keynote",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/31/viewconf-showreels_feature.JPG",
+    "url": "https://www.viewconference.it/article/1327"
+  },
+  {
+    "id": "1138",
+    "title": "Francisco \"Pakko\" De la Torre-Rocha",
+    "speaker": "Gaston Alvarez - Virtual Production & VFX Supervisor Workshop From Preproduction to Production: Postviz, Virtual Scouting, and Real-Time Camera",
+    "location": "OGR - ITS TEATRO",
+    "date": "2026-10-12",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "track": "Keynote",
+    "imageUrl": "",
+    "url": "https://www.viewconference.it/speaker/francisco-\"pakko\"-de-la-torre-rocha"
   }
 ]
