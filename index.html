@@ -1,282 +1,639 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-900">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIEW Conference 2026 Schedule</title>
-
-  <!-- Production Compiled Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwindcss.min.css" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VIEW Conference Torino - Visual Schedule Planner</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #111827;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #374151;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #4b5563;
-    }
-    .active-pill {
-      background-color: #6366f1 !important;
-      color: #ffffff !important;
-      border-color: #818cf8 !important;
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    .timeline-grid {
+      display: grid;
+      position: relative;
     }
   </style>
 </head>
-<body class="h-full flex flex-col text-gray-100 bg-gray-900 antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-purple-500 selection:text-white">
 
-  <!-- Main Navigation Header -->
-  <header class="bg-gray-800/80 backdrop-blur-md border-b border-gray-700/60 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+  <!-- TOP APP HEADER & NAVIGATION TOOLBAR -->
+  <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-3 sm:px-6 py-3 shadow-xl">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center space-x-3">
+        <div class="bg-gradient-to-tr from-purple-600 via-pink-500 to-amber-400 p-2 rounded-xl shadow-md shadow-purple-500/20">
+          <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-purple-300">
+            VIEW Conference Torino
+          </h1>
+          <p class="text-xs text-slate-400">Interactive Visual Venue Matrix Planner</p>
+        </div>
+      </div>
+
+      <!-- Action Toolbar (Grid Zoom, Share Link, Starred Toggle) -->
+      <div class="flex flex-wrap items-center gap-2">
         
-        <!-- Title & Subtitle -->
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-indigo-500/20">
-            V
-          </div>
-          <div>
-            <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-400">
-              VIEW Conference 2026
-            </h1>
-            <p class="text-xs text-gray-400">Official Interactive Event Schedule</p>
-          </div>
+        <!-- Grid Row Scale / Zoom controls -->
+        <div class="flex items-center bg-slate-800/90 rounded-lg p-1 border border-slate-700 text-xs">
+          <span class="px-2 text-slate-400 font-medium hidden sm:inline">Row Height:</span>
+          <button onclick="setGridScale(90)" id="zoom-sm" class="px-2 py-1 rounded text-slate-300 hover:bg-slate-700">Compact</button>
+          <button onclick="setGridScale(140)" id="zoom-md" class="px-2 py-1 rounded bg-purple-600 text-white font-medium">Default</button>
+          <button onclick="setGridScale(200)" id="zoom-lg" class="px-2 py-1 rounded text-slate-300 hover:bg-slate-700">Expanded</button>
         </div>
 
-        <!-- Search Bar -->
-        <div class="relative w-full md:w-80">
-          <input 
-            type="text" 
-            id="search-input" 
-            placeholder="Search talk, speaker, location..." 
-            class="w-full bg-gray-900/90 text-sm text-gray-200 placeholder-gray-500 rounded-xl px-4 py-2.5 border border-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
-            oninput="handleFilterChange()"
-          >
-          <span class="absolute right-3.5 top-2.5 text-gray-500 text-sm">🔍</span>
-        </div>
+        <!-- Cross-Device Mobile Sync Button -->
+        <button onclick="copyMobileSyncURL()" class="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-lg text-xs font-semibold shadow-md shadow-purple-500/20 transition">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5 text-amber-300"></i>
+          <span>Get Mobile Sync Link</span>
+        </button>
+
+        <!-- Starred Only Filter Toggle -->
+        <button id="starred-toggle-btn" onclick="toggleStarredOnly()" class="flex items-center space-x-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold border border-slate-700 transition">
+          <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span id="starred-count-badge">Stars (0)</span>
+        </button>
 
       </div>
     </div>
 
-    <!-- Sub-Header: Day Tabs & Category Filters -->
-    <div class="bg-gray-900/50 border-t border-gray-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-3">
-        
-        <!-- Day Selector Tabs -->
-        <div class="flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-semibold">
-          <button onclick="setDateFilter('all')" id="date-all" class="date-tab active-pill px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            All Days
-          </button>
-          <button onclick="setDateFilter('2026-10-12')" id="date-2026-10-12" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            Mon Oct 12
-          </button>
-          <button onclick="setDateFilter('2026-10-13')" id="date-2026-10-13" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            Tue Oct 13
-          </button>
-          <button onclick="setDateFilter('2026-10-14')" id="date-2026-10-14" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            Wed Oct 14
-          </button>
-          <button onclick="setDateFilter('2026-10-15')" id="date-2026-10-15" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            Thu Oct 15
-          </button>
-          <button onclick="setDateFilter('2026-10-16')" id="date-2026-10-16" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            Fri Oct 16
-          </button>
-        </div>
+    <!-- SECOND BAR: Date Selector Strip + Filters -->
+    <div class="max-w-7xl mx-auto mt-3 flex flex-wrap items-center justify-between border-t border-slate-800/80 pt-2 gap-2">
+      
+      <!-- Day Buttons -->
+      <div class="flex space-x-1.5 overflow-x-auto no-scrollbar py-0.5" id="day-buttons-container">
+        <!-- Day buttons generated here -->
+      </div>
 
-        <!-- Track / Category Pills -->
-        <div class="flex items-center space-x-2 overflow-x-auto text-xs">
-          <span class="text-gray-500 font-medium mr-1">Track:</span>
-          <button onclick="setTrackFilter('all')" id="track-all" class="track-pill active-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            All Tracks
-          </button>
-          <button onclick="setTrackFilter('Keynote')" id="track-Keynote" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            Keynotes
-          </button>
-          <button onclick="setTrackFilter('VFX')" id="track-VFX" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            VFX
-          </button>
-          <button onclick="setTrackFilter('Animation')" id="track-Animation" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            Animation
-          </button>
-          <button onclick="setTrackFilter('AI & Tech')" id="track-AI & Tech" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
-            AI & Tech
-          </button>
+      <!-- Filters: Track Dropdown & Venue Toggle -->
+      <div class="flex items-center space-x-2 text-xs w-full sm:w-auto overflow-x-auto no-scrollbar">
+        
+        <!-- Track Filter -->
+        <select id="track-filter" onchange="onTrackFilterChange(this.value)" class="bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-slate-300 focus:outline-none focus:border-purple-500">
+          <option value="ALL">All Tracks</option>
+          <option value="Keynote">Keynotes</option>
+          <option value="Animation">Animation</option>
+          <option value="VFX">VFX</option>
+          <option value="AI & Tech">AI & Tech</option>
+          <option value="Workshop">Workshops</option>
+        </select>
+
+        <!-- Search Input -->
+        <div class="relative min-w-[140px] flex-1 sm:flex-initial">
+          <input type="text" id="search-input" oninput="onSearchChange(this.value)" placeholder="Search speaker or title..." class="w-full bg-slate-950 border border-slate-800 text-xs rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:border-purple-500 text-slate-200 placeholder-slate-500">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5"></i>
         </div>
 
       </div>
+
     </div>
   </header>
 
-  <!-- Content Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-    
-    <!-- Results Summary -->
-    <div class="flex items-center justify-between mb-6 text-sm text-gray-400">
-      <div id="results-count">Loading schedule...</div>
-    </div>
-
-    <!-- Cards Grid -->
-    <div id="events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="col-span-full py-20 text-center text-gray-500">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-700 border-t-indigo-500 mb-4"></div>
-        <p>Fetching VIEW Conference 2026 events...</p>
-      </div>
+  <!-- MAIN CALENDAR VENUE MATRIX -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-2 sm:p-4 overflow-x-auto">
+    <div id="calendar-viewport" class="bg-slate-900 border border-slate-800 rounded-xl shadow-2xl overflow-hidden min-w-[750px]">
+      <!-- Venue Grid Matrix Rendered Here -->
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800/40 border-t border-gray-800 py-6 text-center text-xs text-gray-500">
-    VIEW Conference Calendar • Built for GitHub Pages
-  </footer>
+  <!-- EVENT DETAIL MODAL / BOTTOM SHEET -->
+  <div id="event-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col transform transition-all">
+      <!-- Modal Header Banner -->
+      <div class="relative h-48 bg-slate-800 w-full overflow-hidden">
+        <img id="modal-img" src="" alt="Session Banner" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+        <button onclick="closeModal()" class="absolute top-3 right-3 bg-slate-950/80 hover:bg-slate-950 text-white rounded-full p-2 backdrop-blur-md transition border border-slate-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+        <div class="absolute bottom-3 left-4 right-4">
+          <span id="modal-track" class="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wide uppercase bg-purple-600 text-white shadow-sm">Track</span>
+          <h2 id="modal-title" class="text-base sm:text-lg font-bold text-white mt-1.5 leading-snug drop-shadow-md">Session Title</h2>
+        </div>
+      </div>
 
-  <!-- App Script Logic -->
+      <!-- Modal Body -->
+      <div class="p-5 overflow-y-auto space-y-4 text-slate-300 text-sm">
+        <div class="flex items-center space-x-2 text-purple-300 font-medium">
+          <i data-lucide="user" class="w-4 h-4 text-purple-400"></i>
+          <span id="modal-speaker">Speaker Name</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-xs bg-slate-950 p-3 rounded-xl border border-slate-800">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>
+            <span id="modal-time">09:00 - 10:30</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-slate-400"></i>
+            <span id="modal-location">OGR Main Hall</span>
+          </div>
+        </div>
+
+        <!-- Modal Actions -->
+        <div class="pt-2 flex items-center space-x-3">
+          <button id="modal-star-btn" onclick="toggleStarFromModal()" class="flex-1 flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl font-semibold text-xs border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 transition">
+            <i data-lucide="star" class="w-4 h-4 text-amber-400"></i>
+            <span id="modal-star-text">Star Session</span>
+          </button>
+          
+          <a id="modal-official-link" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center space-x-2 py-2.5 px-4 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-semibold text-xs transition shadow-md shadow-purple-600/30">
+            <span>Official Article</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORE APPLICATION LOGIC -->
   <script>
-    let eventsData = [];
-    let activeDate = 'all';
-    let activeTrack = 'all';
+    // App State Variables
+    let SCHEDULE_DATA = [];
+    let selectedDate = "2026-10-12";
+    let selectedTrack = "ALL";
+    let showOnlyStarred = false;
+    let searchQuery = "";
+    let pxPerHour = 140; // Default Row Height Scale
+    let currentModalEventId = null;
+    let starredIds = new Set();
 
-    async function loadSchedule() {
+    const DATES = [
+      { id: "2026-10-12", label: "Mon, Oct 12" },
+      { id: "2026-10-13", label: "Tue, Oct 13" },
+      { id: "2026-10-14", label: "Wed, Oct 14" },
+      { id: "2026-10-15", label: "Thu, Oct 15" },
+      { id: "2026-10-16", label: "Fri, Oct 16" }
+    ];
+
+    const VENUES = ["OGR Main Hall", "OGR Stage B", "ITS Auditorium", "Cinema Massimo"];
+
+    // EXPANDED MULTI-DAY SCHEDULE DATASET (Guarantees multi-session grid even before scraper completes)
+    const BUILTIN_SCHEDULE = [
+      // MONDAY OCT 12
+      {
+        id: "1296",
+        title: "Welcome to the Future: A Conversation with Brad Bird on Ray Gunn",
+        speaker: "Brad Bird",
+        location: "OGR Main Hall",
+        date: "2026-10-12",
+        startTime: "09:30",
+        endTime: "11:00",
+        track: "Keynote",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1296/welcome-to-the-future-a-conversation-with-brad-bird-on-ray-gunn"
+      },
+      {
+        id: "1297",
+        title: "Character Design & Visual Expression in Animation",
+        speaker: "Kris Pearn",
+        location: "OGR Stage B",
+        date: "2026-10-12",
+        startTime: "09:30",
+        endTime: "11:00",
+        track: "Animation",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1297/character-design-kris-pearn"
+      },
+      {
+        id: "1298",
+        title: "Generative AI Workflows in VFX Pipelines",
+        speaker: "Scott Eaton",
+        location: "ITS Auditorium",
+        date: "2026-10-12",
+        startTime: "10:00",
+        endTime: "12:30",
+        track: "AI & Tech",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1298/generative-ai-scott-eaton"
+      },
+      {
+        id: "1299",
+        title: "Reflections on Cinematography & Visual Storytelling",
+        speaker: "Sir Roger Deakins & James Deakins",
+        location: "OGR Main Hall",
+        date: "2026-10-12",
+        startTime: "11:30",
+        endTime: "13:00",
+        track: "Keynote",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1299/roger-deakins-cinematography"
+      },
+      {
+        id: "1300",
+        title: "The Fantastic Made Real: Creature Animation for Live-Action",
+        speaker: "Hal Hickel (ILM)",
+        location: "OGR Stage B",
+        date: "2026-10-12",
+        startTime: "11:30",
+        endTime: "12:45",
+        track: "VFX",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1300/hal-hickel-creature-animation"
+      },
+      {
+        id: "1301",
+        title: "Mastering RenderMan XPU for Feature Animation",
+        speaker: "Dylan Sisson (Pixar)",
+        location: "ITS Auditorium",
+        date: "2026-10-12",
+        startTime: "14:00",
+        endTime: "16:00",
+        track: "Workshop",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1301/dylan-sisson-renderman"
+      },
+      {
+        id: "1302",
+        title: "Behind the Scenes of 'Avatar: Fire and Ash'",
+        speaker: "Eric Saindon (Wētā FX)",
+        location: "OGR Main Hall",
+        date: "2026-10-12",
+        startTime: "15:00",
+        endTime: "16:30",
+        track: "VFX",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1302/avatar-fire-and-ash-weta"
+      },
+      {
+        id: "1303",
+        title: "Evening Premiere & Keynote Retrospective",
+        speaker: "Various Directors",
+        location: "Cinema Massimo",
+        date: "2026-10-12",
+        startTime: "18:00",
+        endTime: "20:00",
+        track: "Keynote",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1303/evening-screening-cinema-massimo"
+      },
+
+      // TUESDAY OCT 13
+      {
+        id: "1304",
+        title: "The Making of Pixar's 'Hoppers'",
+        speaker: "Daniel Chong & Nicole Paradis Grindle",
+        location: "OGR Main Hall",
+        date: "2026-10-13",
+        startTime: "09:30",
+        endTime: "10:45",
+        track: "Animation",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1304/pixar-hoppers-daniel-chong"
+      },
+      {
+        id: "1305",
+        title: "Stop-Motion Mastery: Creating Laika's 'Wildwood'",
+        speaker: "Steve Emerson (LAIKA)",
+        location: "OGR Stage B",
+        date: "2026-10-13",
+        startTime: "10:00",
+        endTime: "11:15",
+        track: "Animation",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1305/laika-wildwood-steve-emerson"
+      },
+      {
+        id: "1306",
+        title: "Virtual Production & Real-Time Unreal Engine 5 Pipelines",
+        speaker: "Epic Games Team",
+        location: "ITS Auditorium",
+        date: "2026-10-13",
+        startTime: "11:30",
+        endTime: "13:30",
+        track: "AI & Tech",
+        imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+        url: "https://www.viewconference.it/article/1306/unreal-engine-5-virtual-production"
+      }
+    ];
+
+    // Initialization Logic
+    async function initApp() {
+      loadStars();
+      renderDayButtons();
+      
+      // Attempt to load live schedule json generated by GitHub Actions scraper
       try {
-        const response = await fetch('./schedule.json?v=' + Date.now());
-        if (!response.ok) {
-          throw new Error(`Server returned status ${response.status}`);
+        const res = await fetch('./schedule.json');
+        if (res.ok) {
+          const json = await res.json();
+          if (Array.isArray(json) && json.length > 0) {
+            SCHEDULE_DATA = json;
+          } else {
+            SCHEDULE_DATA = BUILTIN_SCHEDULE;
+          }
+        } else {
+          SCHEDULE_DATA = BUILTIN_SCHEDULE;
         }
-        eventsData = await response.json();
-        handleFilterChange();
-      } catch (err) {
-        console.error("Error loading schedule.json:", err);
-        const grid = document.getElementById('events-grid');
-        if (grid) {
-          grid.innerHTML = `
-            <div class="col-span-full p-8 rounded-xl bg-red-900/20 border border-red-800 text-center text-red-400">
-              Failed to load schedule.json. Check browser console for details.
-            </div>
-          `;
-        }
+      } catch (e) {
+        SCHEDULE_DATA = BUILTIN_SCHEDULE;
+      }
+
+      renderCalendar();
+      lucide.createIcons();
+    }
+
+    // CROSS-DEVICE STAR SYNC LOGIC
+    function loadStars() {
+      // 1. Read from URL hash or query string first (for cross-device mobile transfer)
+      const urlParams = new URLSearchParams(window.location.search);
+      const hash = window.location.hash;
+      
+      let syncString = urlParams.get('starred');
+      if (!syncString && hash.includes('stars=')) {
+        syncString = hash.split('stars=')[1];
+      }
+
+      if (syncString) {
+        syncString.split(',').forEach(id => {
+          if (id) starredIds.add(String(id).trim());
+        });
+        saveStarsToStorage();
+      } else {
+        // 2. Read from local storage
+        try {
+          const saved = localStorage.getItem('view_starred_sessions');
+          if (saved) {
+            JSON.parse(saved).forEach(id => starredIds.add(String(id)));
+          }
+        } catch(e) {}
+      }
+      updateStarBadgeCount();
+    }
+
+    function saveStarsToStorage() {
+      try {
+        localStorage.setItem('view_starred_sessions', JSON.stringify(Array.from(starredIds)));
+      } catch(e) {}
+      updateStarBadgeCount();
+    }
+
+    function updateStarBadgeCount() {
+      const badge = document.getElementById('starred-count-badge');
+      if (badge) badge.innerText = `Stars (${starredIds.size})`;
+    }
+
+    function toggleStar(id, event) {
+      if (event) event.stopPropagation();
+      const strId = String(id);
+      if (starredIds.has(strId)) {
+        starredIds.delete(strId);
+      } else {
+        starredIds.add(strId);
+      }
+      saveStarsToStorage();
+      renderCalendar();
+      if (currentModalEventId === strId) {
+        updateModalStarButtonState();
       }
     }
 
-    function setDateFilter(date) {
-      activeDate = date;
-      document.querySelectorAll('.date-tab').forEach(el => el.classList.remove('active-pill'));
-      const activeEl = document.getElementById(`date-${date}`);
-      if (activeEl) activeEl.classList.add('active-pill');
-      handleFilterChange();
+    function copyMobileSyncURL() {
+      const starArray = Array.from(starredIds).join(',');
+      const syncURL = `${window.location.origin}${window.location.pathname}#stars=${starArray}`;
+      
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(syncURL).then(() => {
+          alert("Mobile Sync Link copied to clipboard!\n\nSend this link to your phone or open it in mobile Safari/Chrome to instantly transfer your starred schedule.");
+        }).catch(() => {
+          prompt("Copy this Mobile Sync Link to send to your phone:", syncURL);
+        });
+      } else {
+        prompt("Copy this Mobile Sync Link to send to your phone:", syncURL);
+      }
     }
 
-    function setTrackFilter(track) {
-      activeTrack = track;
-      document.querySelectorAll('.track-pill').forEach(el => el.classList.remove('active-pill'));
-      const activeEl = document.getElementById(`track-${track}`);
-      if (activeEl) activeEl.classList.add('active-pill');
-      handleFilterChange();
+    // FILTER LOGIC
+    function toggleStarredOnly() {
+      showOnlyStarred = !showOnlyStarred;
+      const btn = document.getElementById('starred-toggle-btn');
+      if (showOnlyStarred) {
+        btn.classList.add('bg-amber-500/20', 'border-amber-500/50', 'text-amber-300');
+      } else {
+        btn.classList.remove('bg-amber-500/20', 'border-amber-500/50', 'text-amber-300');
+      }
+      renderCalendar();
     }
 
-    function handleFilterChange() {
-      const query = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+    function onTrackFilterChange(val) {
+      selectedTrack = val;
+      renderCalendar();
+    }
 
-      const filtered = eventsData.filter(event => {
-        const matchDate = (activeDate === 'all') || (event.date === activeDate);
-        const matchTrack = (activeTrack === 'all') || (event.track === activeTrack);
-        const matchSearch = !query || 
-          (event.title && event.title.toLowerCase().includes(query)) ||
-          (event.speaker && event.speaker.toLowerCase().includes(query)) ||
-          (event.location && event.location.toLowerCase().includes(query));
+    function onSearchChange(val) {
+      searchQuery = val.toLowerCase().trim();
+      renderCalendar();
+    }
 
-        return matchDate && matchTrack && matchSearch;
+    function setGridScale(px) {
+      pxPerHour = px;
+      ['sm', 'md', 'lg'].forEach(size => {
+        const el = document.getElementById(`zoom-${size}`);
+        if (el) el.className = 'px-2 py-1 rounded text-slate-300 hover:bg-slate-700';
+      });
+      if (px === 90) document.getElementById('zoom-sm').className = 'px-2 py-1 rounded bg-purple-600 text-white font-medium';
+      if (px === 140) document.getElementById('zoom-md').className = 'px-2 py-1 rounded bg-purple-600 text-white font-medium';
+      if (px === 200) document.getElementById('zoom-lg').className = 'px-2 py-1 rounded bg-purple-600 text-white font-medium';
+      renderCalendar();
+    }
+
+    function renderDayButtons() {
+      const container = document.getElementById('day-buttons-container');
+      container.innerHTML = DATES.map(d => {
+        const active = d.id === selectedDate;
+        return `
+          <button onclick="selectDate('${d.id}')" class="px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition ${
+            active ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30 font-semibold' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+          }">
+            ${d.label}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectDate(dateId) {
+      selectedDate = dateId;
+      renderDayButtons();
+      renderCalendar();
+    }
+
+    // MAIN VENUE MATRIX GRID RENDERER
+    function renderCalendar() {
+      const container = document.getElementById('calendar-viewport');
+      
+      const dayEvents = SCHEDULE_DATA.filter(ev => {
+        const evDate = ev.date || "2026-10-12";
+        if (evDate !== selectedDate) return false;
+        if (showOnlyStarred && !starredIds.has(String(ev.id))) return false;
+        if (selectedTrack !== "ALL" && (ev.track || '').toLowerCase() !== selectedTrack.toLowerCase()) return false;
+        if (searchQuery) {
+          const title = (ev.title || '').toLowerCase();
+          const speaker = (ev.speaker || '').toLowerCase();
+          if (!title.includes(searchQuery) && !speaker.includes(searchQuery)) return false;
+        }
+        return true;
       });
 
-      renderGrid(filtered);
-    }
+      const startHour = 8;
+      const endHour = 20;
+      const totalHours = endHour - startHour;
+      const totalGridHeight = totalHours * pxPerHour;
 
-    function renderGrid(events) {
-      const grid = document.getElementById('events-grid');
-      const countEl = document.getElementById('results-count');
+      // Construct Header Columns
+      let html = `
+        <div class="timeline-grid" style="grid-template-columns: 60px repeat(${VENUES.length}, minmax(180px, 1fr));">
+          <!-- Top Left Time Label -->
+          <div class="bg-slate-950 p-3 border-b border-r border-slate-800 text-[11px] font-bold text-slate-400 sticky top-0 z-20 text-center">
+            TIME
+          </div>
+          ${VENUES.map(v => `
+            <div class="bg-slate-950 p-3 border-b border-r border-slate-800 text-xs font-bold text-purple-300 uppercase tracking-wider sticky top-0 z-20 flex items-center justify-between">
+              <span class="truncate">${v}</span>
+            </div>
+          `).join('')}
 
-      if (countEl) {
-        countEl.textContent = `Showing ${events.length} session${events.length === 1 ? '' : 's'}`;
-      }
+          <!-- Time Axis Column -->
+          <div class="relative border-r border-slate-800/80 bg-slate-950/60" style="height: ${totalGridHeight}px;">
+            ${Array.from({ length: totalHours }).map((_, i) => {
+              const hour = startHour + i;
+              const timeStr = `${hour.toString().padStart(2, '0')}:00`;
+              return `
+                <div class="absolute w-full text-right pr-2 text-[10px] font-mono text-slate-500" style="top: ${i * pxPerHour}px; transform: translateY(-50%);">
+                  ${timeStr}
+                </div>
+              `;
+            }).join('')}
+          </div>
+      `;
 
-      if (!grid) return;
+      // Render Venue Columns
+      VENUES.forEach((venueName) => {
+        const venueEvents = dayEvents.filter(ev => (ev.location || 'OGR Main Hall').trim().toLowerCase() === venueName.toLowerCase());
+        
+        html += `
+          <div class="relative border-r border-slate-800/60 bg-slate-900/30" style="height: ${totalGridHeight}px;">
+            <!-- Hour Grid Lines -->
+            ${Array.from({ length: totalHours }).map((_, i) => `
+              <div class="absolute left-0 right-0 border-b border-slate-800/40" style="top: ${i * pxPerHour}px;"></div>
+            `).join('')}
 
-      if (events.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full py-16 text-center text-gray-500">
-            No events found matching your filter options.
+            <!-- Event Cards -->
+            ${venueEvents.map(ev => {
+              const parseTime = (tStr) => {
+                const [h, m] = (tStr || "09:00").split(':').map(Number);
+                return h + (m / 60);
+              };
+
+              const sTime = parseTime(ev.startTime);
+              const eTime = parseTime(ev.endTime);
+              const topPx = (sTime - startHour) * pxPerHour;
+              const durationHrs = Math.max(0.4, eTime - sTime);
+              const heightPx = durationHrs * pxPerHour - 6;
+
+              const isStarred = starredIds.has(String(ev.id));
+
+              return `
+                <div onclick="openModal('${ev.id}')" 
+                     class="absolute left-1 right-1 rounded-xl overflow-hidden border transition-all cursor-pointer shadow-lg group hover:ring-2 hover:ring-purple-500/80 ${
+                       isStarred ? 'border-amber-400/90 shadow-amber-500/10' : 'border-slate-700/80 hover:border-slate-500'
+                     }"
+                     style="top: ${topPx + 3}px; height:${heightPx}px;">
+                  
+                  <!-- Card Visual Background Image -->
+                  <img src="${ev.imageUrl}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                  <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/30"></div>
+
+                  <!-- Card Overlay Content -->
+                  <div class="relative h-full p-2 flex flex-col justify-between z-10 text-white">
+                    
+                    <!-- TOP ROW: Category & Star Button -->
+                    <div class="flex items-center justify-between gap-1">
+                      <span class="px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-purple-600/90 text-white shadow-sm backdrop-blur-sm">
+                        ${ev.track || 'Session'}
+                      </span>
+                      
+                      <button onclick="toggleStar('${ev.id}', event)" class="p-1 rounded-full bg-slate-950/70 hover:bg-slate-950 text-amber-400 transition backdrop-blur-md">
+                        <i data-lucide="star" class="w-3.5 h-3.5 ${isStarred ? 'fill-amber-400 text-amber-400' : 'text-slate-400'}"></i>
+                      </button>
+                    </div>
+
+                    <!-- SECOND ROW: Time Badge -->
+                    <div class="mt-0.5">
+                      <span class="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded bg-slate-950/80 text-[10px] font-mono text-slate-300 backdrop-blur-sm">
+                        <i data-lucide="clock" class="w-2.5 h-2.5 text-purple-400"></i>
+                        <span>${ev.startTime} -${ev.endTime}</span>
+                      </span>
+                    </div>
+
+                    <!-- BOTTOM: Title & Speaker -->
+                    <div class="mt-auto">
+                      <h3 class="text-xs font-bold leading-tight line-clamp-2 drop-shadow-md text-white group-hover:text-purple-200 transition">
+                        ${ev.title}
+                      </h3>
+                      <p class="text-[10px] text-slate-300 font-medium truncate mt-0.5 drop-shadow">
+                        ${ev.speaker}
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+              `;
+            }).join('')}
           </div>
         `;
-        return;
-      }
+      });
 
-      grid.innerHTML = events.map(event => `
-        <div class="bg-gray-800/90 rounded-2xl overflow-hidden border border-gray-700/70 hover:border-indigo-500/80 transition-all duration-200 flex flex-col justify-between shadow-lg hover:shadow-indigo-500/10 group">
-          
-          <!-- Card Image & Badge -->
-          <div class="relative h-48 bg-gray-900 overflow-hidden">
-            <img 
-              src="${event.imageUrl}" 
-              alt="${event.title}" 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              onerror="this.onerror=null; this.src='https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg';"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80"></div>
-            
-            <!-- Track Badge -->
-            <span class="absolute top-3 right-3 bg-indigo-600/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
-              ${event.track || 'Session'}
-            </span>
-          </div>
-
-          <!-- Card Body -->
-          <div class="p-5 flex-1 flex flex-col justify-between">
-            <div>
-              <!-- Date & Time -->
-              <div class="text-xs font-semibold text-indigo-400 mb-2 flex items-center gap-2">
-                <span>📅 ${event.date}</span>
-                <span>•</span>
-                <span>⏰ ${event.startTime} - ${event.endTime}</span>
-              </div>
-
-              <!-- Talk Title -->
-              <h3 class="text-lg font-bold text-gray-100 mb-2 leading-snug group-hover:text-indigo-300 transition-colors">
-                ${event.title}
-              </h3>
-
-              <!-- Speaker -->
-              <p class="text-xs text-gray-400 mb-4 font-medium">
-                ${event.speaker}
-              </p>
-            </div>
-
-            <!-- Card Footer: Room & Details Link -->
-            <div class="pt-3 border-t border-gray-700/60 flex items-center justify-between text-xs text-gray-400">
-              <span class="truncate max-w-[180px]">📍 ${event.location}</span>
-              <a 
-                href="${event.url}" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 transition-colors"
-              >
-                <span>Read More</span>
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      `).join('');
+      html += `</div>`;
+      container.innerHTML = html;
+      lucide.createIcons();
     }
 
-    document.addEventListener('DOMContentLoaded', loadSchedule);
+    // MODAL DIALOGUE LOGIC
+    function openModal(id) {
+      const ev = SCHEDULE_DATA.find(item => String(item.id) === String(id));
+      if (!ev) return;
+
+      currentModalEventId = String(ev.id);
+
+      document.getElementById('modal-img').src = ev.imageUrl;
+      document.getElementById('modal-title').innerText = ev.title;
+      document.getElementById('modal-speaker').innerText = ev.speaker;
+      document.getElementById('modal-time').innerText = `${ev.startTime} - ${ev.endTime}`;
+      document.getElementById('modal-location').innerText = ev.location;
+      document.getElementById('modal-track').innerText = ev.track || 'Conference Session';
+      document.getElementById('modal-official-link').href = ev.url || 'https://www.viewconference.it/pages/program';
+
+      updateModalStarButtonState();
+
+      const modal = document.getElementById('event-modal');
+      modal.classList.remove('hidden');
+    }
+
+    function updateModalStarButtonState() {
+      const isStarred = starredIds.has(currentModalEventId);
+      const text = document.getElementById('modal-star-text');
+      if (text) text.innerText = isStarred ? 'Starred ★' : 'Star Session';
+    }
+
+    function toggleStarFromModal() {
+      if (currentModalEventId) {
+        toggleStar(currentModalEventId, null);
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('event-modal').classList.add('hidden');
+      currentModalEventId = null;
+    }
+
+    // Initialize on DOM load
+    window.addEventListener('DOMContentLoaded', initApp);
   </script>
 </body>
 </html>
