@@ -34,7 +34,7 @@ def determine_track(title_text, type_text=""):
     return "Session"
 
 def extract_article_bg_image(session_url, session):
-    """Fetches individual article page and extracts background image from class="bg cover"."""
+    """Fetches individual article page and extracts background image strictly from class="bg cover" style."""
     if not session_url or "/article/" not in session_url or session_url == PROGRAM_URL:
         return ""
 
@@ -51,12 +51,10 @@ def extract_article_bg_image(session_url, session):
                 match = re.search(r'url\((?:\'|\")?(.*?)(?:\'|\")?\)', style_attr, re.IGNORECASE)
                 if match:
                     raw_img_url = match.group(1).strip()
+                    # Ignore default banner image if preset
+                    if "bradbirdbanner2" in raw_img_url:
+                        return ""
                     return urllib.parse.urljoin(BASE_URL, raw_img_url)
-
-            # Secondary fallback: OpenGraph image
-            og_img = art_soup.find("meta", property="og:image")
-            if og_img and og_img.get("content"):
-                return urllib.parse.urljoin(BASE_URL, og_img["content"])
 
     except Exception as e:
         print(f"Warning: Could not fetch image from {session_url}: {e}")
@@ -122,16 +120,33 @@ def scrape_full_schedule():
         else:
             location = "OGR Venue"
 
-        # 4. Extract & Clean Title
-        title_tag = elem.find(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
-        title = title_tag.get_text(strip=True) if title_tag else ""
+        # 4. Extract Title (with strict time header filtering)
+        title = ""
+        heading_tags = elem.find_all(['h2', 'h3', 'h4', 'strong', 'b', 'a'])
+        for tag in heading_tags:
+            tag_text = tag.get_text(strip=True)
+            # Skip if tag text is just a timestamp like "09:00" or "09:00-10:00"
+            if re.match(r'^\d{1,2}:\d{2}(\s*-\s*\d{1,2}:\d{2})?$', tag_text):
+                continue
+            if len(tag_text) >= 3:
+                title = tag_text
+                break
         
-        if not title or len(title) < 3:
-            clean_parts = [p.strip() for p in text.split("  ") if p.strip() and "CET" not in p and "In Person" not in p]
-            title = clean_parts[0] if clean_parts else "VIEW Conference Session"
+        # Fallback extraction if no valid tag found
+        if not title:
+            clean_parts = [
+                p.strip() for p in text.split("  ") 
+                if p.strip() and not re.match(r'^\d{1,2}:\d{2}', p.strip()) and "CET" not in p and "In Person" not in p
+            ]
+            title = clean_parts[0] if clean_parts else ""
 
-        # Remove location strings if accidentally captured inside title
+        # Cleanup location strings and raw time prefixes inside title
         title = re.sub(r'In\s+[A-Z0-9\s\/\-_]+\s*\((?:In Person|Remote|Hybrid)\)', '', title, flags=re.IGNORECASE).strip()
+        title = re.sub(r'^\d{1,2}:\d{2}\s*', '', title).strip()
+
+        # Reject faked/corrupted time titles
+        if not title or re.match(r'^\d{1,2}:\d{2}$', title):
+            continue
 
         # 5. Extract Speaker
         speaker = "Featured Speaker"
@@ -149,7 +164,7 @@ def scrape_full_schedule():
         link_tag = elem.find('a', href=True)
         session_url = urllib.parse.urljoin(BASE_URL, link_tag['href']) if link_tag else PROGRAM_URL
 
-        # Extract Background Image from Article Page (cached)
+        # Extract Background Image from Article Page strictly (cached)
         if session_url in image_cache:
             img_url = image_cache[session_url]
         else:
