@@ -1,17 +1,24 @@
-// Replace the hardcoded SCHEDULE_DATA array initialization with a fetch loader:
-let SCHEDULE_DATA = [];
+<!-- End of HTML body / DOM elements -->
 
-async function loadSchedule() {
-  try {
-    const response = await fetch('./schedule.json');
-    if (response.ok) {
-      SCHEDULE_DATA = await response.json();
+  <!-- Make sure the opening <script> tag is present right before your JS code -->
+  <script>
+    let SCHEDULE_DATA = [];
+
+    async function loadSchedule() {
+      try {
+        const response = await fetch('./schedule.json');
+        if (response.ok) {
+          SCHEDULE_DATA = await response.json();
+        }
+      } catch (err) {
+        console.warn('Could not load schedule.json, falling back...', err);
+      }
+      renderCalendar();
     }
-  } catch (err) {
-    console.warn('Could not load dynamic schedule.json, falling back to local dataset.', err);
-  }
-  renderCalendar();
-}
 
-// Call loadSchedule on startup instead of renderCalendar directly
-window.addEventListener('DOMContentLoaded', loadSchedule);
+    window.addEventListener('DOMContentLoaded', loadSchedule);
+
+    // Rest of your JavaScript functions (renderCalendar, toggleStar, etc.)
+  </script>
+</body>
+</html>
