@@ -1,0 +1,34 @@
+name: Daily Schedule Sync
+
+on:
+  schedule:
+    # Runs automatically every day at 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Run Scraper Script
+        run: python sync_schedule.py
+
+      - name: Commit and Push Updated Schedule
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add schedule.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update conference schedule" && git push)
