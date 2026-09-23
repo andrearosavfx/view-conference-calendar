@@ -1,18 +1,6 @@
 [
   {
     "id": "1001",
-    "title": "09:00",
-    "speaker": "STEVE EMERSON, ,, Production VFX Supervisor, LAIKA",
-    "location": "OGR - Sala Fucine",
-    "date": "2026-10-13",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/steveemersonbanner_feature.jpg",
-    "url": "https://www.viewconference.it/article/1301"
-  },
-  {
-    "id": "1002",
     "title": "Wildwood",
     "speaker": "STEVE EMERSON, ,, Production VFX Supervisor, LAIKA",
     "location": "OGR - Sala Fucine",
@@ -32,7 +20,7 @@
     "startTime": "10:15",
     "endTime": "11:15",
     "track": "Session",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
+    "imageUrl": "",
     "url": "https://www.viewconference.it/article/1296"
   },
   {
@@ -289,18 +277,6 @@
   },
   {
     "id": "1025",
-    "title": "09:00",
-    "speaker": "JEROME CHEN, ,, Overall VFX Supervisor, Spider-Man: Brand New Day, Marvel Studios",
-    "location": "OGR - Sala Fucine",
-    "date": "2026-10-14",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/08/spidermanbrandnewdaybanner_feature.jpg",
-    "url": "https://www.viewconference.it/article/1284"
-  },
-  {
-    "id": "1026",
     "title": "Spider-Man: Brand New Day",
     "speaker": "JEROME CHEN, ,, Overall VFX Supervisor, Spider-Man: Brand New Day, Marvel Studios",
     "location": "OGR - Sala Fucine",
@@ -589,25 +565,13 @@
   },
   {
     "id": "1050",
-    "title": "09:00",
-    "speaker": "YVETT MERINO, ,, Producer, HEXED, Disney Animation Studios",
-    "location": "OGR - Sala Fucine",
-    "date": "2026-10-15",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "track": "VFX",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/04/hexed_feature.jpg",
-    "url": "https://www.viewconference.it/article/1330"
-  },
-  {
-    "id": "1051",
     "title": "HEXED",
     "speaker": "YVETT MERINO, ,, Producer, HEXED, Disney Animation Studios",
     "location": "OGR - Sala Fucine",
     "date": "2026-10-15",
     "startTime": "09:00",
     "endTime": "10:00",
-    "track": "Animation",
+    "track": "VFX",
     "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/04/hexed_feature.jpg",
     "url": "https://www.viewconference.it/article/1330"
   },
@@ -889,25 +853,13 @@
   },
   {
     "id": "1075",
-    "title": "09:00",
-    "speaker": "KENNA HARRIS, ,, Co-Director & Co-Writer, Toy Story 5, Pixar Animation Studios",
-    "location": "OGR - Sala Fucine",
-    "date": "2026-10-16",
-    "startTime": "09:00",
-    "endTime": "10:00",
-    "track": "Keynote",
-    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/06/19/kennaharrisbanner_feature.jpg",
-    "url": "https://www.viewconference.it/article/1261"
-  },
-  {
-    "id": "1076",
     "title": "Toy Story 5 Behind the Scenes",
     "speaker": "KENNA HARRIS, ,, Co-Director & Co-Writer, Toy Story 5, Pixar Animation Studios",
     "location": "OGR - Sala Fucine",
     "date": "2026-10-16",
     "startTime": "09:00",
     "endTime": "10:00",
-    "track": "Animation",
+    "track": "Keynote",
     "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/06/19/kennaharrisbanner_feature.jpg",
     "url": "https://www.viewconference.it/article/1261"
   },
