@@ -40,7 +40,6 @@
             -webkit-tap-highlight-color: transparent;
         }
         
-        /* Custom Scrollbar for touch-smooth calendar grid */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -55,14 +54,15 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .event-card-shadow {
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+        .tab-active {
+            background-color: #e11d48 !important;
+            color: #ffffff !important;
+            border-color: #f43f5e !important;
+            box-shadow: 0 4px 14px 0 rgba(225, 29, 72, 0.39);
         }
 
-        .tab-active {
-            background-color: #e11d48;
-            color: #ffffff;
-            border-color: #f43f5e;
+        .grid-line {
+            border-bottom: 1px dashed rgba(51, 65, 85, 0.4);
         }
     </style>
 </head>
@@ -70,7 +70,7 @@
 
     <!-- Top Fixed Header -->
     <header class="sticky top-0 z-40 glass-header border-b border-slate-800/80 px-4 py-3">
-        <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-purple-600 flex items-center justify-center shadow-lg shadow-brand-500/20 font-black text-xl text-white">
                     V
@@ -97,34 +97,34 @@
             </div>
         </div>
 
-        <!-- Day Selector Strip (Oct 12 - Oct 16) -->
-        <div class="max-w-5xl mx-auto mt-3 pt-2 border-t border-slate-800/50 flex overflow-x-auto no-scrollbar gap-2 px-1">
-            <button onclick="switchDay('2026-10-12')" id="day-btn-2026-10-12" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
-                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Mon</span>
+        <!-- Day Selector Strip -->
+        <div class="max-w-7xl mx-auto mt-3 pt-2 border-t border-slate-800/50 flex overflow-x-auto no-scrollbar gap-2 px-1">
+            <button onclick="switchDay('2026-10-12')" id="day-btn-2026-10-12" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
+                <span class="text-[10px] uppercase tracking-wider font-semibold">Mon</span>
                 <span class="text-base font-bold">12 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-13')" id="day-btn-2026-10-13" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
-                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Tue</span>
+            <button onclick="switchDay('2026-10-13')" id="day-btn-2026-10-13" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
+                <span class="text-[10px] uppercase tracking-wider font-semibold">Tue</span>
                 <span class="text-base font-bold">13 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-14')" id="day-btn-2026-10-14" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
-                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Wed</span>
+            <button onclick="switchDay('2026-10-14')" id="day-btn-2026-10-14" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
+                <span class="text-[10px] uppercase tracking-wider font-semibold">Wed</span>
                 <span class="text-base font-bold">14 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-15')" id="day-btn-2026-10-15" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
-                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Thu</span>
+            <button onclick="switchDay('2026-10-15')" id="day-btn-2026-10-15" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
+                <span class="text-[10px] uppercase tracking-wider font-semibold">Thu</span>
                 <span class="text-base font-bold">15 OCT</span>
             </button>
-            <button onclick="switchDay('2026-10-16')" id="day-btn-2026-10-16" class="day-btn flex-1 min-w-[72px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900">
-                <span class="text-[10px] uppercase tracking-wider font-semibold opacity-70">Fri</span>
+            <button onclick="switchDay('2026-10-16')" id="day-btn-2026-10-16" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
+                <span class="text-[10px] uppercase tracking-wider font-semibold">Fri</span>
                 <span class="text-base font-bold">16 OCT</span>
             </button>
         </div>
     </header>
 
     <!-- Controls Toolbar -->
-    <main class="max-w-5xl mx-auto w-full px-4 pt-4 flex-1">
-        <div class="space-y-3 mb-5">
+    <main class="max-w-7xl mx-auto w-full px-4 pt-4 flex-1 flex flex-col">
+        <div class="space-y-3 mb-4">
             <div class="flex flex-col sm:flex-row items-center gap-3">
                 <div class="relative w-full flex-1">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
@@ -132,7 +132,7 @@
                 </div>
                 
                 <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-36">
+                    <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
                         <option value="ALL">All Venues</option>
                         <option value="OGR Main Hall">OGR Main Hall</option>
                         <option value="OGR Stage B">OGR Stage B</option>
@@ -140,7 +140,7 @@
                         <option value="Cinema Massimo">Cinema Massimo</option>
                     </select>
 
-                    <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-36">
+                    <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
                         <option value="ALL">All Tracks</option>
                         <option value="Keynote">Keynote</option>
                         <option value="Animation">Animation</option>
@@ -151,7 +151,7 @@
                 </div>
             </div>
 
-            <!-- Toggle Filter: All vs Starred -->
+            <!-- Toggle Filter: All vs Starred & Zoom Scale -->
             <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
                 <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
                     <button onclick="setStarredFilter(false)" id="filter-all-btn" class="px-3 py-1.5 rounded-lg font-medium transition text-white bg-brand-600">
@@ -167,9 +167,9 @@
                     <span class="text-[11px] text-slate-400 font-semibold px-2 hidden sm:inline">
                         <i class="fa-solid fa-up-down text-brand-500 mr-1"></i>Row Scale:
                     </span>
-                    <button onclick="setGridZoom(90)" id="zoom-btn-90" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Compact</button>
-                    <button onclick="setGridZoom(130)" id="zoom-btn-130" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700">Default</button>
-                    <button onclick="setGridZoom(180)" id="zoom-btn-180" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Expanded</button>
+                    <button onclick="setGridZoom(100)" id="zoom-btn-100" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Compact</button>
+                    <button onclick="setGridZoom(140)" id="zoom-btn-140" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-white bg-slate-800 border border-slate-700">Default</button>
+                    <button onclick="setGridZoom(190)" id="zoom-btn-190" class="zoom-btn px-2.5 py-1 rounded-lg font-medium transition text-slate-400 hover:text-white">Expanded</button>
                 </div>
             </div>
         </div>
@@ -179,27 +179,29 @@
                 <i class="fa-solid fa-arrows-left-right text-brand-400"></i>
                 <span>Scroll horizontally to compare venue stages side-by-side</span>
             </span>
-            <span id="scale-indicator" class="text-[10px] text-slate-400 font-semibold hidden sm:inline">1 Hour = 130px height</span>
+            <span id="scale-indicator" class="text-[10px] text-slate-400 font-semibold hidden sm:inline">1 Hour = 140px height</span>
         </div>
 
-        <!-- Schedule Container -->
-        <div id="schedule-container" class="relative"></div>
+        <!-- Time-Grid Matrix Wrapper -->
+        <div class="overflow-x-auto bg-slate-900/40 rounded-2xl border border-slate-800/90 shadow-2xl relative flex-1">
+            <div id="schedule-container" class="min-w-[850px] relative"></div>
+        </div>
 
         <!-- Empty State -->
         <div id="empty-state" class="hidden py-16 text-center text-slate-500">
             <div class="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center mx-auto mb-3 text-2xl text-slate-600">
                 <i class="fa-regular fa-star"></i>
             </div>
-            <p class="font-semibold text-slate-400">No events found</p>
-            <p class="text-xs text-slate-600 mt-1">Try toggling filters or starring sessions you want to see.</p>
+            <p class="font-semibold text-slate-400">No matching events found</p>
+            <p class="text-xs text-slate-600 mt-1">Try clearing filters or selecting another date.</p>
         </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Detailed Modal -->
     <div id="event-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/75 backdrop-blur-sm p-0 sm:p-4 transition-opacity">
         <div class="bg-slate-900 w-full max-w-lg rounded-t-3xl sm:rounded-2xl border border-slate-800 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
             <div class="relative h-48 bg-slate-950 overflow-hidden flex-shrink-0">
-                <img id="modal-banner" src="" alt="Event Banner" class="w-full h-full object-cover object-center" onerror="this.src='https://placehold.co/800x400/1e293b/f43f5e?text=VIEW+2026+Torino'">
+                <img id="modal-banner" src="" alt="Event Banner" class="w-full h-full object-cover object-center" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
                 <button onclick="closeModal()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition">
                     <i class="fa-solid fa-xmark"></i>
@@ -274,6 +276,10 @@
     </nav>
 
     <script>
+        const VENUES = ["OGR Main Hall", "OGR Stage B", "ITS Auditorium", "Cinema Massimo"];
+        const DAY_START_HOUR = 8;
+        const DAY_END_HOUR = 19;
+
         const SCHEDULE_DATA = [
             {
                 id: "1201",
@@ -528,12 +534,10 @@
         let selectedDate = "2026-10-13";
         let showOnlyStarred = false;
         let currentModalEventId = null;
-        let gridScale = 130; // Pixel height per hour
+        let gridScale = 140; // Pixel height per hour
         let starredIds = new Set(JSON.parse(localStorage.getItem('view2026_starred') || '[]'));
 
-        // Initialize state on DOM Load
         document.addEventListener('DOMContentLoaded', () => {
-            // Load starred items from URL if present
             const urlParams = new URLSearchParams(window.location.search);
             const syncData = urlParams.get('sync');
             if (syncData) {
@@ -646,39 +650,113 @@
 
             emptyState.classList.add('hidden');
 
-            // Render List View of filtered items
-            filtered.sort((a, b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
+            const totalHours = DAY_END_HOUR - DAY_START_HOUR;
+            const totalGridHeight = totalHours * gridScale;
 
-            let html = `<div class="space-y-3">`;
-            filtered.forEach(ev => {
-                const isStarred = starredIds.has(ev.id);
-                html += `
-                    <div onclick="openModal('${ev.id}')" class="bg-slate-900/90 border border-slate-800/90 hover:border-brand-500/50 rounded-2xl p-4 transition-all duration-200 cursor-pointer event-card-shadow flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 group">
-                        <div class="flex items-start gap-3.5 flex-1">
-                            <div class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex flex-col items-center justify-center flex-shrink-0 text-center">
-                                <span class="text-xs font-bold text-brand-500">${ev.startTime}</span>
-                                <span class="text-[10px] text-slate-400">${ev.endTime}</span>
-                            </div>
-                            <div class="space-y-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-brand-500/20 text-brand-400 border border-brand-500/30">${ev.track}</span>
-                                    <span class="text-xs text-slate-400 flex items-center gap-1"><i class="fa-solid fa-location-dot text-[10px] text-slate-500"></i> ${ev.location}</span>
-                                </div>
-                                <h3 class="font-bold text-slate-100 group-hover:text-brand-400 transition text-base leading-snug">${ev.title}</h3>
-                                <p class="text-xs text-slate-400"><i class="fa-solid fa-user-tie mr-1 text-slate-500"></i>${ev.speaker}</p>
-                            </div>
+            // Header Column Row for Venues
+            let gridHtml = `
+                <div class="sticky top-0 z-30 bg-slate-900 border-b border-slate-800 flex text-xs font-bold text-slate-300">
+                    <div class="w-16 flex-shrink-0 p-3 border-r border-slate-800 text-center text-slate-500 bg-slate-900/95 sticky left-0 z-40">
+                        TIME
+                    </div>
+            `;
+
+            VENUES.forEach(venue => {
+                const isSelectedVenue = venueVal === 'ALL' || venueVal === venue;
+                if (isSelectedVenue) {
+                    gridHtml += `
+                        <div class="flex-1 min-w-[200px] p-3 border-r border-slate-800/80 text-center bg-slate-900/90 flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-brand-500 text-[10px]"></i>
+                            <span>${venue}</span>
                         </div>
-                        <div class="flex items-center gap-2 self-end sm:self-center">
-                            <button onclick="event.stopPropagation(); toggleStar('${ev.id}')" class="p-2.5 rounded-xl border transition ${isStarred ? 'bg-amber-500/20 text-amber-400 border-amber-500/40' : 'bg-slate-800/80 text-slate-400 border-slate-700/60 hover:text-white'}">
-                                <i class="fa-solid fa-star text-sm"></i>
-                            </button>
-                        </div>
+                    `;
+                }
+            });
+
+            gridHtml += `</div><div class="relative flex" style="height: ${totalGridHeight}px;">`;
+
+            // Time Axis Labels
+            gridHtml += `<div class="w-16 flex-shrink-0 border-r border-slate-800 bg-slate-950/80 sticky left-0 z-20 select-none">`;
+            for (let h = DAY_START_HOUR; h < DAY_END_HOUR; h++) {
+                const topPx = (h - DAY_START_HOUR) * gridScale;
+                gridHtml += `
+                    <div class="absolute w-full text-right pr-2 text-[11px] font-semibold text-slate-500 -translate-y-2" style="top: ${topPx}px;">
+                        ${String(h).padStart(2, '0')}:00
                     </div>
                 `;
-            });
-            html += `</div>`;
+            }
+            gridHtml += `</div>`;
 
-            container.innerHTML = html;
+            // Background Hour Horizontal Gridlines
+            gridHtml += `<div class="absolute inset-0 left-16 pointer-events-none">`;
+            for (let h = DAY_START_HOUR; h <= DAY_END_HOUR; h++) {
+                const topPx = (h - DAY_START_HOUR) * gridScale;
+                gridHtml += `<div class="absolute w-full grid-line" style="top: ${topPx}px;"></div>`;
+            }
+            gridHtml += `</div>`;
+
+            // Venue Columns & Dynamic Positioning Cards
+            VENUES.forEach(venue => {
+                const isSelectedVenue = venueVal === 'ALL' || venueVal === venue;
+                if (!isSelectedVenue) return;
+
+                gridHtml += `<div class="flex-1 min-w-[200px] border-r border-slate-800/50 relative">`;
+
+                const venueEvents = filtered.filter(e => e.location === venue);
+                venueEvents.forEach(ev => {
+                    const startMin = timeToMinutes(ev.startTime);
+                    const endMin = timeToMinutes(ev.endTime);
+                    const dayStartMin = DAY_START_HOUR * 60;
+
+                    const topPx = ((startMin - dayStartMin) / 60) * gridScale;
+                    const durationHrs = (endMin - startMin) / 60;
+                    const heightPx = Math.max(durationHrs * gridScale - 6, 60);
+
+                    const isStarred = starredIds.has(ev.id);
+
+                    gridHtml += `
+                        <div onclick="openModal('${ev.id}')" 
+                             style="top: ${topPx + 3}px; height: ${heightPx}px;"
+                             class="absolute left-1 right-1 rounded-xl overflow-hidden cursor-pointer group transition-all duration-200 hover:z-20 hover:scale-[1.02] border border-slate-700/80 hover:border-brand-500 shadow-xl">
+                            
+                            <!-- Card Background Image with Dark Gradient Overlay -->
+                            <img src="${ev.imageUrl}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60 group-hover:via-slate-950/70 transition-colors"></div>
+
+                            <!-- Content Overlay -->
+                            <div class="relative h-full p-2.5 flex flex-col justify-between text-white z-10">
+                                <div>
+                                    <div class="flex items-center justify-between gap-1 mb-1">
+                                        <span class="px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-wider bg-brand-600/90 text-white shadow-sm">
+                                            ${ev.track}
+                                        </span>
+                                        <button onclick="event.stopPropagation(); toggleStar('${ev.id}')" class="text-xs transition ${isStarred ? 'text-amber-400' : 'text-slate-400/80 hover:text-white'}">
+                                            <i class="fa-solid fa-star"></i>
+                                        </button>
+                                    </div>
+                                    <h4 class="font-bold text-xs sm:text-sm leading-snug line-clamp-2 text-slate-100 group-hover:text-brand-400 transition-colors">
+                                        ${ev.title}
+                                    </h4>
+                                </div>
+
+                                <div class="mt-1">
+                                    <p class="text-[10px] text-slate-300 font-medium truncate flex items-center gap-1">
+                                        <i class="fa-solid fa-user text-[9px] text-brand-400"></i> ${ev.speaker}
+                                    </p>
+                                    <p class="text-[10px] text-slate-400 font-semibold flex items-center gap-1 mt-0.5">
+                                        <i class="fa-regular fa-clock text-[9px] text-brand-500"></i> ${ev.startTime} - ${ev.endTime}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                gridHtml += `</div>`;
+            });
+
+            gridHtml += `</div>`;
+            container.innerHTML = gridHtml;
         }
 
         function toggleStar(id) {
@@ -719,7 +797,6 @@
         function updateModalStarButton(id) {
             const isStarred = starredIds.has(id);
             const btn = document.getElementById('modal-star-btn');
-            const icon = document.getElementById('modal-star-icon');
             const text = document.getElementById('modal-star-text');
 
             if (isStarred) {
