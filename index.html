@@ -29,17 +29,14 @@
             }
         }
     </script>
-
     <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
         body {
             font-family: 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-        
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -47,27 +44,23 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-
         .glass-header {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-
         .tab-active {
             background-color: #e11d48 !important;
             color: #ffffff !important;
             border-color: #f43f5e !important;
             box-shadow: 0 4px 14px 0 rgba(225, 29, 72, 0.39);
         }
-
         .grid-line {
             border-bottom: 1px dashed rgba(51, 65, 85, 0.4);
         }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-600 selection:text-white pb-20 md:pb-6">
-
     <!-- Top Fixed Header -->
     <header class="sticky top-0 z-40 glass-header border-b border-slate-800/80 px-4 py-3">
         <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
@@ -83,7 +76,6 @@
                     <p class="text-xs text-slate-400">Oct 12 – Oct 16 • OGR & Venues</p>
                 </div>
             </div>
-
             <!-- Sync & Share Action Buttons -->
             <div class="flex items-center gap-2">
                 <button onclick="copyShareableLink()" title="Copy Shareable Link for device sync" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition border border-slate-700/60 active:scale-95">
@@ -96,7 +88,6 @@
                 </button>
             </div>
         </div>
-
         <!-- Day Selector Strip -->
         <div class="max-w-7xl mx-auto mt-3 pt-2 border-t border-slate-800/50 flex overflow-x-auto no-scrollbar gap-2 px-1">
             <button onclick="switchDay('2026-10-12')" id="day-btn-2026-10-12" class="day-btn flex-1 min-w-[80px] py-2 px-3 rounded-xl flex flex-col items-center justify-center transition border border-slate-800 bg-slate-900/90 text-slate-400 hover:text-white">
@@ -121,7 +112,6 @@
             </button>
         </div>
     </header>
-
     <!-- Controls Toolbar -->
     <main class="max-w-7xl mx-auto w-full px-4 pt-4 flex-1 flex flex-col">
         <div class="space-y-3 mb-4">
@@ -130,17 +120,15 @@
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                     <input type="text" id="search-input" oninput="applyFilters()" placeholder="Search title, speaker, topic..." class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 transition">
                 </div>
-                
                 <div class="flex items-center gap-2 w-full sm:w-auto">
                     <select id="venue-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
                         <option value="ALL">All Venues</option>
-                        <option value="OGR - Sala Fucine">Sala Fucine</option>
-                        <option value="OGR - Binario 3">Binario 3</option>
-                        <option value="OGR - Mezzanino">Mezzanino</option>
-                        <option value="OGR - SOPPALCO">Soppalco</option>
-                        <option value="OGR - Cinema Massimo">Cinema Massimo</option>
+                        <option value="OGR - Sala Fucine">OGR - Sala Fucine</option>
+                        <option value="OGR - Binario 3">OGR - Binario 3</option>
+                        <option value="OGR - Mezzanino">OGR - Mezzanino</option>
+                        <option value="OGR - SOPPALCO">OGR - Soppalco</option>
+                        <option value="OGR - Cinema Massimo">OGR - Cinema Massimo</option>
                     </select>
-
                     <select id="track-filter" onchange="applyFilters()" class="bg-slate-900 border border-slate-800 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-brand-500 flex-1 sm:w-40">
                         <option value="ALL">All Tracks</option>
                         <option value="VFX">VFX</option>
@@ -150,7 +138,6 @@
                     </select>
                 </div>
             </div>
-
             <!-- Toggle Filter: All vs Starred & Zoom Scale -->
             <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
                 <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
@@ -162,7 +149,6 @@
                         Starred (<span id="starred-count">0</span>)
                     </button>
                 </div>
-                
                 <div class="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
                     <span class="text-[11px] text-slate-400 font-semibold px-2 hidden sm:inline">
                         <i class="fa-solid fa-up-down text-brand-500 mr-1"></i>Row Scale:
@@ -173,7 +159,6 @@
                 </div>
             </div>
         </div>
-
         <div id="grid-scroll-tip" class="mb-3 text-center sm:text-left text-[11px] text-slate-400 flex items-center justify-between bg-slate-900/60 border border-slate-800/80 px-3 py-1.5 rounded-xl">
             <span class="flex items-center gap-1.5">
                 <i class="fa-solid fa-arrows-left-right text-brand-400"></i>
@@ -181,12 +166,10 @@
             </span>
             <span id="scale-indicator" class="text-[10px] text-slate-400 font-semibold hidden sm:inline">1 Hour = 140px height</span>
         </div>
-
         <!-- Time-Grid Matrix Wrapper -->
         <div class="overflow-x-auto bg-slate-900/40 rounded-2xl border border-slate-800/90 shadow-2xl relative flex-1">
             <div id="schedule-container" class="min-w-[850px] relative"></div>
         </div>
-
         <!-- Empty State -->
         <div id="empty-state" class="hidden py-16 text-center text-slate-500">
             <div class="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center mx-auto mb-3 text-2xl text-slate-600">
@@ -196,7 +179,6 @@
             <p class="text-xs text-slate-600 mt-1">Try clearing filters or selecting another date.</p>
         </div>
     </main>
-
     <!-- Detailed Modal -->
     <div id="event-modal" class="fixed inset-0 z-50 hidden flex items-end sm:items-center justify-center bg-black/75 backdrop-blur-sm p-0 sm:p-4 transition-opacity">
         <div class="bg-slate-900 w-full max-w-lg rounded-t-3xl sm:rounded-2xl border border-slate-800 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
@@ -210,13 +192,11 @@
                     <span id="modal-track" class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-600 text-white shadow">TRACK</span>
                 </div>
             </div>
-
             <div class="p-5 overflow-y-auto space-y-4 flex-1">
                 <div>
                     <h2 id="modal-title" class="text-xl font-bold text-white leading-tight"></h2>
                     <p id="modal-speaker" class="text-sm text-brand-400 font-medium mt-1"></p>
                 </div>
-
                 <div class="grid grid-cols-2 gap-2 bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-xs">
                     <div class="flex items-center gap-2 text-slate-300">
                         <i class="fa-regular fa-clock text-brand-500"></i>
@@ -233,13 +213,11 @@
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <h3 class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-1">About Session</h3>
                     <p id="modal-description" class="text-sm text-slate-300 leading-relaxed"></p>
                 </div>
             </div>
-
             <div class="p-4 border-t border-slate-800 bg-slate-950 flex items-center gap-3">
                 <button id="modal-star-btn" onclick="toggleModalStar()" class="flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition active:scale-95 border border-slate-700 bg-slate-800 text-slate-200">
                     <i id="modal-star-icon" class="fa-solid fa-star"></i>
@@ -252,13 +230,11 @@
             </div>
         </div>
     </div>
-
     <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-slate-800 text-white px-4 py-2.5 rounded-xl border border-slate-700 shadow-xl text-xs font-semibold flex items-center gap-2 transition-all opacity-0 pointer-events-none transform translate-y-2">
         <i id="toast-icon" class="fa-solid fa-circle-check text-brand-500"></i>
         <span id="toast-message">Action successful</span>
     </div>
-
     <!-- Bottom Navigation (Mobile) -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 glass-header border-t border-slate-800/80 px-6 py-2.5 flex items-center justify-around">
         <button onclick="setStarredFilter(false)" id="nav-home" class="flex flex-col items-center gap-0.5 text-brand-500">
@@ -274,18 +250,16 @@
             <span class="text-[10px] font-medium">Backup</span>
         </button>
     </nav>
-
     <script>
         const VENUES = ["OGR - Sala Fucine", "OGR - Binario 3", "OGR - Mezzanino", "OGR - SOPPALCO", "OGR - Cinema Massimo"];
         const DAY_START_HOUR = 8;
         const DAY_END_HOUR = 19;
-
-        const SCHEDULE_DATA = [
+        let SCHEDULE_DATA = [
             {
                 id: "1001",
                 title: "09:00",
                 speaker: "STEVE EMERSON, Production VFX Supervisor, LAIKA",
-                location: "OGR - Sala Fucine",
+                location: "OGR - Mezzanino",
                 date: "2026-10-13",
                 startTime: "09:00",
                 endTime: "10:00",
@@ -306,18 +280,6 @@
                 url: "https://www.viewconference.it/article/1301"
             },
             {
-                id: "1003",
-                title: "Welcome to the Future: A Conversation with Brad Bird on Ray Gunn",
-                speaker: "BRAD BIRD, Writer & Director, Ray Gunn",
-                location: "OGR - Sala Fucine",
-                date: "2026-10-13",
-                startTime: "10:15",
-                endTime: "11:15",
-                track: "Session",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_feature.jpg",
-                url: "https://www.viewconference.it/article/1296"
-            },
-            {
                 id: "1004",
                 title: "Building Carcosa: Art Direction of SAROS",
                 speaker: "SIMONE SILVESTRI, Art Director, Saros game, Housemarque",
@@ -328,93 +290,8 @@
                 track: "Session",
                 imageUrl: "",
                 url: "https://www.viewconference.it/article/1265"
-            },
-            {
-                id: "1005",
-                title: "From Desert Chases to Courtroom Cases: The VFX of ‘Coyote vs. Acme’",
-                speaker: "ALEXANDER SEAMAN, VFX Supervisor, DNEG",
-                location: "OGR - Sala Fucine",
-                date: "2026-10-13",
-                startTime: "11:30",
-                endTime: "12:30",
-                track: "VFX",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/04/coyotevsacme-1_feature.jpg",
-                url: "https://www.viewconference.it/article/1309"
-            },
-            {
-                id: "1006",
-                title: "Artists in the Loop: Generative AI in Production at Eyeline",
-                speaker: "MOHSEN MOUSAVI, VP, Virtual Pioneering, Eyeline Studios",
-                location: "OGR - Binario 3",
-                date: "2026-10-13",
-                startTime: "11:30",
-                endTime: "12:30",
-                track: "AI & Tech",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/26/eyelinebanner2_feature.jpg",
-                url: "https://www.viewconference.it/article/1293"
-            },
-            {
-                id: "1007",
-                title: "Modelmaking for Visual Effects in a Time of CGI",
-                speaker: "SIMON WEISSE, VFX Miniature Unit Supervisor and Props Designer",
-                location: "OGR - Mezzanino",
-                date: "2026-10-13",
-                startTime: "11:30",
-                endTime: "12:30",
-                track: "VFX",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/16/simonweissebanner_feature.jpg",
-                url: "https://www.viewconference.it/article/1249"
-            },
-            {
-                id: "1008",
-                title: "Acting and Facial Performance",
-                speaker: "ALEXIS WANNEROY, ( Remote ), Senior Animation Supervisor, Fortiche Production",
-                location: "OGR - SOPPALCO",
-                date: "2026-10-13",
-                startTime: "11:30",
-                endTime: "12:30",
-                track: "Animation",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/06/12/alexiswanneroybanner_feature.jpg",
-                url: "https://www.viewconference.it/article/1247"
-            },
-            {
-                id: "1009",
-                title: "From Camera to Light: Crafting Wolverine's Cinematic World",
-                speaker: "BRIAN WYSER, Senior Animation Director, Wolverine",
-                location: "OGR - Sala Fucine",
-                date: "2026-10-13",
-                startTime: "12:45",
-                endTime: "13:45",
-                track: "Animation",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/07/02/brianmullenbanner_feature.jpg",
-                url: "https://www.viewconference.it/article/1271"
-            },
-            {
-                id: "1010",
-                title: "The Sheep Detectives",
-                speaker: "CHRIS HURTT, Animation Director, Framestore",
-                location: "OGR - Binario 3",
-                date: "2026-10-13",
-                startTime: "12:45",
-                endTime: "13:45",
-                track: "Animation",
-                imageUrl: "https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/29/thesheepdetectives_feature.jpeg",
-                url: "https://www.viewconference.it/article/1310"
-            },
-            {
-                id: "1011",
-                title: "Alchemy of the Award-Winning Shot: Mastering Human Intuition in an Automated Era",
-                speaker: "KEVIN BAILLIE, Executive, Visual Effects Supervisor, Director, Founder, Leeme",
-                location: "OGR - Mezzanino",
-                date: "2026-10-13",
-                startTime: "12:45",
-                endTime: "13:45",
-                track: "VFX",
-                imageUrl: "",
-                url: "https://www.viewconference.it/article/1311"
             }
         ];
-
         // Normalizer function to map raw location string from JSON to configured VENUES array
         function parseVenueLocation(locationStr) {
             if (!locationStr) return "OGR - Sala Fucine";
@@ -422,12 +299,6 @@
             const matched = VENUES.find(v => v.toLowerCase() === cleaned.toLowerCase());
             return matched || cleaned;
         }
-
-        // Clean initial dataset locations
-        SCHEDULE_DATA.forEach(ev => {
-            ev.location = parseVenueLocation(ev.location);
-        });
-
         // State Variables
         let selectedDate = "2026-10-13";
         let showOnlyStarred = false;
@@ -435,7 +306,27 @@
         let gridScale = 140; // Pixel height per hour
         let starredIds = new Set(JSON.parse(localStorage.getItem('view2026_starred') || '[]'));
 
-        document.addEventListener('DOMContentLoaded', () => {
+        async function loadScheduleData() {
+            try {
+                const response = await fetch('schedule.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (Array.isArray(data) && data.length > 0) {
+                        SCHEDULE_DATA = data;
+                    }
+                }
+            } catch (e) {
+                console.warn("Could not load schedule.json, using default dataset fallback.", e);
+            }
+            // Clean dataset locations
+            SCHEDULE_DATA.forEach(ev => {
+                ev.location = parseVenueLocation(ev.location);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadScheduleData();
+
             const urlParams = new URLSearchParams(window.location.search);
             const syncData = urlParams.get('sync');
             if (syncData) {
@@ -459,11 +350,9 @@
             localStorage.setItem('view2026_starred', JSON.stringify(Array.from(starredIds)));
             updateStarredCount();
         }
-
         function updateStarredCount() {
             document.getElementById('starred-count').innerText = starredIds.size;
         }
-
         function switchDay(dateStr) {
             selectedDate = dateStr;
             document.querySelectorAll('.day-btn').forEach(btn => {
@@ -474,7 +363,6 @@
             
             renderSchedule();
         }
-
         function setStarredFilter(starredOnly) {
             showOnlyStarred = starredOnly;
             
@@ -497,7 +385,6 @@
 
             renderSchedule();
         }
-
         function setGridZoom(scale) {
             gridScale = scale;
             document.querySelectorAll('.zoom-btn').forEach(btn => {
@@ -509,7 +396,6 @@
             document.getElementById('scale-indicator').innerText = `1 Hour = ${scale}px height`;
             renderSchedule();
         }
-
         function applyFilters() {
             renderSchedule();
         }
@@ -518,15 +404,12 @@
             const [h, m] = t.split(':').map(Number);
             return h * 60 + m;
         }
-
         function renderSchedule() {
             const container = document.getElementById('schedule-container');
             const emptyState = document.getElementById('empty-state');
             const searchVal = document.getElementById('search-input').value.toLowerCase().trim();
             const venueVal = document.getElementById('venue-filter').value;
             const trackVal = document.getElementById('track-filter').value;
-
-            // Filter logic
             const filtered = SCHEDULE_DATA.filter(ev => {
                 const matchesDate = ev.date === selectedDate;
                 const matchesStarred = !showOnlyStarred || starredIds.has(ev.id);
@@ -539,18 +422,14 @@
 
                 return matchesDate && matchesStarred && matchesVenue && matchesTrack && matchesSearch;
             });
-
             if (filtered.length === 0) {
                 container.innerHTML = '';
                 emptyState.classList.remove('hidden');
                 return;
             }
-
             emptyState.classList.add('hidden');
-
             const totalHours = DAY_END_HOUR - DAY_START_HOUR;
             const totalGridHeight = totalHours * gridScale;
-
             // Header Column Row for Venues
             let gridHtml = `
                 <div class="sticky top-0 z-30 bg-slate-900 border-b border-slate-800 flex text-xs font-bold text-slate-300">
@@ -558,7 +437,6 @@
                         TIME
                     </div>
             `;
-
             VENUES.forEach(venue => {
                 const isSelectedVenue = venueVal === 'ALL' || venueVal === venue;
                 if (isSelectedVenue) {
@@ -570,9 +448,7 @@
                     `;
                 }
             });
-
             gridHtml += `</div><div class="relative flex" style="height: ${totalGridHeight}px;">`;
-
             // Time Axis Labels
             gridHtml += `<div class="w-16 flex-shrink-0 border-r border-slate-800 bg-slate-950/80 sticky left-0 z-20 select-none">`;
             for (let h = DAY_START_HOUR; h < DAY_END_HOUR; h++) {
@@ -584,7 +460,6 @@
                 `;
             }
             gridHtml += `</div>`;
-
             // Background Hour Horizontal Gridlines
             gridHtml += `<div class="absolute inset-0 left-16 pointer-events-none">`;
             for (let h = DAY_START_HOUR; h <= DAY_END_HOUR; h++) {
@@ -592,14 +467,12 @@
                 gridHtml += `<div class="absolute w-full grid-line" style="top: ${topPx}px;"></div>`;
             }
             gridHtml += `</div>`;
-
             // Venue Columns & Dynamic Positioning Cards
             VENUES.forEach(venue => {
                 const isSelectedVenue = venueVal === 'ALL' || venueVal === venue;
                 if (!isSelectedVenue) return;
 
                 gridHtml += `<div class="flex-1 min-w-[200px] border-r border-slate-800/50 relative">`;
-
                 const venueEvents = filtered.filter(e => e.location === venue);
                 venueEvents.forEach(ev => {
                     const startMin = timeToMinutes(ev.startTime);
@@ -617,11 +490,9 @@
                         <div onclick="openModal('${ev.id}')" 
                              style="top: ${topPx + 3}px; height: ${heightPx}px;"
                              class="absolute left-1 right-1 rounded-xl overflow-hidden cursor-pointer group transition-all duration-200 hover:z-20 hover:scale-[1.02] border border-slate-700/80 hover:border-brand-500 shadow-xl">
-                            
                             <!-- Card Background Image with Dark Gradient Overlay -->
                             <img src="${bgImage}" alt="" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80'">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60 group-hover:via-slate-950/70 transition-colors"></div>
-
                             <!-- Content Overlay -->
                             <div class="relative h-full p-2.5 flex flex-col justify-between text-white z-10">
                                 <div>
@@ -653,11 +524,9 @@
 
                 gridHtml += `</div>`;
             });
-
             gridHtml += `</div>`;
             container.innerHTML = gridHtml;
         }
-
         function toggleStar(id) {
             if (starredIds.has(id)) {
                 starredIds.delete(id);
@@ -672,7 +541,6 @@
                 updateModalStarButton(id);
             }
         }
-
         function openModal(id) {
             const ev = SCHEDULE_DATA.find(item => item.id === id);
             if (!ev) return;
@@ -686,7 +554,6 @@
             document.getElementById('modal-location').innerText = ev.location;
             document.getElementById('modal-description').innerText = ev.description || "Join us for this featured SESSION at VIEW Conference 2026 featuring top industry talent and technical insights.";
             
-            // Fixed: Read URL directly from event JSON object field (supports both ev.url and ev.articleUrl)
             const officialUrl = ev.url || ev.articleUrl || "https://www.viewconference.it/pages/program";
             document.getElementById('modal-link').href = officialUrl;
 
@@ -695,7 +562,6 @@
             const modal = document.getElementById('event-modal');
             modal.classList.remove('hidden');
         }
-
         function updateModalStarButton(id) {
             const isStarred = starredIds.has(id);
             const btn = document.getElementById('modal-star-btn');
@@ -709,18 +575,15 @@
                 text.innerText = "Star Event";
             }
         }
-
         function toggleModalStar() {
             if (currentModalEventId) {
                 toggleStar(currentModalEventId);
             }
         }
-
         function closeModal() {
             document.getElementById('event-modal').classList.add('hidden');
             currentModalEventId = null;
         }
-
         function showToast(msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-message').innerText = msg;
@@ -729,16 +592,16 @@
                 toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
             }, 2500);
         }
-
-        function triggerLiveSync() {
+        async function triggerLiveSync() {
             const icon = document.getElementById('sync-icon');
             icon.classList.add('fa-spin');
+            await loadScheduleData();
+            renderSchedule();
             setTimeout(() => {
                 icon.classList.remove('fa-spin');
-                showToast("Schedule updated with official VIEW database");
-            }, 1000);
+                showToast("Schedule updated with schedule.json!");
+            }, 600);
         }
-
         function copyShareableLink() {
             const payload = btoa(JSON.stringify(Array.from(starredIds)));
             const url = `${window.location.origin}${window.location.pathname}?sync=${payload}`;
@@ -748,7 +611,6 @@
                 showToast("Failed to copy link.");
             });
         }
-
         function exportStarredData() {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(Array.from(starredIds)));
             const downloadAnchor = document.createElement('a');
