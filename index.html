@@ -1,126 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-gray-900">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VIEW Conference 2026 Schedule</title>
-  
-  <!-- Compiled Tailwind CSS for Production -->
+
+  <!-- Production Compiled Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwindcss.min.css" rel="stylesheet">
-  
+
   <style>
-    body {
-      background-color: #0f172a;
-      color: #f8fafc;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
     }
-    .active-tab {
-      background-color: #4f46e5 !important;
+    ::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4b5563;
+    }
+    .active-pill {
+      background-color: #6366f1 !important;
       color: #ffffff !important;
-      border-color: #6366f1 !important;
+      border-color: #818cf8 !important;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="h-full flex flex-col text-gray-100 bg-gray-900 antialiased selection:bg-indigo-500 selection:text-white">
 
-  <!-- Header -->
-  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div>
-        <h1 class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
-          VIEW Conference 2026
-        </h1>
-        <p class="text-xs text-slate-400 mt-0.5">October 12 - 16, 2026 • Turin, Italy</p>
-      </div>
+  <!-- Main Navigation Header -->
+  <header class="bg-gray-800/80 backdrop-blur-md border-b border-gray-700/60 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        
+        <!-- Title & Subtitle -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-indigo-500/20">
+            V
+          </div>
+          <div>
+            <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-400">
+              VIEW Conference 2026
+            </h1>
+            <p class="text-xs text-gray-400">Official Interactive Event Schedule</p>
+          </div>
+        </div>
 
-      <!-- Search Input -->
-      <div class="w-full md:w-72">
-        <input 
-          type="text" 
-          id="search-input" 
-          placeholder="Search talk, speaker, track..." 
-          class="w-full bg-slate-800 text-slate-100 text-sm rounded-lg px-3.5 py-2 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-slate-500"
-          oninput="handleFilterChange()"
-        >
+        <!-- Search Bar -->
+        <div class="relative w-full md:w-80">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search talk, speaker, location..." 
+            class="w-full bg-gray-900/90 text-sm text-gray-200 placeholder-gray-500 rounded-xl px-4 py-2.5 border border-gray-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+            oninput="handleFilterChange()"
+          >
+          <span class="absolute right-3.5 top-2.5 text-gray-500 text-sm">🔍</span>
+        </div>
+
       </div>
     </div>
 
-    <!-- Day Navigation Bar -->
-    <div class="bg-slate-900/90 border-t border-slate-800/80 backdrop-blur-md">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 py-2 overflow-x-auto text-xs sm:text-sm scrollbar-none">
-        <button onclick="setDateFilter('all')" id="tab-all" class="date-tab active-tab px-3 py-1.5 rounded-lg border border-slate-700 font-semibold transition-all whitespace-nowrap">
-          All Days
-        </button>
-        <button onclick="setDateFilter('2026-10-12')" id="tab-2026-10-12" class="date-tab px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700 transition-all whitespace-nowrap">
-          Mon, Oct 12
-        </button>
-        <button onclick="setDateFilter('2026-10-13')" id="tab-2026-10-13" class="date-tab px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700 transition-all whitespace-nowrap">
-          Tue, Oct 13
-        </button>
-        <button onclick="setDateFilter('2026-10-14')" id="tab-2026-10-14" class="date-tab px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700 transition-all whitespace-nowrap">
-          Wed, Oct 14
-        </button>
-        <button onclick="setDateFilter('2026-10-15')" id="tab-2026-10-15" class="date-tab px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700 transition-all whitespace-nowrap">
-          Thu, Oct 15
-        </button>
-        <button onclick="setDateFilter('2026-10-16')" id="tab-2026-10-16" class="date-tab px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 font-medium hover:bg-slate-700 transition-all whitespace-nowrap">
-          Fri, Oct 16
-        </button>
+    <!-- Sub-Header: Day Tabs & Category Filters -->
+    <div class="bg-gray-900/50 border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-3">
+        
+        <!-- Day Selector Tabs -->
+        <div class="flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-semibold">
+          <button onclick="setDateFilter('all')" id="date-all" class="date-tab active-pill px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            All Days
+          </button>
+          <button onclick="setDateFilter('2026-10-12')" id="date-2026-10-12" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            Mon Oct 12
+          </button>
+          <button onclick="setDateFilter('2026-10-13')" id="date-2026-10-13" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            Tue Oct 13
+          </button>
+          <button onclick="setDateFilter('2026-10-14')" id="date-2026-10-14" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            Wed Oct 14
+          </button>
+          <button onclick="setDateFilter('2026-10-15')" id="date-2026-10-15" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            Thu Oct 15
+          </button>
+          <button onclick="setDateFilter('2026-10-16')" id="date-2026-10-16" class="date-tab px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            Fri Oct 16
+          </button>
+        </div>
+
+        <!-- Track / Category Pills -->
+        <div class="flex items-center space-x-2 overflow-x-auto text-xs">
+          <span class="text-gray-500 font-medium mr-1">Track:</span>
+          <button onclick="setTrackFilter('all')" id="track-all" class="track-pill active-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            All Tracks
+          </button>
+          <button onclick="setTrackFilter('Keynote')" id="track-Keynote" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            Keynotes
+          </button>
+          <button onclick="setTrackFilter('VFX')" id="track-VFX" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            VFX
+          </button>
+          <button onclick="setTrackFilter('Animation')" id="track-Animation" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            Animation
+          </button>
+          <button onclick="setTrackFilter('AI & Tech')" id="track-AI & Tech" class="track-pill px-3 py-1 rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 transition-all whitespace-nowrap">
+            AI & Tech
+          </button>
+        </div>
+
       </div>
     </div>
   </header>
 
-  <!-- Main Content Grid -->
+  <!-- Content Container -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
     
-    <!-- Count / Info Bar -->
-    <div class="flex items-center justify-between mb-6 text-sm text-slate-400">
-      <span id="event-count">Loading schedule...</span>
+    <!-- Results Summary -->
+    <div class="flex items-center justify-between mb-6 text-sm text-gray-400">
+      <div id="results-count">Loading schedule...</div>
     </div>
 
-    <!-- Events Container Grid -->
-    <div id="events-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="col-span-full py-16 text-center text-slate-500">
-        <svg class="animate-spin h-8 w-8 mx-auto mb-3 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        Fetching latest VIEW Conference schedule...
+    <!-- Cards Grid -->
+    <div id="events-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="col-span-full py-20 text-center text-gray-500">
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-700 border-t-indigo-500 mb-4"></div>
+        <p>Fetching VIEW Conference 2026 events...</p>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-slate-900 border-t border-slate-800 py-6 mt-12 text-center text-xs text-slate-500">
-    <p>VIEW Conference Schedule Viewer • Data updated dynamically from official VIEW site</p>
+  <footer class="bg-gray-800/40 border-t border-gray-800 py-6 text-center text-xs text-gray-500">
+    VIEW Conference Calendar • Built for GitHub Pages
   </footer>
 
-  <!-- Application Logic -->
+  <!-- App Script Logic -->
   <script>
-    let allEvents = [];
-    let selectedDate = 'all';
+    let eventsData = [];
+    let activeDate = 'all';
+    let activeTrack = 'all';
 
-    async function initApp() {
+    async function loadSchedule() {
       try {
-        // Fetch schedule.json relative path with cache buster
         const response = await fetch('./schedule.json?v=' + Date.now());
         if (!response.ok) {
-          throw new Error(`HTTP Error Status: ${response.status}`);
+          throw new Error(`Server returned status ${response.status}`);
         }
-        
-        allEvents = await response.json();
-        console.log(`Loaded ${allEvents.length} events successfully.`);
-        
-        // Initial render
+        eventsData = await response.json();
         handleFilterChange();
-      } catch (error) {
-        console.error("Failed to load schedule.json:", error);
-        const container = document.getElementById('events-container');
-        if (container) {
-          container.innerHTML = `
-            <div class="col-span-full bg-red-900/20 border border-red-800 rounded-xl p-8 text-center text-red-400">
-              <h3 class="text-lg font-bold mb-2">Failed to load schedule</h3>
-              <p class="text-sm">Unable to parse schedule.json. Please check repository updates.</p>
+      } catch (err) {
+        console.error("Error loading schedule.json:", err);
+        const grid = document.getElementById('events-grid');
+        if (grid) {
+          grid.innerHTML = `
+            <div class="col-span-full p-8 rounded-xl bg-red-900/20 border border-red-800 text-center text-red-400">
+              Failed to load schedule.json. Check browser console for details.
             </div>
           `;
         }
@@ -128,108 +166,117 @@
     }
 
     function setDateFilter(date) {
-      selectedDate = date;
-      
-      // Update Tab CSS
-      document.querySelectorAll('.date-tab').forEach(tab => {
-        tab.classList.remove('active-tab');
-        tab.classList.add('bg-slate-800', 'text-slate-300');
-      });
+      activeDate = date;
+      document.querySelectorAll('.date-tab').forEach(el => el.classList.remove('active-pill'));
+      const activeEl = document.getElementById(`date-${date}`);
+      if (activeEl) activeEl.classList.add('active-pill');
+      handleFilterChange();
+    }
 
-      const activeBtn = document.getElementById(`tab-${date}`);
-      if (activeBtn) {
-        activeBtn.classList.add('active-tab');
-        activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
-      }
-
+    function setTrackFilter(track) {
+      activeTrack = track;
+      document.querySelectorAll('.track-pill').forEach(el => el.classList.remove('active-pill'));
+      const activeEl = document.getElementById(`track-${track}`);
+      if (activeEl) activeEl.classList.add('active-pill');
       handleFilterChange();
     }
 
     function handleFilterChange() {
-      const searchQuery = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+      const query = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
 
-      const filtered = allEvents.filter(event => {
-        // Match Date
-        const matchesDate = (selectedDate === 'all') || (event.date === selectedDate);
-        
-        // Match Search Query
-        const matchesSearch = !searchQuery || 
-          (event.title && event.title.toLowerCase().includes(searchQuery)) ||
-          (event.speaker && event.speaker.toLowerCase().includes(searchQuery)) ||
-          (event.track && event.track.toLowerCase().includes(searchQuery)) ||
-          (event.location && event.location.toLowerCase().includes(searchQuery));
+      const filtered = eventsData.filter(event => {
+        const matchDate = (activeDate === 'all') || (event.date === activeDate);
+        const matchTrack = (activeTrack === 'all') || (event.track === activeTrack);
+        const matchSearch = !query || 
+          (event.title && event.title.toLowerCase().includes(query)) ||
+          (event.speaker && event.speaker.toLowerCase().includes(query)) ||
+          (event.location && event.location.toLowerCase().includes(query));
 
-        return matchesDate && matchesSearch;
+        return matchDate && matchTrack && matchSearch;
       });
 
-      renderEvents(filtered);
+      renderGrid(filtered);
     }
 
-    function renderEvents(events) {
-      const container = document.getElementById('events-container');
-      const countEl = document.getElementById('event-count');
+    function renderGrid(events) {
+      const grid = document.getElementById('events-grid');
+      const countEl = document.getElementById('results-count');
 
       if (countEl) {
         countEl.textContent = `Showing ${events.length} session${events.length === 1 ? '' : 's'}`;
       }
 
-      if (!container) return;
+      if (!grid) return;
 
       if (events.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-500">
-            No sessions match your search criteria.
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-gray-500">
+            No events found matching your filter options.
           </div>
         `;
         return;
       }
 
-      container.innerHTML = events.map(event => `
-        <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700/80 hover:border-indigo-500/80 transition-all flex flex-col justify-between shadow-lg">
-          <div class="relative h-44 overflow-hidden bg-slate-900">
+      grid.innerHTML = events.map(event => `
+        <div class="bg-gray-800/90 rounded-2xl overflow-hidden border border-gray-700/70 hover:border-indigo-500/80 transition-all duration-200 flex flex-col justify-between shadow-lg hover:shadow-indigo-500/10 group">
+          
+          <!-- Card Image & Badge -->
+          <div class="relative h-48 bg-gray-900 overflow-hidden">
             <img 
               src="${event.imageUrl}" 
               alt="${event.title}" 
-              class="w-full h-full object-cover" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               onerror="this.onerror=null; this.src='https://s3.amazonaws.com/view-conference-www/assets/article/2026/08/21/bradbirdbanner2_688x387.jpg';"
             >
-            <span class="absolute top-3 right-3 bg-indigo-600/90 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80"></div>
+            
+            <!-- Track Badge -->
+            <span class="absolute top-3 right-3 bg-indigo-600/90 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
               ${event.track || 'Session'}
             </span>
           </div>
-          
+
+          <!-- Card Body -->
           <div class="p-5 flex-1 flex flex-col justify-between">
             <div>
-              <div class="text-xs font-semibold text-indigo-400 mb-1.5 flex items-center gap-1.5">
-                <span>🗓️ ${event.date}</span>
+              <!-- Date & Time -->
+              <div class="text-xs font-semibold text-indigo-400 mb-2 flex items-center gap-2">
+                <span>📅 ${event.date}</span>
                 <span>•</span>
                 <span>⏰ ${event.startTime} - ${event.endTime}</span>
               </div>
-              <h3 class="text-base font-bold text-slate-100 mb-2 leading-snug line-clamp-2">
+
+              <!-- Talk Title -->
+              <h3 class="text-lg font-bold text-gray-100 mb-2 leading-snug group-hover:text-indigo-300 transition-colors">
                 ${event.title}
               </h3>
-              <p class="text-xs text-slate-400 mb-4 line-clamp-2">
-                👤 ${event.speaker}
+
+              <!-- Speaker -->
+              <p class="text-xs text-gray-400 mb-4 font-medium">
+                ${event.speaker}
               </p>
             </div>
 
-            <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+            <!-- Card Footer: Room & Details Link -->
+            <div class="pt-3 border-t border-gray-700/60 flex items-center justify-between text-xs text-gray-400">
               <span class="truncate max-w-[180px]">📍 ${event.location}</span>
               <a 
                 href="${event.url}" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="text-indigo-400 hover:text-indigo-300 font-semibold whitespace-nowrap ml-2"
+                class="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 transition-colors"
               >
-                Details →
+                <span>Read More</span>
+                <span>→</span>
               </a>
             </div>
           </div>
+
         </div>
       `).join('');
     }
 
-    document.addEventListener('DOMContentLoaded', initApp);
+    document.addEventListener('DOMContentLoaded', loadSchedule);
   </script>
 </body>
 </html>
