@@ -504,11 +504,20 @@
 
         function renderTimelineGrid(events, container) {
             const venueFilter = document.getElementById('venue-filter').value;
-            const activeVenues = (venueFilter !== 'ALL') ? [venueFilter] : ALL_VENUES;
-
+            
+            // Cull empty venue columns for the selected day unless a single venue is manually selected
+            let activeVenues = (venueFilter !== 'ALL') 
+                ? [venueFilter] 
+                : ALL_VENUES.filter(venue => events.some(e => e.location === venue));
+        
+            // Fallback in case no events match
+            if (activeVenues.length === 0) {
+                activeVenues = ALL_VENUES;
+            }
+        
             let minHour = 8;
             let maxHour = 18;
-
+        
             events.forEach(ev => {
                 const [sH] = ev.startTime.split(':').map(Number);
                 const [eH, eM] = ev.endTime.split(':').map(Number);
@@ -516,16 +525,16 @@
                 const calculatedEndHour = eH + (eM > 0 ? 1 : 0);
                 if (calculatedEndHour > maxHour) maxHour = calculatedEndHour;
             });
-
+        
             maxHour = Math.min(24, maxHour + 1);
             const totalHours = maxHour - minHour;
             const totalHeight = totalHours * pxPerHour;
-
+        
             const hours = [];
             for (let h = minHour; h < maxHour; h++) {
                 hours.push(h);
             }
-
+        
             let html = `
                 <div class="overflow-x-auto no-scrollbar border border-slate-800 rounded-2xl bg-slate-900/90 shadow-2xl relative">
                     <div class="min-w-[760px] sm:min-w-full flex flex-col">
@@ -535,7 +544,7 @@
                             </div>
                             <div class="flex-1 grid divide-x divide-slate-800/80" style="grid-template-columns: repeat(${activeVenues.length}, minmax(0, 1fr));">
             `;
-
+        
             activeVenues.forEach(venue => {
                 html += `
                     <div class="p-3 text-center">
@@ -546,15 +555,15 @@
                     </div>
                 `;
             });
-
+        
             html += `
                             </div>
                         </div>
-
+        
                         <div class="flex relative" style="height: ${totalHeight}px;">
                             <div class="w-16 flex-shrink-0 border-r border-slate-800/80 bg-slate-950/90 sticky left-0 z-20 select-none">
             `;
-
+        
             hours.forEach((h, idx) => {
                 const timeStr = `${h < 10 ? '0' + h : h}:00`;
                 html += `
@@ -563,51 +572,51 @@
                     </div>
                 `;
             });
-
+        
             html += `
                             </div>
                             <div class="absolute inset-0 left-16 pointer-events-none z-0">
             `;
-
+        
             hours.forEach((h, idx) => {
                 html += `
                     <div class="absolute left-0 right-0 border-t border-slate-800/50" style="top: ${idx * pxPerHour}px;"></div>
                     <div class="absolute left-0 right-0 border-t border-slate-800/20 border-dashed" style="top: ${idx * pxPerHour + (pxPerHour / 2)}px;"></div>
                 `;
             });
-
+        
             html += `
                             </div>
                             <div class="flex-1 grid divide-x divide-slate-800/80 relative z-10" style="grid-template-columns: repeat(${activeVenues.length}, minmax(0, 1fr));">
             `;
-
+        
             const baseMinutes = minHour * 60;
             const getMinutes = (tStr) => {
                 const [h, m] = tStr.split(':').map(Number);
                 return h * 60 + m;
             };
-
+        
             activeVenues.forEach(venue => {
                 const venueEvents = events.filter(e => e.location === venue);
                 
                 html += `<div class="relative h-full">`;
-
+        
                 venueEvents.forEach(ev => {
                     const startM = getMinutes(ev.startTime);
                     const endM = getMinutes(ev.endTime);
                     const durationM = Math.max(20, endM - startM);
-
+        
                     const topPx = (startM - baseMinutes) * (pxPerHour / 60);
                     const heightPx = durationM * (pxPerHour / 60);
                     const isStarred = starredIds.has(String(ev.id));
-
+        
                     let trackBadgeBg = "bg-brand-500/40 text-brand-200 border-brand-500/50";
                     if (ev.track === 'Keynote') trackBadgeBg = "bg-amber-500/40 text-amber-200 border-amber-500/50";
                     else if (ev.track === 'VFX') trackBadgeBg = "bg-sky-500/40 text-sky-200 border-sky-500/50";
                     else if (ev.track === 'Session') trackBadgeBg = "bg-emerald-500/40 text-emerald-200 border-emerald-500/50";
-
+        
                     const isCompact = heightPx < 70;
-
+        
                     html += `
                         <div onclick="openModal('${ev.id}')" 
                              style="top: ${topPx + 2}px; height: ${heightPx - 4}px;" 
@@ -617,7 +626,7 @@
                                 ${ev.imageUrl ? `<img src="${ev.imageUrl}" alt="${ev.title}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500 opacity-60 group-hover:opacity-80" onerror="this.src='https://placehold.co/800x400/1e293b/f43f5e?text=VIEW+2026'">` : ''}
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-slate-950/25"></div>
                             </div>
-
+        
                             <div class="relative z-10 p-2 sm:p-3 h-full flex flex-col justify-between">
                                 <div class="space-y-1 mb-1">
                                     <div class="flex items-center justify-between gap-1 w-full">
@@ -629,14 +638,14 @@
                                             <i class="fa-solid fa-star text-xs ${isStarred ? 'text-amber-400' : 'text-slate-300 hover:text-amber-300'}"></i>
                                         </button>
                                     </div>
-
+        
                                     <div class="flex items-center">
                                         <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-950/85 text-slate-100 border border-slate-700/80 whitespace-nowrap shadow-md backdrop-blur-sm">
                                             <i class="fa-regular fa-clock text-brand-400 mr-1 text-[9px]"></i>${ev.startTime} - ${ev.endTime}
                                         </span>
                                     </div>
                                 </div>
-
+        
                                 <div class="flex-1 min-h-0 overflow-hidden flex flex-col justify-center my-1">
                                     <h3 class="font-extrabold text-xs sm:text-sm leading-tight text-white group-hover:text-brand-300 transition drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] ${isCompact ? 'truncate' : 'line-clamp-2'}">
                                         ${ev.title}
@@ -648,7 +657,7 @@
                                         </p>
                                     ` : ''}
                                 </div>
-
+        
                                 ${!isCompact && heightPx >= 90 ? `
                                     <div class="pt-1.5 border-t border-white/15 flex items-center justify-between text-[10px] text-slate-200">
                                         <span class="truncate font-semibold flex items-center gap-1 drop-shadow">
@@ -662,17 +671,17 @@
                         </div>
                     `;
                 });
-
+        
                 html += `</div>`;
             });
-
+        
             html += `
                             </div>
                         </div>
                     </div>
                 </div>
             `;
-
+        
             container.innerHTML = html;
         }
 
