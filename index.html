@@ -340,7 +340,7 @@
             } catch (error) {
                 console.error("Error loading schedule.json:", error);
                 showToast("Could not load schedule.json file", "fa-triangle-exclamation");
-            } font-medium {
+            } finally {
                 if (syncIcon) syncIcon.classList.remove('fa-spin');
             }
         }
