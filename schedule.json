@@ -536,7 +536,7 @@
     "startTime": "17:45",
     "endTime": "19:15",
     "track": "VFX",
-    "imageUrl": "",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/27/view-ai-workshop-banner_feature.jpg",
     "url": "https://www.viewconference.it/article/1231"
   },
   {
@@ -601,7 +601,7 @@
   },
   {
     "id": "1054",
-    "title": "Beyond the Frame: The Fusion of Stop Motion, AI, and VFX",
+    "title": "Beyond the Frame: The Fusion of Hybrid VFX, AI and Live Action",
     "speaker": "SETAREH SAMANDARI, ,, Chief Executive Officer (CEO), Interdimensional VFX",
     "location": "OGR - Mezzanino",
     "date": "2026-10-15",
@@ -1064,7 +1064,7 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "Session",
-    "imageUrl": "",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/09/28/agatasoccinibanner_feature.jpg",
     "url": "https://www.viewconference.it/article/1343"
   },
   {
