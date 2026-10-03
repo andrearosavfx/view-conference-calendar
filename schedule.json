@@ -464,7 +464,7 @@
     "startTime": "15:15",
     "endTime": "16:15",
     "track": "VFX",
-    "imageUrl": "",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/10/02/alessandroongarobanner_feature.JPG",
     "url": "https://www.viewconference.it/article/1254"
   },
   {
@@ -740,7 +740,7 @@
     "startTime": "14:00",
     "endTime": "15:00",
     "track": "Session",
-    "imageUrl": "",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/10/03/michaelmccuskerbanner_feature.jpg",
     "url": "https://www.viewconference.it/article/1266"
   },
   {
