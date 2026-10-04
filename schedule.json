@@ -309,7 +309,7 @@
     "endTime": "10:00",
     "track": "AI & Tech",
     "imageUrl": "",
-    "url": "https://www.viewconference.it/speaker/carlos-vilchis-ph.d."
+    "url": "https://www.viewconference.it/speaker/carlos-vilchis-phd"
   },
   {
     "id": "1029",
@@ -573,7 +573,7 @@
     "endTime": "23:00",
     "track": "VFX",
     "imageUrl": "",
-    "url": "https://www.viewconference.it/speaker/matthew-e.-butler"
+    "url": "https://www.viewconference.it/speaker/matthew-e-butler"
   },
   {
     "id": "1051",
@@ -597,7 +597,7 @@
     "endTime": "10:00",
     "track": "Session",
     "imageUrl": "",
-    "url": "https://www.viewconference.it/speaker/carlos-vilchis-ph.d."
+    "url": "https://www.viewconference.it/speaker/carlos-vilchis-phd"
   },
   {
     "id": "1054",
@@ -1093,6 +1093,18 @@
   },
   {
     "id": "1096",
+    "title": "Hyderabad to the World: Telangana's Vision for the Future of Storytelling",
+    "speaker": "SANJAY JAJU IAS, ,, Chief Secretary, Government of Telangana",
+    "location": "OGR - Binario 3",
+    "date": "2026-10-16",
+    "startTime": "15:15",
+    "endTime": "16:15",
+    "track": "VFX",
+    "imageUrl": "https://s3.amazonaws.com/view-conference-www/assets/article/2026/10/03/sanjayjajubanner_feature.jpg",
+    "url": "https://www.viewconference.it/article/1355"
+  },
+  {
+    "id": "1097",
     "title": "VFX of Project Hail Mary",
     "speaker": "PAUL LAMBERT, ,, VFX Co-Supervisor, Project Hail Mary",
     "location": "OGR - Sala Fucine",
@@ -1104,7 +1116,7 @@
     "url": "https://www.viewconference.it/article/1221"
   },
   {
-    "id": "1097",
+    "id": "1098",
     "title": "Reflections on Cinematography",
     "speaker": "SIR ROGER DEAKINS, ,, Academy Award Winning Cinematographer",
     "location": "OGR - Sala Fucine",
@@ -1116,7 +1128,7 @@
     "url": "https://www.viewconference.it/article/1218"
   },
   {
-    "id": "1098",
+    "id": "1099",
     "title": "Gaussian Splatting for Animation:  Emerging Workflows and Hybrid Pipelines",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1128,7 +1140,7 @@
     "url": "https://www.viewconference.it/article/1257"
   },
   {
-    "id": "1099",
+    "id": "1100",
     "title": "Concept Art for Games: A Project Walkthrough",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1140,7 +1152,7 @@
     "url": "https://www.viewconference.it/article/1299"
   },
   {
-    "id": "1100",
+    "id": "1101",
     "title": "World VFX Day",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1152,7 +1164,7 @@
     "url": "https://www.viewconference.it/article/1302"
   },
   {
-    "id": "1101",
+    "id": "1102",
     "title": "New Artists in Stylized Worlds",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1164,7 +1176,7 @@
     "url": "https://www.viewconference.it/article/1353"
   },
   {
-    "id": "1104",
+    "id": "1105",
     "title": "Portfolio Reviews",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1176,7 +1188,7 @@
     "url": "https://www.viewconference.it/article/1352"
   },
   {
-    "id": "1105",
+    "id": "1106",
     "title": "Making the Most of Your Showreel in an Age of AI",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1188,7 +1200,7 @@
     "url": "https://www.viewconference.it/article/1327"
   },
   {
-    "id": "1106",
+    "id": "1107",
     "title": "From Preproduction to Production: Postviz, Virtual Scouting, and Real-Time Camera\n                     Tracking Workflows",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1200,7 +1212,7 @@
     "url": "https://www.viewconference.it/article/1334"
   },
   {
-    "id": "1107",
+    "id": "1108",
     "title": "Francisco \"Pakko\" De la Torre-Rocha",
     "speaker": "Gaston Alvarez - Virtual Production & VFX Supervisor Workshop From Preproduction to Production: Postviz, Virtual Scouting, and Real-Time Camera",
     "location": "OGR - ITS TEATRO",
