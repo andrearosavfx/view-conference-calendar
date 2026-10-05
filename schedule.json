@@ -567,7 +567,7 @@
     "id": "1050",
     "title": "Disclosure Day",
     "speaker": "MATTHEW E. BUTLER, ,\u00a0Production VFX Supervisor, Disclosure Day",
-    "location": "OGR - CINEMA MASSIMO",
+    "location": "OGR Venue",
     "date": "2026-10-14",
     "startTime": "20:30",
     "endTime": "23:00",
@@ -853,6 +853,18 @@
   },
   {
     "id": "1075",
+    "title": "Storytelling with Virtual Production: Behind the Scenes of \"Chase Your Dreams\"",
+    "speaker": "WAYNE MILLER, ,, Executive Producer/Head of Production, Texas A&M University, Virtual Production Institute",
+    "location": "OGR - Binario 3",
+    "date": "2026-10-15",
+    "startTime": "17:45",
+    "endTime": "18:45",
+    "track": "Session",
+    "imageUrl": "",
+    "url": "https://www.viewconference.it/article/1356"
+  },
+  {
+    "id": "1076",
     "title": "ILM: 50 Years of Innovation Book Signing",
     "speaker": "HAL HICKEL, ,\u00a0Animation Director, Industrial Light & Magic (ILM), Oscar,  BAFTA winner",
     "location": "OGR - BOOKSTORE",
@@ -864,10 +876,10 @@
     "url": "https://www.viewconference.it/speaker/hal-hickel"
   },
   {
-    "id": "1076",
+    "id": "1077",
     "title": "The Secret of the Moonstone",
     "speaker": "SACHITHA KALINGAMUDALI, ,\u00a0General Manager, Mogo Studios",
-    "location": "OGR - CINEMA MASSIMO",
+    "location": "OGR Venue",
     "date": "2026-10-15",
     "startTime": "20:30",
     "endTime": "22:00",
@@ -876,7 +888,7 @@
     "url": "https://www.viewconference.it/speaker/sachitha-kalingamudali"
   },
   {
-    "id": "1077",
+    "id": "1078",
     "title": "Toy Story 5 Behind the Scenes",
     "speaker": "KENNA HARRIS, ,, Co-Director & Co-Writer, Toy Story 5, Pixar Animation Studios",
     "location": "OGR - Sala Fucine",
@@ -888,7 +900,7 @@
     "url": "https://www.viewconference.it/article/1261"
   },
   {
-    "id": "1079",
+    "id": "1080",
     "title": "Beyond Boundaries: Exploring Reality in Limit Exceeded",
     "speaker": "SETAREH SAMANDARI, ,, Chief Executive Officer (CEO), Interdimensional VFX",
     "location": "OGR - Binario 3",
@@ -900,7 +912,7 @@
     "url": "https://www.viewconference.it/article/1295"
   },
   {
-    "id": "1080",
+    "id": "1081",
     "title": "The New Entry Point: Getting Hired in Animation & VFX in the Age of AI",
     "speaker": "SIVA KUMAR KASETTY, ,, Executive Producer & Partner, ZA Studios",
     "location": "OGR - Mezzanino",
@@ -912,7 +924,7 @@
     "url": "https://www.viewconference.it/article/1321"
   },
   {
-    "id": "1081",
+    "id": "1082",
     "title": "Every Pixel Will Be Generated",
     "speaker": "RICHARD KERRIS, ,, Global Media and Entertainment Vice-President, NVIDIA",
     "location": "OGR - Sala Fucine",
@@ -924,7 +936,7 @@
     "url": "https://www.viewconference.it/article/1273"
   },
   {
-    "id": "1082",
+    "id": "1083",
     "title": "The Secret of the Moonstone: Origin Story of Sri Lanka\u00e2\u0080\u0099s First Animated Feature",
     "speaker": "SACHITHA KALINGAMUDALI, ,, General Manager, Mogo Studios",
     "location": "OGR - Binario 3",
@@ -936,7 +948,7 @@
     "url": "https://www.viewconference.it/article/1322"
   },
   {
-    "id": "1083",
+    "id": "1084",
     "title": "You Are the IP",
     "speaker": "SIMON DAVIES, ,, Talent Acquisition Leader & Founder, DAX | Digital Arts Xchange",
     "location": "OGR - Mezzanino",
@@ -948,7 +960,7 @@
     "url": "https://www.viewconference.it/article/1286"
   },
   {
-    "id": "1084",
+    "id": "1085",
     "title": "Avatar: Fire & Ash",
     "speaker": "ERIC SAINDON, ,, Senior VFX Supervisor, Avatar: Fire & Ash, Weta FX",
     "location": "OGR - Sala Fucine",
@@ -960,7 +972,7 @@
     "url": "https://www.viewconference.it/article/1229"
   },
   {
-    "id": "1085",
+    "id": "1086",
     "title": "Making Dear Upstairs Neighbors: Exploring Artist-Driven, AI-Assisted Expressionistic\n                  Animation",
     "speaker": "SARAH RUMBLEY, ,, Software Engineer & VFX Supervisor, Dear Upstairs Neighbors, Google",
     "location": "OGR - Binario 3",
@@ -972,7 +984,7 @@
     "url": "https://www.viewconference.it/article/1242"
   },
   {
-    "id": "1086",
+    "id": "1087",
     "title": "Claynosaurz: A New Creator Playbook",
     "speaker": "NICHOLAS CABANA, ,, Creative Director and Co-Founder, Claynosaurz",
     "location": "OGR - Mezzanino",
@@ -984,8 +996,8 @@
     "url": "https://www.viewconference.it/article/1351"
   },
   {
-    "id": "1087",
-    "title": "Terrence Masson at VIEW Conference 2026",
+    "id": "1088",
+    "title": "Reflections & Insights from 40 Years of Eclectic Computer Art, Storytelling, Teaching\n                  & Learning",
     "speaker": "TERRENCE MASSON, (, Remote, ),, Creative Technology & Media Executive",
     "location": "OGR - SOPPALCO",
     "date": "2026-10-16",
@@ -996,7 +1008,7 @@
     "url": "https://www.viewconference.it/article/1232"
   },
   {
-    "id": "1088",
+    "id": "1089",
     "title": "Women in Animation & VFX",
     "speaker": "DELPHINE COUDRAY, ,, Head of Operations, Animation Ireland",
     "location": "OGR - Sala Fucine",
@@ -1008,7 +1020,7 @@
     "url": "https://www.viewconference.it/speaker/delphine-coudray"
   },
   {
-    "id": "1089",
+    "id": "1090",
     "title": "The Giant Droids of Nal Hutta: Stopmotion in The Mandalorian and Grogu",
     "speaker": "TOM GIBBONS, ,, Animation / Stop-Motion Supervisor, Tippett Studio",
     "location": "OGR - Binario 3",
@@ -1020,7 +1032,7 @@
     "url": "https://www.viewconference.it/article/1320"
   },
   {
-    "id": "1090",
+    "id": "1091",
     "title": "The Future of Independent Theatrical Animation in China: Global Implications",
     "speaker": "CHRIS BREMBLE, ,, Founder & CEO, Base Media",
     "location": "OGR - Mezzanino",
@@ -1032,7 +1044,7 @@
     "url": "https://www.viewconference.it/article/1288"
   },
   {
-    "id": "1091",
+    "id": "1092",
     "title": "The Stop-Motion Puppet Lab [SEPARATE TICKET] (4/4)",
     "speaker": "CHRIS LAVIS, ,, Co-Founder,  Clyde Henry Productions & Director, The Girl Who Cried Pearls, The National\n                  Film Board of Canada, Oscar winner",
     "location": "OGR - SOPPALCO",
@@ -1044,7 +1056,7 @@
     "url": "https://www.viewconference.it/article/1342"
   },
   {
-    "id": "1092",
+    "id": "1093",
     "title": "Directing a Stop Motion Feature: Shaping the Big Picture & Sweating Every Detail",
     "speaker": "MERLIN CROSSINGHAM, ,, Director, Aardman Animations",
     "location": "OGR - Sala Fucine",
@@ -1056,7 +1068,7 @@
     "url": "https://www.viewconference.it/article/1328"
   },
   {
-    "id": "1093",
+    "id": "1094",
     "title": "Art is Synthetic without Soul: Creative Decisions in an AI World",
     "speaker": "GRETCHEN LIBBY, ,, Director, Amazon Web Services, Specialists,  Media & Entertainment,  Games,  and Sport",
     "location": "OGR - Binario 3",
@@ -1068,7 +1080,7 @@
     "url": "https://www.viewconference.it/article/1297"
   },
   {
-    "id": "1094",
+    "id": "1095",
     "title": "The Art of Being There: Virtual Worlds, Human Experiences",
     "speaker": "AGATA M. SOCCINI, ,, Researcher,  Head of the VR Lab, University of Torino",
     "location": "OGR - Mezzanino",
@@ -1080,7 +1092,7 @@
     "url": "https://www.viewconference.it/article/1343"
   },
   {
-    "id": "1095",
+    "id": "1096",
     "title": "Artistry with Attitude: The Animation of The Angry Birds Movie 3",
     "speaker": "PATRICK HARBOUN, ,, VFX Supervisor, DNEG Animation",
     "location": "OGR - Sala Fucine",
@@ -1092,7 +1104,7 @@
     "url": "https://www.viewconference.it/article/1312"
   },
   {
-    "id": "1096",
+    "id": "1097",
     "title": "Hyderabad to the World: Telangana's Vision for the Future of Storytelling",
     "speaker": "SANJAY JAJU IAS, ,, Chief Secretary, Government of Telangana",
     "location": "OGR - Binario 3",
@@ -1104,7 +1116,7 @@
     "url": "https://www.viewconference.it/article/1355"
   },
   {
-    "id": "1097",
+    "id": "1098",
     "title": "VFX of Project Hail Mary",
     "speaker": "PAUL LAMBERT, ,, VFX Co-Supervisor, Project Hail Mary",
     "location": "OGR - Sala Fucine",
@@ -1116,7 +1128,7 @@
     "url": "https://www.viewconference.it/article/1221"
   },
   {
-    "id": "1098",
+    "id": "1099",
     "title": "Reflections on Cinematography",
     "speaker": "SIR ROGER DEAKINS, ,, Academy Award Winning Cinematographer",
     "location": "OGR - Sala Fucine",
@@ -1128,7 +1140,7 @@
     "url": "https://www.viewconference.it/article/1218"
   },
   {
-    "id": "1099",
+    "id": "1100",
     "title": "Gaussian Splatting for Animation:  Emerging Workflows and Hybrid Pipelines",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1140,7 +1152,7 @@
     "url": "https://www.viewconference.it/article/1257"
   },
   {
-    "id": "1100",
+    "id": "1101",
     "title": "Concept Art for Games: A Project Walkthrough",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1152,7 +1164,7 @@
     "url": "https://www.viewconference.it/article/1299"
   },
   {
-    "id": "1101",
+    "id": "1102",
     "title": "World VFX Day",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1164,7 +1176,7 @@
     "url": "https://www.viewconference.it/article/1302"
   },
   {
-    "id": "1102",
+    "id": "1103",
     "title": "New Artists in Stylized Worlds",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1176,7 +1188,7 @@
     "url": "https://www.viewconference.it/article/1353"
   },
   {
-    "id": "1105",
+    "id": "1106",
     "title": "Portfolio Reviews",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1188,7 +1200,7 @@
     "url": "https://www.viewconference.it/article/1352"
   },
   {
-    "id": "1106",
+    "id": "1107",
     "title": "Making the Most of Your Showreel in an Age of AI",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1200,7 +1212,7 @@
     "url": "https://www.viewconference.it/article/1327"
   },
   {
-    "id": "1107",
+    "id": "1108",
     "title": "From Preproduction to Production: Postviz, Virtual Scouting, and Real-Time Camera\n                     Tracking Workflows",
     "speaker": "Featured Speaker",
     "location": "OGR Venue",
@@ -1212,7 +1224,7 @@
     "url": "https://www.viewconference.it/article/1334"
   },
   {
-    "id": "1108",
+    "id": "1109",
     "title": "Francisco \"Pakko\" De la Torre-Rocha",
     "speaker": "Gaston Alvarez - Virtual Production & VFX Supervisor Workshop From Preproduction to Production: Postviz, Virtual Scouting, and Real-Time Camera",
     "location": "OGR - ITS TEATRO",
